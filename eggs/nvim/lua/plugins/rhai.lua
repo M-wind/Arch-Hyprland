@@ -1,0 +1,5 @@
+return {
+  {
+    "rhaiscript/vim-rhai",
+  },
+}

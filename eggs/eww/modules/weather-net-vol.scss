@@ -1,0 +1,20 @@
+.weather-net-vol-box {
+  background: $background;
+  border-radius: $radius8;
+  padding: $distance6;
+}
+
+.weathercard {
+  padding: $distance12;
+  background: $background;
+  border-radius: $radius8;
+}
+
+.weatheremoji {
+  font-size: 3.6rem;
+}
+
+.weathertxt {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
