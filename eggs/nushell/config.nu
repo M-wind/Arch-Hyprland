@@ -44,22 +44,11 @@ def ls [
 
 alias vi = neovide
 
-alias core-hash = hash
-
 alias l = ls
-
-# Use 7z hash
-def hash [          
-    name            # file path + file name
-    type            # SHA256 CRC32 CRC64 SHA1 XXH64 *
-] {
-    let a = -scrc + $type
-    7z h $a $name
-}
 
 alias color = nu-highlight
 
-alias tldr = tldr --config ~/app/tldr/config.toml
+alias tldr = /home/zwind/app/tldr/tldr --config /home/zwind/app/tldr/config.toml
 
 # def --env y [...args] {
 # 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")

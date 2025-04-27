@@ -36,7 +36,6 @@ $env.PATH = (
     | prepend ($env.HOME | path join app notify)
     | prepend ($env.HOME | path join app clipboard)
     | prepend ($env.HOME | path join app handlr)
-    | prepend ($env.HOME | path join app tldr)
     | prepend ($env.HOME | path join app exiftool)
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
