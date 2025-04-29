@@ -1,4 +1,4 @@
-$env.STARSHIP_CACHE = $env.HOME | path join ".config" "starship" "cache"
+$env.STARSHIP_CACHE = $env.HOME | path join "app" "starship" "cache"
 $env.STARSHIP_CONFIG = $env.HOME | path join ".config" "starship" "starship.toml"
 $env._ZO_DATA_DIR = "/home/zwind/app/zoxide"
 
@@ -28,6 +28,7 @@ $env.PATH = (
   $env.PATH
     | split row (char esep)
     | prepend ($env.HOME | path join app tools)
+    | prepend ($env.HOME | path join app 7z)
     | prepend ($env.HOME | path join app neovim bin)
     | prepend ($env.HOME | path join app hypr)
     | prepend ($env._ZO_DATA_DIR)
