@@ -1,5 +1,6 @@
 local highlights = function(colors)
   return {
+    Normal = { bg = vim.g.neovide and colors.bg or colors.none },
     NotifyBackground = { bg = "#000000" },
     NotifyINFOBorder = { fg = colors.green },
     NotifyINFOIcon = { fg = colors.green },
@@ -88,6 +89,7 @@ local onedarkpro = {
   lazy = true,
   config = function()
     local colors = require("onedarkpro.helpers").get_colors()
+    colors.bg = "#181818"
     local hl = highlights(colors)
     hl.DashboardHeader = { fg = colors.cyan }
     hl.DashboardShortCut = { fg = colors.green }
@@ -207,6 +209,7 @@ local everforest = {
       transparent_background_level = 2,
       italics = true,
       on_highlights = function(hl, colors)
+        colors.bg = colors.bg0
         colors.cyan = colors.aqua
         local highlights = highlights(colors)
         for k, v in pairs(highlights) do
@@ -229,11 +232,12 @@ local catppuccin = {
   name = "catppuccin",
   lazy = true,
   config = function()
-    local colors = require("catppuccin.palettes").get_palette("latte")
+    local colors = require("catppuccin.palettes").get_palette("frappe")
     colors.orange = colors.peach
     colors.cyan = colors.teal
     colors.purple = colors.mauve
     colors.none = "NONE"
+    colors.bg = colors.base
     local hl = highlights(colors)
     hl.IndentLine = { fg = "#3b4048" }
     hl.LineNr = { fg = "#45475a" }
@@ -303,6 +307,7 @@ local bamboo = {
   config = function()
     local colors = require("bamboo.palette").vulgaris
     colors.none = "NONE"
+    colors.bg = colors.bg0
     local hl = highlights(colors)
     hl.StatusLine = { bg = colors.none }
     hl.TabLineFill = { bg = colors.none }

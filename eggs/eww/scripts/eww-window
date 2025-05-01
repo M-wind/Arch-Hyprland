@@ -25,5 +25,7 @@ elif [[ ${operate} == "toggle" ]]; then
 elif [[ ${operate} == "open" ]]; then
   eww open "${windowname}"
 elif [[ ${operate} == "close" ]]; then
-  eww close "${windowname}"
+  if $(checkActive); then
+    eww close "${windowname}"
+  fi
 fi

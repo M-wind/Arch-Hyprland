@@ -22,10 +22,10 @@
                       :y 0
                       :width 320
                       :anchor "bottom right")
-  :stacking "fg"
+  :stacking "overlay"
   :exclusive false
   :focusable false
-  :namespace "weather-net-vol"
+  :namespace "bar-right-slide"
 (box :orientation "v"
      :space-evenly false
      :class "weather-net-vol-box"

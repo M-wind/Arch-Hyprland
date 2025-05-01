@@ -33,4 +33,9 @@ elif [[ ${operate} == "getAppList" ]]; then
   get_app_list
 elif [[ ${operate} == "isminimize" ]]; then
   is_minimize "${address}"
+elif [[ ${operate} == "getAppListOnce" ]]; then
+  get_app_list
+  if [[ $(eww get applistonce) == true ]]; then
+    eww update applistonce=false
+  fi
 fi

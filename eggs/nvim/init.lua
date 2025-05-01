@@ -2,8 +2,12 @@ require("core.options")
 require("core.keymaps")
 require("core.lazy")
 
-require("solarized-osaka").load()
--- require("onedarkpro").load()
+-- {% if theme.color_name != "wallpaper" %}
+-- {# replace_quoted(theme.color_name) #}
+require("bamboo").load()
+-- # {% else %}
+--<yolk> require("solarized-osaka").load()
+-- {% end %}
 require("core.autocmds")
 
 if vim.g.neovide then
@@ -34,7 +38,10 @@ if vim.g.neovide then
   end)
   require("dashboard")
   -- neovide 背景颜色  hyprland 应用透明和模糊
-  vim.api.nvim_set_hl(0, "Normal", { bg = require("utils.theme").colors.bg })
+  -- {% if theme.color_name != "wallpaper" %}
+  -- {# replace_color(theme.colors.background) #}
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#252623" })
+  -- {% end %}
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")
 end

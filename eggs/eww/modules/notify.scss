@@ -9,13 +9,13 @@
 }
 
 .titletext {
-  color: $cyan;
+  color: $mark;
   font-weight: bold;
-  // background: red;
   padding: 0 $distance12;
 }
 
 .bodytext {
+  color: $white;
 }
 
 .notifyheader {
@@ -23,6 +23,7 @@
   background: $background;
   border-top-left-radius: $radius8;
   border-top-right-radius: $radius8;
+  color: $white;
 }
 
 .notifyoperate {

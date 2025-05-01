@@ -7,7 +7,7 @@
   :stacking "overlay"
   :exclusive false
   :focusable false
-  :namespace "calendar"
+  :namespace "bar-right-slide"
   (box :orientation "v"
        :class "calendarbox"
     (time)))

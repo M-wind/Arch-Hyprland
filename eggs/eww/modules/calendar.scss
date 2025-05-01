@@ -36,19 +36,19 @@
   font-size: 30px;
   color: $black;
   border-radius: 100%;
-  background: $cyan;
+  background: $mark;
 }
 
 .textmonth {
   font-family: TypoGraphica;
   font-size: 18px;
-  color: $cyan;
+  color: $green;
 }
 
 .textdaynext {
   font-family: TypoGraphica;
   font-size: 18px;
-  color: $grey;
+  color: $white;
 }
 
 .cal-inner-box {
@@ -62,10 +62,10 @@ calendar {
     color: $black;
     background-repeat: no-repeat;
     background-position: center 0px;
-    background-image: url("/home/zwind/.config/eww/icons/circle.svg");
+    background-image: url("icons/circle.svg");
   }
   &:indeterminate {
-    color: $darkgrey;
+    color: $hover;
   }
 }
 
@@ -74,5 +74,5 @@ calendar.header {
 }
 
 calendar.highlight {
-  color: $cyan;
+  color: $green;
 }

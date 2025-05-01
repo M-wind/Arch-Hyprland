@@ -1,8 +1,8 @@
-@import "./modules/base.scss";
-@import "./modules/calendar.scss";
-@import "./modules/notify.scss";
-@import "./modules/volume.scss";
-@import "./modules/weather-net-vol.scss";
+@import "modules/base.scss";
+@import "modules/calendar.scss";
+@import "modules/notify.scss";
+@import "modules/volume.scss";
+@import "modules/weather-net-vol.scss";
 
 * {
   all:unset;
@@ -25,7 +25,7 @@
   }
 }
 
-@mixin icon($theme: $cyan) {
+@mixin icon($theme: $mark) {
   background: $theme;
   border-radius: $radius4;
 }
@@ -59,12 +59,14 @@
 .timenotifytext {
   font-size: 13px;
   font-weight: bold;
+  color: $white;
 }
 
 .networktext {
   font-family: monospace;
   font-weight: bold;
   font-size: 1.1rem;
+  color: $white;
 }
 
 .systemiconbar {
@@ -82,11 +84,19 @@
 }
 
 .systemiconactive {
-  background: $cyan;
+  background: $mark;
   border-radius: $radius4;
 }
 
 .wethertext {
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: monospace;
+  color: $white;
+}
+
+.plattetext {
+  color: $white;
   font-weight: bold;
   font-size: 1.1rem;
   font-family: monospace;

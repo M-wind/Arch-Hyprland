@@ -30,9 +30,10 @@
             :width 42
             :height 42
             :onclick exe
-    (image :path "./icons/${iconname}.svg"
-      :image-width 24
-      :image-height 24)))
+    (image :path "icons/${iconname}.svg"
+      :fill-svg white
+      :image-width imageh
+      :image-height imageh)))
 
 (defwindow volume
   :monitor 0
@@ -41,10 +42,10 @@
                       :width "320px"
                       :height "42px"
                       :anchor "bottom center")
-  :stacking "fg"
+  :stacking "overlay"
   :exclusive false
   :focusable false
-  :namespace "bar"
+  :namespace "bar-center-popin"
 (box :class "volume"
      :width 320
   (volume)))

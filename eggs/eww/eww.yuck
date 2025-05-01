@@ -1,16 +1,24 @@
-(include "./modules/calendar.yuck")
-(include "./modules/notify.yuck")
-(include "./modules/volume.yuck")
-(include "./modules/weather-net-vol.yuck")
+(include "modules/colors.yuck")
+(include "modules/calendar.yuck")
+(include "modules/notify.yuck")
+(include "modules/volume.yuck")
+(include "modules/platte.yuck")
+(include "modules/system.yuck")
+(include "modules/weather-net-vol.yuck")
 
 (defvar currentworkspace 1)
 (defvar activewindow "arch")
 (defvar netname "enp4s0")
-(defvar applist {[]})
 (defvar previewinfo {{}})
 (defvar barh 44)
 (defvar widgeth 32)
 (defvar imageh 24)
+(defvar applistonce true)
+(defpoll applist :interval "1s"
+                 :initial {[]}
+                 :run-while applistonce
+  `eww-minimize getAppListOnce`)
+
 
 ;; left
 (defwidget workspaces []
@@ -20,12 +28,12 @@
        :valign "center"
        :height barh
        :spacing 6
-       (workspace :number 1)
-       (workspace :number 2)
-       (workspace :number 3)
-       (workspace :number 4)
-       (workspace :number 5)
-       (workspace :number 6)))
+    (workspace :number 1)
+    (workspace :number 2)
+    (workspace :number 3)
+    (workspace :number 4)
+    (workspace :number 5)
+    (workspace :number 6)))
 
 (defwidget workspace [number]
   (eventbox :orientation "h"
@@ -33,7 +41,8 @@
             :width widgeth
             :cursor "pointer"
             :onclick { currentworkspace == number ? "" : "eww-workspace change ${number}" }
-            (image :path "./icons/workspace${number}.svg"
+            (image :path "icons/workspace${number}.svg"
+                   :fill-svg white
                    :image-width imageh 
                    :image-height imageh)))
 
@@ -45,7 +54,7 @@
          :space-evenly false
          :spacing 6
          :height widgeth
-      (image :path "./icons/download.svg" :image-width imageh)
+      (image :path "icons/download.svg" :image-width imageh :fill-svg white)
       (label :text {round(EWW_NET[netname]["NET_DOWN"] / 1024, 2) > 1000 ? round(EWW_NET[netname]["NET_DOWN"] / 1024 / 1024, 2) + "MB/s" : round(EWW_NET[netname]["NET_DOWN"] / 1024, 2) + " KB/s"}
              :class "networktext"))))
 
@@ -57,45 +66,11 @@
          :space-evenly false
          :spacing 6
          :height widgeth
-    (image :path "./icons/upload.svg" :image-width imageh)
+    (image :path "icons/upload.svg" :image-width imageh :fill-svg white)
     (label :text {round(EWW_NET[netname]["NET_UP"] / 1024, 2) > 1000 ? round(EWW_NET[netname]["NET_UP"] / 1024 / 1024, 2) + " MB/s" : round(EWW_NET[netname]["NET_UP"] / 1024, 2) + " KB/s"}
            :class "networktext"))))
 
 ;; center 
-(defwindow system
-  :monitor 0
-  :geometry (geometry :x "0%"
-                      :y "0%"
-                      :height "100px"
-                      :anchor "bottom center")
-  :stacking "overlay"
-  :exclusive false
-  :focusable false
-  :namespace "system"
-  (box :class "leftpanel" 
-       :spacing 6
-    (eventbox :height 92 
-              :width 76
-              :class "systemicon" 
-              :cursor "pointer"
-              :onclick "eww-system lock"
-      (image :path "./icons/lock.svg"
-             :image-height 64))
-    (eventbox :height 92 
-              :width 76
-              :class "systemicon" 
-              :cursor "pointer"
-              :onclick "eww-system restart"
-      (image :path "./icons/reboot.svg"
-             :image-height 64))
-    (eventbox :height 92 
-              :width 76
-              :class "systemicon" 
-              :cursor "pointer"
-              :onclick "eww-system poweroff"
-      (image :path "./icons/poweroff.svg"
-             :image-height 64))))
-
 (defwindow preview
   :monitor 0
   :geometry (geometry :x "0%"
@@ -104,7 +79,7 @@
   :stacking "overlay"
   :exclusive false
   :focusable false
-  :namespace "system"
+  :namespace "bar-center-popin"
   (box :class "" 
     (image :path { previewinfo["path"] }
            :image-width 288
@@ -136,9 +111,10 @@
               :cursor "pointer"
               :class "notifyicon"
               :onclick { paused ? "eww-window toggle notify" : "eww-notify init; eww-window toggle notify; eww update new_notify=false" }
-      (image :path {paused ? "./icons/notifyz-cyan.svg" : new_notify ? "./icons/notifybadge-cyan.svg" : "./icons/notify.svg"}
-             :image-width 21
-             :image-height 21))))
+      (image :path { paused ? "icons/notifyz.svg" : new_notify ? "icons/notifybadge.svg" : "icons/notify.svg" }
+             :fill-svg { paused || new_notify ? mark : white  }
+             :image-width imageh
+             :image-height imageh))))
 
 (defwidget wether-net-vol []
   (eventbox :orientation "h"
@@ -152,10 +128,12 @@
          :spacing 6
       (label :text { weather["current"]["icon"] + " " + weather["current"]["temp"] }
              :class "wethertext")
-      (image :path { mute || vol == 0 ? "./icons/volumemute.svg" : "./icons/volumeup.svg" }
+      (image :path { mute || vol == 0 ? "icons/volumemute.svg" : "icons/volumeup.svg" }
+             :fill-svg white
              :image-width imageh
              :image-height imageh)
-      (image :path "./icons/ethernet.svg"
+      (image :path "icons/ethernet.svg"
+             :fill-svg white
              :image-width imageh
              :image-height imageh))))
 
@@ -168,10 +146,10 @@
             ;; :onhover 'nu -c "eww-preview open ${address}"'
             ;; :onhoverlost "eww-preview close"
     (overlay
-      (image :path "./icons/${icon}.svg"
+      (image :path "icons/${icon}.svg"
              :image-width imageh)
-      (image :path { minimized ? "./icons/badge.svg" : "" }
-             :fill-svg "#A9B2BA"
+      (image :path { minimized ? "icons/badge.svg" : "" }
+             :fill-svg mark
              :image-width 32 ))))
 
 ;; all
@@ -203,8 +181,14 @@
                 :width widgeth
                 :height widgeth
                 :class "systemicon"
+                :onclick "eww-window toggle platte"
+        (image :path "icons/platte.svg" :fill-svg mark :image-width imageh))
+      (eventbox :cursor "pointer"
+                :width widgeth
+                :height widgeth
+                :class "systemicon"
                 :onclick "eww-window toggle system"
-        (image :path "./icons/arch.svg"
+        (image :path "icons/arch.svg"
                :image-width imageh))
       (for entry in { applist }
         (app :icon { entry["class"] }

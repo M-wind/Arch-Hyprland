@@ -11,7 +11,7 @@
   :stacking "overlay"
   :exclusive false
   :focusable false
-  :namespace "notify"
+  :namespace "bar-right-slide"
   (box :orientation "v"
        :class "notifybox"
        :space-evenly false
@@ -47,8 +47,9 @@
               :cursor "pointer"
               :onclick "eww-notify togglePause" 
       (box :class "notifyoperate"
-        (image :path {paused ? "icons/notifyz-cyan.svg" : "icons/notifyz.svg"}
-               :image-width 20)))
+        (image :path "icons/notifyz.svg"
+               :fill-svg { paused ? mark : white }
+               :image-width imageh)))
     (eventbox :class "notifyoperate"
               :cursor "pointer"
               :halign "end"
@@ -59,6 +60,7 @@
            :class "notifyoperate"
         (label :text "Clear All")
         (image :path "icons/close.svg"
+               :fill-svg white
                :image-width 20)))))
 
 (defwidget notifyitem [icon summary body id]
@@ -69,6 +71,7 @@
     (centerbox :orientation "h"
       (image :path "icons/notify.svg"
              :image-width 16
+             :fill-svg white
              :halign "start")
       (label :text summary
              :truncate true
@@ -79,12 +82,14 @@
                 :onclick "eww-notify deleteHistoryById ${id}"
       (box :class "closebutton"
         (image :path "icons/close.svg"
+               :fill-svg white
                :image-width 16))))
   (box :orientation "v"
        :spacing { icon == "" ?  0 : 12 }
        :space-evenly false
     (_icon :path icon)
     (label :text body
+           :class "bodytext"
            :halign "start"
            :wrap true))))
 

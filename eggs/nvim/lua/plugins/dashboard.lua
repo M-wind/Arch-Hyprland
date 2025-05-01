@@ -40,14 +40,14 @@ return {
             desc = "Find Text",
             key = "r",
           },
-          {
-            action = function()
-              require("session_manager").load_session()
-            end,
-            icon = "󱈅 ",
-            desc = "Session",
-            key = "s",
-          },
+          -- {
+          --   action = function()
+          --     require("session_manager").load_session()
+          --   end,
+          --   icon = "󱈅 ",
+          --   desc = "Session",
+          --   key = "s",
+          -- },
           { action = "Telescope zoxide list", icon = "󰴠 ", desc = "Path List", key = "z" },
           -- { action = "ene", icon = " ", desc = "New File", key = "a" },
           { action = "qa", icon = " ", desc = "Quit", key = "q" },
