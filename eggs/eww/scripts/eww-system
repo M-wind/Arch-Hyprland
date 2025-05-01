@@ -7,6 +7,6 @@ if [[ ${operate} == "lock" ]]; then
   nu -c hyprlock
 elif [[ ${operate} == "restart" ]]; then
   nu -c reboot
-elif [[ ${operate} == "poweroff"]]; then
+elif [[ ${operate} == "poweroff" ]]; then
   nu -c poweroff
 fi
