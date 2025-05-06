@@ -4,7 +4,7 @@ require("core.lazy")
 
 -- {% if theme.color_name != "wallpaper" %}
 -- {# replace_quoted(theme.color_name) #}
-require("bamboo").load()
+require("solarized-osaka").load()
 -- # {% else %}
 --<yolk> require("solarized-osaka").load()
 -- {% end %}
@@ -40,7 +40,7 @@ if vim.g.neovide then
   -- neovide 背景颜色  hyprland 应用透明和模糊
   -- {% if theme.color_name != "wallpaper" %}
   -- {# replace_color(theme.colors.background) #}
-  vim.api.nvim_set_hl(0, "Normal", { bg = "#252623" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#001419" })
   -- {% end %}
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")

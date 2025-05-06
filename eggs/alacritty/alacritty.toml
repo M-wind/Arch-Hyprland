@@ -5,7 +5,7 @@ ipc_socket = false
 padding = { x = 8, y = 3 }
 decorations = "None"
 decorations_theme_variant = "None"
-opacity = 0.79
+opacity = 0.69
 class = { instance = "alacritty", general = "alacritty" }
 
 [font]
@@ -40,26 +40,26 @@ bindings = [
 prefer_egl = true
 
 [colors.primary]
-background = '#252623' # {< replace_color(theme.colors.background) >}
-foreground = '#f1e9d2' # {< replace_color(theme.colors.foreground) >}
+background = '#001419' # {< replace_color(theme.colors.background) >}
+foreground = '#839395' # {< replace_color(theme.colors.foreground) >}
 
 [colors.normal]
-black = '#1c1e1b' # {< replace_color(theme.colors.black) >}
-red = '#e75a7c' # {< replace_color(theme.colors.red) >}
-green = '#8fb573' # {< replace_color(theme.colors.green) >}
-yellow = '#dbb651' # {< replace_color(theme.colors.yellow) >}
-blue = '#57a5e5' # {< replace_color(theme.colors.blue) >}
-magenta = '#aaaaff' # {< replace_color(theme.colors.magenta) >}
-cyan = '#70c2be' # {< replace_color(theme.colors.cyan) >}
-white = '#f1e9d2' # {< replace_color(theme.colors.white) >}
+black = '#001014' # {< replace_color(theme.colors.black) >}
+red = '#db302d' # {< replace_color(theme.colors.red) >}
+green = '#849900' # {< replace_color(theme.colors.green) >}
+yellow = '#b28500' # {< replace_color(theme.colors.yellow) >}
+blue = '#268bd3' # {< replace_color(theme.colors.blue) >}
+magenta = '#d23681' # {< replace_color(theme.colors.magenta) >}
+cyan = '#29a298' # {< replace_color(theme.colors.cyan) >}
+white = '#9eabac' # {< replace_color(theme.colors.white) >}
 
 [colors.bright]
-black = '#5b5e5a' # {< replace_color(theme.colors.bright_black) >}
-red = '#e75a7c' # {< replace_color(theme.colors.bright_red) >}
-green = '#8fb573' # {< replace_color(theme.colors.bright_green) >}
-yellow = '#dbb651' # {< replace_color(theme.colors.bright_yellow) >}
-blue = '#57a5e5' # {< replace_color(theme.colors.bright_blue) >}
-magenta = '#aaaaff' # {< replace_color(theme.colors.bright_magenta) >}
-cyan = '#70c2be' # {< replace_color(theme.colors.bright_cyan) >}
-white = '#fff8f0' # {< replace_color(theme.colors.bright_white) >}
+black = '#001419' # {< replace_color(theme.colors.bright_black) >}
+red = '#db302d' # {< replace_color(theme.colors.bright_red) >}
+green = '#849900' # {< replace_color(theme.colors.bright_green) >}
+yellow = '#b28500' # {< replace_color(theme.colors.bright_yellow) >}
+blue = '#268bd3' # {< replace_color(theme.colors.bright_blue) >}
+magenta = '#d23681' # {< replace_color(theme.colors.bright_magenta) >}
+cyan = '#29a298' # {< replace_color(theme.colors.bright_cyan) >}
+white = '#839395' # {< replace_color(theme.colors.bright_white) >}
 

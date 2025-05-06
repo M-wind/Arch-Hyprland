@@ -1,5 +1,5 @@
 ;; {# replace_quoted(theme.colors.white) #} 
-(defvar white "#f1e9d2")
+(defvar white "#9eabac")
 ;; {# replace_quoted(theme.colors.magenta) #} 
-(defvar mark "#aaaaff")
+(defvar mark "#d23681")
 

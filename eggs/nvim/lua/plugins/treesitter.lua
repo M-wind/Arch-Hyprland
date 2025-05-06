@@ -46,6 +46,7 @@ local treesitter = {
   vim.filetype.add({
     pattern = { [".*%.conf"] = "hyprlang" },
     pattern = { [".*%.rhai"] = "rust" },
+    pattern = { [".*%.txt"] = "hyprlang" },
   }),
 }
 
