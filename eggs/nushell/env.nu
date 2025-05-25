@@ -24,6 +24,10 @@ $env.DOTNET_ROOT = "/home/zwind/language/dotnet"
 # mpv vulkan Hardware video acceleration Support
 $env.RADV_PERFTEST = "video_decode"
 
+#colorize man pages
+$env.MANPAGER = "sh -c 'col -bx | bat -l man -p'"
+$env.MANROFFOPT = "-c"
+
 $env.PATH = (
   $env.PATH
     | split row (char esep)
