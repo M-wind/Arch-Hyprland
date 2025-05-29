@@ -1,7 +1,7 @@
 [mgr]
 # Border
 border_symbol = "│"
-border_style  = { fg = "darkgray" }
+border_style  = { fg = "#3b4048" }
 
 [tabs]
 active   = { bg = "#98c379", fg = "#080808", bold = true }
