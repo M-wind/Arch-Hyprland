@@ -48,6 +48,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join language nodejs 22.14.0 bin)
     | prepend ($env.HOME | path join language nodejs global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
+    | prepend ($env.HOME | path join language bun bin)
     | prepend ($env.DOTNET_ROOT)
     | prepend ($env.HOME | path join .config eww scripts)
     | uniq
