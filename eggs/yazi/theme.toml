@@ -1,12 +1,14 @@
-[manager]
-# Tab
-tab_active   = { bg = "#98c379", fg = "#080808" }
-tab_inactive = {}
-tab_width    = 1
-
+[mgr]
 # Border
 border_symbol = "│"
 border_style  = { fg = "darkgray" }
+
+[tabs]
+active   = { bg = "#98c379", fg = "#080808", bold = true }
+inactive = { bg = "#080808", fg = "gray", bold = true }
+
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 # Mode
 [mode]

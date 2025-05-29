@@ -86,7 +86,7 @@ function M:peek(job)
   local output
   if not cha then
     local child = Command("mediainfo")
-      :args({ "--Output=JSON", tostring(job.file.url) })
+      :arg({ "--Output=JSON", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
       :spawn()
@@ -163,7 +163,7 @@ function M:preload(job)
   if cha then
     return true
   end
-  local status, _ = Command("exiftool"):args({
+  local status, _ = Command("exiftool"):arg({
     "-b",
     "-CoverArt",
     "-Picture",
