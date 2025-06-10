@@ -7,7 +7,8 @@ local themes = {
   { idx = 4, text = "4: Solarized Osaka", value = "solarized-osaka" },
   { idx = 5, text = "5: Dracula", value = "dracula" },
   { idx = 6, text = "6: Tokyodark", value = "tokyodark" },
-  { idx = 7, text = "7: Tokyonight Day", value = "tokyonight-day" },
+  -- { idx = 7, text = "7: Tokyonight Day", value = "tokyonight-day" },
+  { idx = 7, text = "7: Vscode", value = "vscode" },
   { idx = 8, text = "8: Tokyonight Moon", value = "tokyonight-moon" },
   { idx = 9, text = "9: Bamboo", value = "bamboo" },
 }

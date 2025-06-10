@@ -1,5 +1,5 @@
 (defvar theme "bamboo")
-(defvar themes { ["bamboo", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "wallpaper"] })
+(defvar themes { ["bamboo", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
 
 (defwindow platte
   :monitor 0

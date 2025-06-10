@@ -14,7 +14,7 @@ local highlights = function(colors)
     CursorLine = { bg = colors.none },
     CursorLineNr = { bg = colors.none, fg = colors.purple or colors.violet },
     -- TabLineSel = { fg = colors.gray },
-    NvimTreeWinSeparator = { fg = "#1d202f" },
+    NvimTreeWinSeparator = { fg = "#3b4048" },
     IndentLineCurrent = { fg = colors.green },
     DapInfo = { fg = colors.blue },
     DapStop = { fg = colors.green },
@@ -321,4 +321,31 @@ local bamboo = {
   end,
 }
 
-return { onedarkpro, solarized_osaka, tokyonight, everforest, catppuccin, dracula, tokyodark, bamboo }
+local vscode = {
+  "Mofiqul/vscode.nvim",
+  lazy = true,
+  config = function()
+    local colors = require("vscode.colors").get_colors()
+    colors.blue = colors.vscBlue
+    colors.green = colors.vscGreen
+    colors.orange = colors.vscOrange
+    colors.violet = colors.vscViolet
+    colors.red = colors.vscRed
+    colors.yellow = colors.vscYellow
+    colors.cyan = colors.vscBLueGreen
+    colors.bg = colors.vscBack
+    colors.none = colors.vscNone
+    local hl = highlights(colors)
+    hl.StatusLine = { bg = colors.none }
+    hl.TabLineFill = { bg = colors.none }
+    hl.IndentLine = { fg = "#3b4048" }
+    hl.NvimTreeNormal = { fg = colors.none }
+    require("vscode").setup({
+      style = "dark",
+      transparent = true,
+      group_overrides = hl,
+    })
+  end,
+}
+
+return { onedarkpro, solarized_osaka, tokyonight, everforest, catppuccin, dracula, tokyodark, bamboo, vscode }
