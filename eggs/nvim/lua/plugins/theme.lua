@@ -245,6 +245,7 @@ local catppuccin = {
     require("catppuccin").setup({
       flavour = "frappe",
       transparent_background = true,
+      float = { transparent = true, solid = true },
       term_colors = true,
       color_overrides = { all = colors },
       custom_highlights = hl,
