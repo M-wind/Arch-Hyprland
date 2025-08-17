@@ -44,7 +44,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join app exiftool)
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
-    | prepend ($env.HOME | path join game wine-wow64 bin)
+    | prepend ($env.HOME | path join game wine bin)
     | prepend ($env.HOME | path join language nodejs 22.14.0 bin)
     | prepend ($env.HOME | path join language nodejs global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
