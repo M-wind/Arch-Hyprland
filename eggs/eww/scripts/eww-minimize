@@ -19,17 +19,35 @@ get_app_list() {
   workspaceid=$(get_currentworkspace_id)
   applist=$(hyprctl clients -j | jq "[.[] | .minimized=.workspace.name==\"${special_workspacename}\" | select(.workspace.id==${workspaceid} or .workspace.name==\"${special_workspacename}\")] | sort_by(.pid)")
   eww update applist="${applist}"
+  echo "${applist}"
+}
+
+minimize() {
+  if [[ $(is_minimize "${1}") == true ]]; then
+    hyprctl dispatch movetoworkspacesilent $(get_currentworkspace_id),address:"${1}"
+    get_app_list
+  else
+    hyprctl dispatch movetoworkspacesilent "${special_workspacename}",address:"${1}"
+    get_app_list
+  fi
+}
+
+reminimize() {
+  address=$(get_app_list | jq "[.[] | select(.minimized==true)] | .[0] | .address")
+  echo "${address}"
 }
 
 if [[ ${operate} == "minimize" ]]; then
-  if [[ $(is_minimize "${address}") == true ]]; then
-    hyprctl dispatch movetoworkspacesilent $(get_currentworkspace_id),address:"${address}"
-    get_app_list
-  else
-    hyprctl dispatch movetoworkspacesilent "${special_workspacename}",address:"${address}"
-    get_app_list
-  fi
-elif [[ ${operate} == "getAppList" ]]; then
+  minimize "${address}"
+ elif [[ ${operate} == "minimizecurrent" ]]; then
+   current=$(hyprctl -j activewindow | jq ".address")
+   minimize "${current:1:14}"
+ elif [[ ${operate} == "reminimize" ]]; then
+   current=$(reminimize)
+   if [[ ${current} != "null" ]]; then
+     minimize "${current:1:14}"
+   fi
+ elif [[ ${operate} == "getAppList" ]]; then
   get_app_list
 elif [[ ${operate} == "isminimize" ]]; then
   is_minimize "${address}"
