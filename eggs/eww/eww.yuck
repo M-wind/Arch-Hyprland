@@ -14,10 +14,11 @@
 (defvar widgeth 32)
 (defvar imageh 24)
 (defvar applistonce true)
-(defpoll applist :interval "1s"
-                 :initial {[]}
-                 :run-while applistonce
-  `eww-minimize getAppListOnce`)
+;; (defpoll applist :interval "1s"
+;;                  :initial {[]}
+;;                  :run-while applistonce
+;;   `eww-minimize getAppListOnce`)
+(defvar applist {[]})
 
 
 ;; left
