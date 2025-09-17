@@ -25,11 +25,11 @@ get_app_list() {
 minimize() {
   if [[ $(is_minimize "${1}") == true ]]; then
     hyprctl dispatch movetoworkspacesilent $(get_currentworkspace_id),address:"${1}"
-    get_app_list
+    hyprctl dispatch focuswindow address:"${1}"
   else
     hyprctl dispatch movetoworkspacesilent "${special_workspacename}",address:"${1}"
-    get_app_list
   fi
+  get_app_list
 }
 
 reminimize() {
@@ -39,15 +39,16 @@ reminimize() {
 
 if [[ ${operate} == "minimize" ]]; then
   minimize "${address}"
- elif [[ ${operate} == "minimizecurrent" ]]; then
-   current=$(hyprctl -j activewindow | jq ".address")
-   minimize "${current:1:14}"
- elif [[ ${operate} == "reminimize" ]]; then
-   current=$(reminimize)
-   if [[ ${current} != "null" ]]; then
-     minimize "${current:1:14}"
-   fi
- elif [[ ${operate} == "getAppList" ]]; then
+elif [[ ${operate} == "minimizecurrent" ]]; then
+  current=$(hyprctl -j activewindow | jq ".address")
+  minimize "${current:1:14}"
+elif [[ ${operate} == "reminimize" ]]; then
+  current=$(reminimize)
+  if [[ ${current} != "null" ]]; then
+    minimize "${current:1:14}"
+    hyprctl dispatch focuswindow address:"${current:1:14}"
+  fi
+elif [[ ${operate} == "getAppList" ]]; then
   get_app_list
 elif [[ ${operate} == "isminimize" ]]; then
   is_minimize "${address}"
