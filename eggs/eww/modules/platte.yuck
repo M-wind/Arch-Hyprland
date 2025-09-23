@@ -22,5 +22,5 @@
                 :class { theme == entry ? "systemiconactive" :  "systemicon" }
                 :height 36
                 :width 172
-                :onclick ' nu -c "eww-changetheme ${entry}"'
+                :onclick 'nu -c "eww-changetheme ${entry}"'
         (label :text entry :class "plattetext")))))

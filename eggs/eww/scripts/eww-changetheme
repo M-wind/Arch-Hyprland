@@ -13,3 +13,4 @@ fi
 echo "${code}" > ~/.config/yolk/theme.rhai && yolk sync
 sleep 1
 eww update theme="${1}" && eww-volume once
+eww-minimize getAppList
