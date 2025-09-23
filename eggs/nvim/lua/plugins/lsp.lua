@@ -33,12 +33,14 @@ local lsp = {
           source = "always",
           border = "rounded",
         },
-      },
-      signs = {
-        DiagnosticSignError = icons.Error,
-        DiagnosticSignHint = icons.Hint,
-        DiagnosticSignWarn = icons.Warn,
-        DiagnosticSignInfo = icons.Info,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.Error,
+            [vim.diagnostic.severity.WARN] = icons.Warn,
+            [vim.diagnostic.severity.HINT] = icons.Hint,
+            [vim.diagnostic.severity.INFO] = icons.Info,
+          },
+        },
       },
     }
   end,
@@ -46,10 +48,10 @@ local lsp = {
     require("lspconfig.ui.windows").default_options.border = "rounded"
     -- diagnostics
     vim.diagnostic.config(opts.diagnostics)
-    -- sings
-    for name, icon in pairs(opts.signs) do
-      vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-    end
+    -- -- sings
+    -- for name, icon in pairs(opts.signs) do
+    --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+    -- end
     -- keymaps
     require("utils.lsp").on_attach(function(_, buf)
       vim.keymap.set({ "n", "v" }, "<leader>d", "", { desc = "+Diagnostics" })
@@ -151,7 +153,9 @@ local lsp = {
       local server_opts = vim.tbl_deep_extend("force", {
         capabilities = capabilities,
       }, set or {})
-      require("lspconfig")[server].setup(server_opts)
+      -- require("lspconfig")[server].setup(server_opts)
+      vim.lsp.config(server, server_opts)
+      vim.lsp.enable(server)
     end
   end,
 }

@@ -5,6 +5,7 @@ number=$2
 
 if [[ ${operate} == "change" ]]; then
   hyprctl dispatch workspace "${number}"
+  # niri msg action focus-workspace "${number}"
 fi
 
 eww update currentworkspace="${number}"

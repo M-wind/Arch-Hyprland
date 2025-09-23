@@ -5,13 +5,15 @@ return {
     opts = {},
     keys = {
       {
-        "<C-Up>",
+        -- "<C-Up>",
+        "<C-k>",
         "<Cmd>MultipleCursorsAddUp<CR>",
         mode = { "n", "i", "x" },
         desc = "Add cursor and move up",
       },
       {
-        "<C-Down>",
+        -- "<C-Down>",
+        "<C-j>",
         "<Cmd>MultipleCursorsAddDown<CR>",
         mode = { "n", "i", "x" },
         desc = "Add cursor and move down",

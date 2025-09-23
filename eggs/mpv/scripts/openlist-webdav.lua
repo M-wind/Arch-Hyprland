@@ -286,6 +286,11 @@ local function add_forced_key_binding()
   mp.add_forced_key_binding("LEFT", "Left", left, "repeatable")
   mp.add_forced_key_binding("RIGHT", "Right", right, "repeatable")
   mp.add_forced_key_binding("ENTER", "Enter", enter, "repeatable")
+  mp.add_forced_key_binding("k", "MoveUp", moveup, "repeatable")
+  mp.add_forced_key_binding("j", "MoveDown", movedown, "repeatable")
+  mp.add_forced_key_binding("h", "Left", left, "repeatable")
+  mp.add_forced_key_binding("l", "Right", right, "repeatable")
+  mp.add_forced_key_binding("o", "Enter", enter, "repeatable")
 end
 
 local function open()
