@@ -1,0 +1,74 @@
+local search = {
+  "MagicDuck/grug-far.nvim",
+  cmd = { "GrugFar", "GrugFarWithin" },
+  keys = {
+    {
+      "<leader>s",
+      function()
+        local grug = require("grug-far")
+        local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+        grug.open({
+          transient = true,
+          prefills = {
+            filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+          },
+        })
+      end,
+      mode = { "n", "v" },
+      desc = "Search and Replace",
+    },
+  },
+  opts = {
+    enabledEngines = { "ripgrep" },
+    helpLine = { enabled = false },
+    keymaps = {
+      replace = { n = "<localleader>r" },
+      -- qflist = { n = "<localleader>q" },
+      qflist = false,
+      -- syncLocations = { n = "<localleader>s" },
+      syncLocations = false,
+      syncLine = { n = "<localleader>l" },
+      -- close = { n = "<localleader>c" },
+      close = { n = "<localleader>q" },
+      historyOpen = { n = "<localleader>h" },
+      -- historyAdd = { n = "<localleader>a" },
+      historyAdd = false,
+      refresh = { n = "<localleader>f" },
+      -- openLocation = { n = "<localleader>o" },
+      -- openNextLocation = { n = "<down>" },
+      -- openPrevLocation = { n = "<up>" },
+      -- gotoLocation = { n = "<enter>" },
+      pickHistoryEntry = { n = '<enter>' },
+      openLocation = false,
+      openNextLocation = false,
+      openPrevLocation = false,
+      gotoLocation = false,
+      -- abort = { n = "<localleader>b" },
+      abort = false,
+      -- help = { n = "g?" },
+      help = false,
+      -- toggleShowCommand = { n = "<localleader>w" },
+      toggleShowCommand = { n = "<localleader>c" },
+      -- swapEngine = { n = "<localleader>e" },
+      -- previewLocation = { n = "<localleader>i" },
+      -- swapReplacementInterpreter = { n = "<localleader>x" },
+      swapEngine = false,
+      previewLocation = false,
+      swapReplacementInterpreter = false,
+      -- applyNext = { n = "<localleader>j" },
+      -- applyPrev = { n = "<localleader>k" },
+      applyNext = false,
+      applyPrev = false,
+      -- syncNext = { n = "<localleader>n" },
+      -- syncPrev = { n = "<localleader>p" },
+      -- syncFile = { n = "<localleader>v" },
+      syncNext = false,
+      syncPrev = false,
+      syncFile = false,
+      nextInput = { n = "<tab>" },
+      prevInput = { n = "<s-tab>" },
+    },
+  },
+}
+
+return { search }

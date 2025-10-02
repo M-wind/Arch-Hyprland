@@ -74,7 +74,7 @@ return {
           { "<leader>b", group = "Buffer" },
           { "<leader>f", group = "Find/File" },
           { "<leader>w", group = "Window" },
-          { "<leader>s", group = "Session" },
+          -- { "<leader>s", group = "Session" },
           { "z", hidden = true },
           { "[", hidden = true },
           { "]", hidden = true },
