@@ -9,8 +9,10 @@ local lsp = {
         -- ts_ls = require("ft.typescript").lsp,
         -- npm install -g @vtsls/language-server
         vtsls = require("ft.typescript").lsp,
+        -- npm install -g @tailwindcss/language-server
         tailwindcss = {},
         nushell = {},
+        -- npm install -g vscode-langservers-extracted
         jsonls = {},
         -- ["rust_analyzer"] = require("ft.rust").lsp,
       },

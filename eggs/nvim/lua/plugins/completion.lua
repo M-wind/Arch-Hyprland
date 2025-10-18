@@ -112,7 +112,8 @@ local blink = {
         -- winhighlight = "Noraml:NormalFloat,CursorLine:IncSearch",
         draw = {
           align_to = "label",
-          columns = { { "kind_icon" }, { "label", "kind", gap = 1 } },
+          -- columns = { { "kind_icon" }, { "label", "kind", gap = 1 } },
+          columns = { { "kind_icon" }, { "label", "source_name", gap = 1 } },
           components = {
             kind_icon = {
               ellipsis = false,
@@ -125,15 +126,22 @@ local blink = {
                 return require("utils.icons").cmp[ctx.kind]
               end,
             },
-            kind = {
-              ellipsis = false,
-              text = function(ctx)
-                -- local kind = require("utils.icons").cmp[ctx.kind] and ctx.kind or "Tips"
-                -- return "(" .. kind .. ")"
-                return "(" .. ctx.kind .. ")"
-              end,
-              highlight = "BlinkCmpSource",
-            },
+            -- kind = {
+            --   ellipsis = false,
+            --   text = function(ctx)
+            --     return "(" .. ctx.kind .. ")"
+            --   end,
+            --   highlight = "BlinkCmpSource",
+            -- },
+            -- source_name = {
+            --   ellipsis = false,
+            --   text = function(ctx)
+            --     -- local kind = require("utils.icons").cmp[ctx.kind] and ctx.kind or "Tips"
+            --     -- return "(" .. kind .. ")"
+            --     return "(" .. ctx.source_name .. ")"
+            --   end,
+            --   highlight = "BlinkCmpSource",
+            -- },
           },
         },
       },
