@@ -57,6 +57,7 @@ return {
           toml = { "taplo" },
           lua = { "stylua" },
           sh = { "shfmt" },
+          rust = { "rustfmt" },
         },
       })
     end,

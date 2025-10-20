@@ -16,7 +16,7 @@ $env.config.keybindings ++= [
         send: ExecuteHostCommand
         cmd: "
           zoxide query -s -l
-            | fzf  --accept-nth=2 --cycle --height=45% --info=inline --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%,rounded
+            | fzf  --accept-nth=2 --cycle --height=45% --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%,rounded
             | cd $in
         "
       }
@@ -45,7 +45,7 @@ $env.config.keybindings ++= [
             | group-by --to-table 
             | get group 
             | to text
-            | fzf --cycle --height=45% --info=inline --layout=reverse --wrap
+            | fzf --cycle --height=45% --layout=reverse --wrap
             | commandline edit -r $in
             | commandline set-cursor --end
         "
@@ -54,8 +54,8 @@ $env.config.keybindings ++= [
   },
   {
     name: fzf_directories
-    modifier: alt
-    keycode: char_c
+    modifier: control
+    keycode: char_j
     mode: [emacs, vi_insert, vi_normal]
     event: [
       {
@@ -66,7 +66,7 @@ $env.config.keybindings ++= [
           let prefix = $command | get 0
           let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
           fd --type directory --hidden 
-            | fzf -q $suffix --cycle --height=45% --info=inline --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
+            | fzf -q $suffix --cycle --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
             | commandline edit -A ($prefix +  ' ' + $in)
         "
       }
@@ -75,7 +75,7 @@ $env.config.keybindings ++= [
   {
     name: fzf_files
     modifier: control
-    keycode: char_t
+    keycode: char_k
     mode: [emacs, vi_insert, vi_normal]
     event: [
       {
@@ -85,8 +85,8 @@ $env.config.keybindings ++= [
           let length = $command | length
           let prefix = $command | get 0
           let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
-          fd --type file --hidden 
-            | fzf -q $suffix --cycle --height=45% --info=inline --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
+          fd --type file --type symlink --type socket --hidden 
+            | fzf -q $suffix --cycle --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10%,rounded
             | commandline edit -A ($prefix +  ' ' + $in)
         "
       }

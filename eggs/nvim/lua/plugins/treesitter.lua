@@ -42,12 +42,13 @@ local treesitter = {
       },
     })
     vim.treesitter.language.register("hyprlang", "conf")
+    vim.treesitter.language.register("javascript", "rhai")
   end,
-  -- vim.filetype.add({
-  --   extension = {
-  --     rhai = "bash",
-  --   },
-  -- }),
+  vim.filetype.add({
+    extension = {
+      rhai = "rhai",
+    },
+  }),
 }
 
 local ts_autotag = {

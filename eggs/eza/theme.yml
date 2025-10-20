@@ -1,6 +1,0 @@
-colourful: true
-
-filekinds:
-  executable: {foreground: Green, is_bold: true}
-
-punctuation: {foreground: "#839395"} # {< replace_quoted(theme.colors.foreground) >}

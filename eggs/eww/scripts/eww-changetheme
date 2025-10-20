@@ -8,6 +8,9 @@ eww-window close platte
 
 if [[ ${1} == "wallpaper" ]]; then
   wallust -q run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))
+else
+  colorscheme=$(yolk eval "write_current_colorscheme(\"${1}\")")
+  echo "${colorscheme}" > ~/.config/wallust/colorschemes/terminal.json && wallust -q -T cs terminal
 fi
 
 echo "${code}" > ~/.config/yolk/theme.rhai && yolk sync

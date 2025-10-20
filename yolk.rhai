@@ -22,11 +22,6 @@ export let eggs = #{
         templates: ["init.lua"],
         enabled: true,
     },     
-    eza: #{
-        targets: "~/.config/eza",
-        templates: ["theme.yml"],
-        enabled: true,
-    },     
     hypr: #{
         targets: "~/.config/hypr",
         enabled: true,
@@ -88,6 +83,36 @@ export const theme = #{
     colors: themes::colors[color::name],
     color_name: color::name,
 };
+
+fn write_current_colorscheme(name) {
+    let colors = themes::colors[name];
+    let need = #{
+      colors: #{
+        color0: colors.black,
+        color1: colors.red,
+        color2: colors.green,
+        color3: colors.yellow,
+        color4: colors.blue,
+        color5: colors.magenta,
+        color6: colors.cyan,
+        color7: colors.white,
+        color8: colors.bright_black,
+        color9: colors.bright_red,
+        color10: colors.bright_green,
+        color11: colors.bright_yellow,
+        color12: colors.bright_blue,
+        color13: colors.bright_magenta,
+        color14: colors.bright_cyan,
+        color15: colors.bright_white
+      },
+      special: #{
+        background: colors.background,
+        foreground: colors.foreground,
+        cursor: "#cccccc"
+      }
+    };
+    print(need.to_json());
+}
 
 fn replace_color_foot(s) {
     let original = get_yolk_text();

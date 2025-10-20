@@ -19,8 +19,10 @@ $env.LIBSEAT_BACKEND = "logind"
 $env.WINEPREFIX = "/home/zwind/game/.wine"
 $env.WINEDEBUG = "-all"
 
+$env.BAT_THEME = "ansi"
+
 $env.DOTNET_ROOT = "/home/zwind/language/dotnet"
-$env.FZF_DEFAULT_OPTS = "--list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
+$env.FZF_DEFAULT_OPTS = "--style=full --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
 
 # mpv vulkan Hardware video acceleration Support
 $env.RADV_PERFTEST = "video_decode"
