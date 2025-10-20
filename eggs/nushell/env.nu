@@ -20,6 +20,7 @@ $env.WINEPREFIX = "/home/zwind/game/.wine"
 $env.WINEDEBUG = "-all"
 
 $env.DOTNET_ROOT = "/home/zwind/language/dotnet"
+$env.FZF_DEFAULT_OPTS = "--list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
 
 # mpv vulkan Hardware video acceleration Support
 $env.RADV_PERFTEST = "video_decode"

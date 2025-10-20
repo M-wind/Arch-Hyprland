@@ -22,6 +22,11 @@ export let eggs = #{
         templates: ["init.lua"],
         enabled: true,
     },     
+    eza: #{
+        targets: "~/.config/eza",
+        templates: ["theme.yml"],
+        enabled: true,
+    },     
     hypr: #{
         targets: "~/.config/hypr",
         enabled: true,

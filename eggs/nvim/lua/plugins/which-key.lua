@@ -25,7 +25,7 @@ return {
         scroll_down = "<c-f>",
         scroll_up = "<c-d>",
       },
-      icons = {
+      iconsI = {
         rules = false,
         keys = {
           Space = "󱁐",
@@ -40,7 +40,7 @@ return {
         registers = false,
         spelling = { enabled = false },
         presets = {
-          operators = true,
+          operators = false,
           motions = false,
           text_objects = false,
           windows = false,
@@ -54,8 +54,8 @@ return {
       debug = false,
       spec = {
         {
-          { "gi", desc = "Go To Last Insert" },
-          { "gv", desc = "Last Visual Selection" },
+          { "gi", desc = "Go To Last Insert", icon = { icon = "󰑆 ", color = "orange" } },
+          { "gv", desc = "Last Visual Selection", icon = { icon = "󱊃 ", color = "orange" } },
           { "gb", desc = "Comment Toggle Block" },
           { "gc", desc = "Comment Toggle Line" },
           { "gbc", desc = "Comment Toggle Current Block" },
@@ -63,6 +63,13 @@ return {
           { "gcc", desc = "Comment Toggle Current Line" },
           { "gco", desc = "Comment Insert Below" },
           { "gcO", desc = "Comment Insert Above" },
+          { "gn", icon = { icon = " ", color = "orange" } },
+          { "<leader>l", icon = { icon = "󰒲 ", color = "grey" } },
+          { "<leader>t", icon = { icon = "󰔎 ", color = "orange" } },
+          { "<leader>e", icon = { icon = " ", color = "yellow" } },
+          -- { "<localleader>h", icon = { icon = " ", color = "orange" } },
+          -- { "<localleader>q", icon = { icon = "󰈆  ", color = "red" } },
+          -- { "<localleader>r", icon = { icon = " ", color = "yellow" } },
         },
         {
           mode = { "v" },
@@ -71,7 +78,7 @@ return {
         },
         {
           mode = { "n", "v" },
-          { "<leader>b", group = "Buffer" },
+          { "<leader>b", group = "Buffer", icon = { icon = " ", color = "orange" } },
           { "<leader>f", group = "Find/File" },
           { "<leader>w", group = "Window" },
           -- { "<leader>s", group = "Session" },
@@ -79,8 +86,8 @@ return {
           { "[", hidden = true },
           { "]", hidden = true },
           { "<c-w>", hidden = true },
-          { "gx", desc = "Open FilePath or URL Under Cursor" },
-          { "g~", desc = "Toggle Case" },
+          { "gx", desc = "Open {} Under Cursor", icon = { icon = "󰌻 ", color = "orange" } },
+          -- { "g~", desc = "Toggle Case" },
         },
       },
     },

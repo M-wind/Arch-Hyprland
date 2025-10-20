@@ -41,13 +41,13 @@ local treesitter = {
         "hyprlang",
       },
     })
+    vim.treesitter.language.register("hyprlang", "conf")
   end,
-  -- vim.treesitter.language.register('hyprlang', '*.conf')
-  vim.filetype.add({
-    pattern = { [".*%.conf"] = "hyprlang" },
-    pattern = { [".*%.rhai"] = "rust" },
-    pattern = { [".*%.txt"] = "hyprlang" },
-  }),
+  -- vim.filetype.add({
+  --   extension = {
+  --     rhai = "bash",
+  --   },
+  -- }),
 }
 
 local ts_autotag = {

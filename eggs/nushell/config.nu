@@ -5,15 +5,94 @@ $env.config.color_config.shape_external = 'blue'
 $env.config.color_config.shape_internalcall = 'blue_bold'
 $env.config.datetime_format.table = '%F %T'
 $env.config.filesize.unit = 'binary'
-$env.config.keybindings ++= [{
-  name: zoxide_menu
-  modifier: control
-  keycode: char_o
-  mode: emacs 
-  event: [
-    { send: ExecuteHostCommand cmd: "zoxide query -i | cd $in" }
-  ]
-}]
+$env.config.keybindings ++= [
+  {
+    name: zoxide_history
+    modifier: control
+    keycode: char_o
+    mode: [emacs, vi_insert, vi_normal]
+    event: [
+      { 
+        send: ExecuteHostCommand
+        cmd: "
+          zoxide query -s -l
+            | fzf  --accept-nth=2 --cycle --height=45% --info=inline --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%,rounded
+            | cd $in
+        "
+      }
+    ]
+  },
+  {
+    name: nothing
+    modifier: control
+    keycode: char_q
+    mode: [emacs, vi_insert, vi_normal]
+    event: [
+      { send: ExecuteHostCommand cmd: "" }
+    ]
+  },
+  {
+    name: fzf_history
+    modifier: control
+    keycode: char_r
+    mode: [emacs, vi_insert, vi_normal]
+    event: [
+      {
+        send: ExecuteHostCommand
+        cmd: "
+          history
+            | get command
+            | group-by --to-table 
+            | get group 
+            | to text
+            | fzf --cycle --height=45% --info=inline --layout=reverse --wrap
+            | commandline edit -r $in
+            | commandline set-cursor --end
+        "
+      }
+    ]
+  },
+  {
+    name: fzf_directories
+    modifier: alt
+    keycode: char_c
+    mode: [emacs, vi_insert, vi_normal]
+    event: [
+      {
+        send: ExecuteHostCommand
+        cmd: "
+          let command = commandline | split row -r '\\s+'
+          let length = $command | length
+          let prefix = $command | get 0
+          let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
+          fd --type directory --hidden 
+            | fzf -q $suffix --cycle --height=45% --info=inline --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
+            | commandline edit -A ($prefix +  ' ' + $in)
+        "
+      }
+    ]
+  },
+  {
+    name: fzf_files
+    modifier: control
+    keycode: char_t
+    mode: [emacs, vi_insert, vi_normal]
+    event: [
+      {
+        send: ExecuteHostCommand
+        cmd: "
+          let command = commandline | split row -r '\\s+'
+          let length = $command | length
+          let prefix = $command | get 0
+          let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
+          fd --type file --hidden 
+            | fzf -q $suffix --cycle --height=45% --info=inline --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
+            | commandline edit -A ($prefix +  ' ' + $in)
+        "
+      }
+    ]
+  }
+]
 
 alias core-ls = ls
 
@@ -58,6 +137,11 @@ def ls [
       } 
     }
 }
+
+
+alias x = eza --icons --hyperlink
+alias xl = eza --icons --hyperlink --long --time-style '+%Y-%m-%d %H:%M:%S'
+alias xt = xl -T
 
 alias vi = neovide
 
