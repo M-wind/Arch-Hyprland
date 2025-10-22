@@ -2,11 +2,13 @@
 
 operate=$1
 address=$2
+env=$(eww get env)
 
 special_workspacename="special:magic"
 
 get_currentworkspace_id() {
-  workspacename=$(hyprctl activeworkspace -j | jq ".id")
+  # workspacename=$(hyprctl activeworkspace -j | jq ".id")
+  workspacename=$(eww get currentworkspace)
   echo "${workspacename}"
 }
 
@@ -17,7 +19,12 @@ is_minimize() {
 
 get_app_list() {
   workspaceid=$(get_currentworkspace_id)
-  applist=$(hyprctl clients -j | jq "[.[] | .minimized=.workspace.name==\"${special_workspacename}\" | select(.workspace.id==${workspaceid} or .workspace.name==\"${special_workspacename}\")] | sort_by(.pid)")
+  if [[ ${env} == "hypr" ]]; then
+    applist=$(hyprctl clients -j | jq "[.[] | .minimized=.workspace.name==\"${special_workspacename}\" | select(.workspace.id==${workspaceid} or .workspace.name==\"${special_workspacename}\")] | sort_by(.pid)")
+  elif [[ ${env} == "niri" ]]; then
+    workspaceid=$(niri msg -j workspaces | jq ".[] | select(.idx==${workspaceid}) | .id")
+    applist=$(niri msg -j windows | jq "[.[] | select(.workspace_id==${workspaceid}) | .minimized=false | .class=.app_id |.address=.id] | sort_by(.id)")
+  fi
   eww update applist="${applist}"
   echo "${applist}"
 }
@@ -38,7 +45,11 @@ reminimize() {
 }
 
 if [[ ${operate} == "minimize" ]]; then
-  minimize "${address}"
+  if [[ ${env} == "hypr" ]]; then
+    minimize "${address}"
+  elif [[ ${env} == "niri" ]]; then
+    niri msg action focus-window --id "${address}"
+  fi
 elif [[ ${operate} == "minimizecurrent" ]]; then
   current=$(hyprctl -j activewindow | jq ".address")
   minimize "${current:1:14}"

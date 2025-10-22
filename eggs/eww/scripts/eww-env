@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# operate=$1
+#
+# if [[ ${operate} == "set" ]]; then
+#   if [[ $NIRI_SOCKET ]]; then
+#     eww update env = "niri"
+#   fi
+# elif [[ ${operate} == "get" ]]; then
+#   echo $(eww get env)
+# fi
+
+if [[ $NIRI_SOCKET ]]; then
+  eww update env="niri"
+fi

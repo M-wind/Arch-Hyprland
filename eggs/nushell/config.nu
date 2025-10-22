@@ -16,7 +16,7 @@ $env.config.keybindings ++= [
         send: ExecuteHostCommand
         cmd: "
           zoxide query -s -l
-            | fzf  --accept-nth=2 --cycle --height=45% --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%,rounded
+            | fzf  --accept-nth=2 --height=45% --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%
             | cd $in
         "
       }
@@ -45,7 +45,7 @@ $env.config.keybindings ++= [
             | group-by --to-table 
             | get group 
             | to text
-            | fzf --cycle --height=45% --layout=reverse --wrap
+            | fzf --height=45% --layout=reverse --wrap
             | commandline edit -r $in
             | commandline set-cursor --end
         "
@@ -61,13 +61,10 @@ $env.config.keybindings ++= [
       {
         send: ExecuteHostCommand
         cmd: "
-          let command = commandline | split row -r '\\s+'
-          let length = $command | length
-          let prefix = $command | get 0
-          let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
           fd --type directory --hidden 
-            | fzf -q $suffix --cycle --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%,rounded
-            | commandline edit -A ($prefix +  ' ' + $in)
+            | fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%
+            | commandline edit --append $in
+            | commandline set-cursor --end
         "
       }
     ]
@@ -81,17 +78,34 @@ $env.config.keybindings ++= [
       {
         send: ExecuteHostCommand
         cmd: "
-          let command = commandline | split row -r '\\s+'
-          let length = $command | length
-          let prefix = $command | get 0
-          let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
           fd --type file --type symlink --type socket --hidden 
-            | fzf -q $suffix --cycle --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10%,rounded
-            | commandline edit -A ($prefix +  ' ' + $in)
+            | fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10%
+            | commandline edit --append $in
+            | commandline set-cursor --end
         "
       }
     ]
   }
+  # {
+  #   name: fzf_files
+  #   modifier: control
+  #   keycode: char_k
+  #   mode: [emacs, vi_insert, vi_normal]
+  #   event: [
+  #     {
+  #       send: ExecuteHostCommand
+  #       cmd: "
+  #         let command = commandline | split row -r '\\s+'
+  #         let length = $command | length
+  #         let prefix = $command | get 0
+  #         let suffix = if $length > 1 { commandline | str replace $prefix '' | str replace -r '\\s*' '' } else { '' } 
+  #         fd --type file --type symlink --type socket --hidden 
+  #           | fzf -q $suffix --cycle --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10%,rounded
+  #           | commandline edit -A ($prefix +  ' ' + $in)
+  #       "
+  #     }
+  #   ]
+  # }
 ]
 
 alias core-ls = ls
@@ -145,9 +159,20 @@ alias xt = xl -T
 
 alias vi = neovide
 
+alias core-rg = rg
+alias rg = core-rg --column --line-number --color=always --smart-case
+
+alias fzf-bat = fzf --ansi --disabled --delimiter ":"  --preview "bat --color=always {1}" --preview-window "up,60%,+{2}+3/3,~3"
+alias fzf-bat-rg = fzf --ansi  --disabled --delimiter ":"  --preview "bat --color=always {1}  --highlight-line {2}" --preview-window "up,60%,+{2}+3/3,~3"
+
 alias color = nu-highlight
 
 alias tldr = /home/zwind/app/tldr/tldr --config /home/zwind/app/tldr/config.toml
+def tldrf [] {
+  tldr -l
+    | fzf --preview "/home/zwind/app/tldr/tldr --config /home/zwind/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
+}
+
 
 # def --env y [...args] {
 # 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")

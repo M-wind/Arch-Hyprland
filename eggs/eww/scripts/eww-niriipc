@@ -1,0 +1,39 @@
+#!/bin/bash
+
+handle() {
+  event=$(echo "${1}" | jq -r keys[0])
+  value=$(echo "${1}" | jq .${event})
+  echo "${event}"
+  case "${event}" in
+  "WorkspaceActivated")
+    workspace_id=$(echo "${value}" | jq ".id")
+    eww-workspace change "${workspace_id}"
+    eww-minimize getAppList
+    ;;
+  "WorkspacesChanged")
+    eww-workspace init
+    applist=$(eww-minimize getAppList)
+    active_window_id=$(echo "${applist}" | jq ".[] | select(.is_focused==true) | .id")
+    eww update activewindow="${active_window_id}"
+    ;;
+  "WorkspaceActiveWindowChanged")
+    windowid=$(echo "${value}" | jq ".active_window_id")
+    eww update activewindow="${windowid}"
+    ;;
+  "WindowFocusChanged")
+    echo "WindowFocusChanged:${value}"
+    windowid=$(echo "${value}" | jq ".id")
+    eww update activewindow="${windowid}"
+    ;;
+  "WindowOpened")
+    eww-minimize getAppList
+    windowid=$(echo "${value}" | jq ".window.id")
+    eww update activewindow="${windowid}"
+    ;;
+  "WindowClosed")
+    eww-minimize getAppList
+    ;;
+  esac
+}
+
+niri msg -j event-stream | while read -r line; do handle "$line"; done

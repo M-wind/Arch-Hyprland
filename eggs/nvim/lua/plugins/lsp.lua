@@ -14,7 +14,7 @@ local lsp = {
         nushell = {},
         -- npm install -g vscode-langservers-extracted
         jsonls = {},
-        -- ["rust_analyzer"] = require("ft.rust").lsp,
+        ["rust_analyzer"] = require("ft.rust").lsp,
       },
       diagnostics = {
         underline = true,

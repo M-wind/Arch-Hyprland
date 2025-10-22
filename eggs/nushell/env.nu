@@ -19,17 +19,17 @@ $env.LIBSEAT_BACKEND = "logind"
 $env.WINEPREFIX = "/home/zwind/game/.wine"
 $env.WINEDEBUG = "-all"
 
-$env.BAT_THEME = "ansi"
+$env.BAT_THEME = "solarized_osaka_dark"
+# $env.BAT_THEME = "Catppuccin Mocha"
+# $env.BAT_THEME = "OneHalfDark"
+$env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
 
 $env.DOTNET_ROOT = "/home/zwind/language/dotnet"
-$env.FZF_DEFAULT_OPTS = "--style=full --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
-
 # mpv vulkan Hardware video acceleration Support
 $env.RADV_PERFTEST = "video_decode"
 
 #colorize man pages
-$env.MANPAGER = "sh -c 'col -bx | bat -l man -p'"
-$env.MANROFFOPT = "-c"
+# $env.MANPAGER = "bat -l man"
 
 $env.PATH = (
   $env.PATH

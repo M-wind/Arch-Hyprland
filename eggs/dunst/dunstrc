@@ -41,8 +41,8 @@
     foreground = "#FFFFFF"
     # default_icon = ~/app/notify/icons/notifyl.svg
     default_icon = " "
-    skip_display = true
     script = eww-notify
+    skip_display = true
 
 
 # [urgency_low]

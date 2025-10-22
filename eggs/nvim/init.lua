@@ -25,6 +25,7 @@ if vim.g.neovide then
   -- vim.g.neovide_light_angle_degrees = 0
   -- vim.g.neovide_light_radius = 0
   -- vim.g.neovide_floating_corner_radius = 0
+
   -- 缩放
   vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)

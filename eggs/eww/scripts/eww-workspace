@@ -2,10 +2,21 @@
 
 operate=$1
 number=$2
+env=$(eww get env)
 
-if [[ ${operate} == "change" ]]; then
-  hyprctl dispatch workspace "${number}"
-  # niri msg action focus-workspace "${number}"
+if [[ ${env} == "hypr" ]]; then
+  if [[ ${operate} == "change" ]]; then
+    hyprctl dispatch workspace "${number}"
+  fi
+elif [[ ${env} == "niri" ]]; then
+  workspaces_info=$(niri msg -j workspaces)
+  if [[ ${operate} == "change" ]]; then
+    number=$(echo "${workspaces_info}" | jq ".[] | select(.id==${number}) | .idx")
+  elif [[ ${operate} == "init" ]]; then
+    workspaces=$(echo "${workspaces_info}" | jq "[.[].idx] | sort")
+    eww update workspaces="${workspaces}"
+    number=$(echo "${workspaces_info}" | jq ".[] | select(.is_active==true) | .idx")
+  fi
 fi
 
 eww update currentworkspace="${number}"

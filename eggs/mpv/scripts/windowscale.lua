@@ -2,13 +2,7 @@ local utils = require("mp.utils")
 
 local exec = function(width, height)
   utils.subprocess_detached({
-    args = { "hyprctl", "dispatch", "resizeactive", "exact", width, height },
-  })
-end
-
-local center = function()
-  utils.subprocess_detached({
-    args = { "hyprctl", "dispatch", "centerwindow" },
+    args = { "mpv-window", width, height },
   })
 end
 
@@ -40,7 +34,6 @@ local scale = function(scale)
     return
   end
   exec(n_width, n_height)
-  center()
 end
 
 mp.add_key_binding(nil, "window-scale-0.5", function()

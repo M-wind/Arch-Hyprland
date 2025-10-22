@@ -26,6 +26,10 @@ export let eggs = #{
         targets: "~/.config/hypr",
         enabled: true,
     },     
+    niri: #{
+        targets: "~/.config/niri",
+        enabled: true,
+    },     
     wallust: #{
         targets: "~/.config/wallust",
         enabled: true,
