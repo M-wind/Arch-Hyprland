@@ -10,8 +10,7 @@
          :spacing 24
          :class "weathercard"
       (label :text { weather["current"]["icon"] }
-             :class "weatheremoji"
-             :haligh "start")
+             :class "weatheremoji")
       (label :markup { weather["current"]["desc"] }
              :class "weathertxt")
       (label :text { weather["current"]["location"]["area_name"] }))))

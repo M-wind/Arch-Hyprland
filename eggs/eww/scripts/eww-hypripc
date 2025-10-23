@@ -1,9 +1,11 @@
 #!/bin/bash
 
+old_address=""
+
 handle() {
   # if [[ ${1:0:11} == "workspacev2" ]]; then
   #   # workspaceid=${1:13:1}
-  #   # eww update currentworkspace="${workspaceid}"
+  #   # eww update activeworkspace="${workspaceid}"
   #   echo $1
   # elif [[ ${1:0:10} == "openwindow" ]]; then
   #   echo $1
@@ -12,19 +14,22 @@ handle() {
   workspacev2*)
     workspaceid=${1:13:1}
     eww-workspace update "${workspaceid}"
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     ;;
   activewindowv2*)
     address="0x${1:16}"
-    eww update activewindow="${address}"
+    if [[ ${address} != ${old_address} ]]; then
+      eww update activewindow="${address}"
+      old_address=${address}
+    fi
     ;;
   openwindow*)
     # address="0x${1:12:12}"
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     # eww-minimize capture "${address}"
     ;;
   closewindow*)
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     ;;
   esac
 }

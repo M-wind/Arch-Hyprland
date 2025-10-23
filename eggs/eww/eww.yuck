@@ -6,19 +6,18 @@
 (include "modules/system.yuck")
 (include "modules/weather-net-vol.yuck")
 
-(defvar env "hypr" )
-(defvar currentworkspace 1)
+(defvar activeworkspace 1)
 (defvar activewindow "arch")
 (defvar netname "enp4s0")
 (defvar previewinfo {{}})
 (defvar barh 44)
 (defvar widgeth 32)
 (defvar imageh 24)
-(defvar applistonce true)
+;; (defvar applistonce true)
 ;; (defpoll applist :interval "1s"
 ;;                  :initial {[]}
 ;;                  :run-while applistonce
-;;   `eww-minimize getAppListOnce`)
+;;   `eww-minimize get_app_list_once`)
 (defvar applist {[]})
 (defvar workspaces {[1,2,3,4,5,6]})
 
@@ -34,11 +33,10 @@
           (workspace :number "${number}"))))
 
 (defwidget workspace [number]
-  (eventbox :orientation "h"
-            :class { currentworkspace == number ? "bariconactive" : "baricon" }
+  (eventbox :class { activeworkspace == number ? "bariconactive" : "baricon" }
             :width widgeth
             :cursor "pointer"
-            :onclick { currentworkspace == number ? "" : "eww-workspace change ${number}" }
+            :onclick { activeworkspace == number ? "" : "eww-workspace change ${number}" }
             (image :path "icons/workspace${number}.svg"
                    :fill-svg white
                    :image-width imageh 
@@ -90,8 +88,7 @@
        :class "rightpanel"
        :height barh
        :space-evenly false
-    (eventbox :orientation "h"
-              :cursor "pointer"
+    (eventbox :cursor "pointer"
               :onclick "eww-window toggle calendar"
       (box :orientation "v"
            :halign "end"
@@ -104,8 +101,7 @@
         (label :text {formattime(EWW_TIME, "%Y/%m/%d")}
                :halign "end"
                :class "timenotifytext")))
-    (eventbox :orientation "h"
-              :width 36
+    (eventbox :width 36
               :cursor "pointer"
               :class "notifyicon"
               :onclick { paused ? "eww-window toggle notify" : "eww-notify init; eww-window toggle notify; eww update new_notify=false" }
@@ -115,8 +111,7 @@
              :image-height imageh))))
 
 (defwidget wether-net-vol []
-  (eventbox :orientation "h"
-            :cursor "pointer"
+  (eventbox :cursor "pointer"
             :onclick "eww-window toggle weather-net-vol"
     (box :orientation "h"
          :valign "center"
@@ -124,7 +119,7 @@
          :height barh
          :space-evenly false
          :spacing 6
-      (label :text { weather["current"]["icon"] + " " + weather["current"]["temp"] }
+      (label :text { weather?.["current"]?.["icon"] + " " + weather?.["current"]?.["temp"] }
              :class "wethertext")
       (image :path { mute || vol == 0 ? "icons/volumemute.svg" : "icons/volumeup.svg" }
              :fill-svg white
@@ -146,9 +141,10 @@
     (overlay
       (image :path "icons/${icon}.svg"
              :image-width imageh)
-      (image :path { minimized ? "icons/badge.svg" : "" }
-             :fill-svg mark
-             :image-width 32 ))))
+      (literal :content { minimized ? "(image :path 'icons/badge.svg' :fill-svg mark :image-width 32)" : "" }))))
+      ;; (image :path { minimized ? "icons/badge.svg" : "" }
+      ;;        :fill-svg mark
+      ;;        :image-width 32 ))))
 
 ;; all
 (defwindow bar

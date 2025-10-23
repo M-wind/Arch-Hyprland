@@ -1,19 +1,23 @@
 #!/bin/bash
 
-code="export let name = \"${1}\";"
+operate=${1}
 
-ctl=~/app/wallpaper/wpaperctl
+if [[ ${operate} == "sync" ]]; then
+  code="export let name = \"${2}\";"
+  ctl=~/app/wallpaper/wpaperctl
 
-eww-window close platte
-
-if [[ ${1} == "wallpaper" ]]; then
-  wallust -q run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))
-else
-  colorscheme=$(yolk eval "write_current_colorscheme(\"${1}\")")
-  echo "${colorscheme}" > ~/.config/wallust/colorschemes/terminal.json && wallust -q -T cs terminal
+  if [[ ${1} == "wallpaper" ]]; then
+    wallust -q run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))
+  else
+    colorscheme=$(yolk eval "write_current_colorscheme(\"${2}\")")
+    echo "${colorscheme}" >~/.config/wallust/colorschemes/terminal.json && wallust -q -T cs terminal
+  fi
+  echo "${code}" >~/.config/yolk/theme.rhai && yolk sync && eww-window close platte
+elif [[ ${operate} == "update" ]]; then
+  sleep 0.02
+  eww update activeworkspace="$(eww-tools get_activeworkspace_id)"
+  eww-volume getinitvol
+  eww update applist="$(eww-tools get_app_list)"
+  eww update workspaces="$(eww-tools get_workspaces)"
+  eww update activewindow="$(eww-tools get_activewindow_id)"
 fi
-
-echo "${code}" > ~/.config/yolk/theme.rhai && yolk sync
-sleep 1
-eww update theme="${1}" && eww-volume once
-eww-minimize getAppList

@@ -1,4 +1,4 @@
-(defvar theme "bamboo")
+(defvar theme "solarized-osaka") ;; {< replace_quoted(theme.color_name) >}
 (defvar themes { ["bamboo", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
 
 (defwindow platte
@@ -22,5 +22,5 @@
                 :class { theme == entry ? "systemiconactive" :  "systemicon" }
                 :height 36
                 :width 172
-                :onclick 'nu -c "eww-changetheme ${entry}"'
+                :onclick 'eww-changetheme sync ${entry}; eww-changetheme update'
         (label :text entry :class "plattetext")))))

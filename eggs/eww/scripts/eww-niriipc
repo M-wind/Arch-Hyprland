@@ -8,12 +8,11 @@ handle() {
   "WorkspaceActivated")
     workspace_id=$(echo "${value}" | jq ".id")
     eww-workspace change "${workspace_id}"
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     ;;
   "WorkspacesChanged")
     eww-workspace init
-    applist=$(eww-minimize getAppList)
-    active_window_id=$(echo "${applist}" | jq ".[] | select(.is_focused==true) | .id")
+    active_window_id=$(eww-tools get_app_list | jq ".[] | select(.is_focused==true) | .id")
     eww update activewindow="${active_window_id}"
     ;;
   "WorkspaceActiveWindowChanged")
@@ -21,17 +20,16 @@ handle() {
     eww update activewindow="${windowid}"
     ;;
   "WindowFocusChanged")
-    echo "WindowFocusChanged:${value}"
     windowid=$(echo "${value}" | jq ".id")
     eww update activewindow="${windowid}"
     ;;
   "WindowOpened")
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     windowid=$(echo "${value}" | jq ".window.id")
     eww update activewindow="${windowid}"
     ;;
   "WindowClosed")
-    eww-minimize getAppList
+    eww update applist="$(eww-tools get_app_list)"
     ;;
   esac
 }

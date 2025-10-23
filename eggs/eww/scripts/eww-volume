@@ -63,7 +63,7 @@ elif [[ ${operate} == "adjustbykey" ]]; then
 elif [[ ${operate} == "defaultbykey" ]]; then
   setvolume 0.79 79
   volumeshow
-else
+elif [[ ${operate} == "getinitvol" ]]; then
   cvol=${volstr:8:4}
   ewwvol=$(echo "${cvol}" | awk '{printf("%.0f", $1*100)}')
   eww update vol="${ewwvol}"

@@ -1,7 +1,7 @@
 spawn-sh-at-startup "~/app/wallpaper/wpaperd -d"
 spawn-sh-at-startup "fcitx5 -d"
 spawn-sh-at-startup "clipse -listen"
-spawn-sh-at-startup "eww daemon && eww-env && eww-volume getDefaultVolume && eww open bar"
+spawn-sh-at-startup "eww daemon && eww open bar && eww-volume getinitvol"
 spawn-sh-at-startup "eww-niriipc"
 
 screenshot-path "~/screenshots/%Y-%m-%d %H-%M-%S.png"
@@ -51,6 +51,9 @@ layout {
 
 overview {
   zoom 0.69
+}
+
+debug {
 }
 
 window-rule {
@@ -110,7 +113,7 @@ binds {
   Super+D hotkey-overlay-title="Toggle Window Bar" repeat=false { spawn-sh "eww-window toggle bar"; }
 
   Super+V repeat=false { toggle-window-floating; }
-  Super+O repeat=false { toggle-overview; }
+  Super+Tab repeat=false { toggle-overview; }
 
   Super+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false { spawn-sh "~/app/wallpaper/wpaperctl previous"; }
   Super+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false { spawn-sh "~/app/wallpaper/wpaperctl next"; }
@@ -124,7 +127,8 @@ binds {
   Super+K { focus-window-up; }
   Super+L { focus-column-right; }
   Super+R { center-window; }
-  Super+P { switch-preset-column-width; }
+  Super+P repeat=false { switch-preset-column-width; }
+  Super+O repeat=false { switch-preset-window-height; }
   Super+Shift+BracketLeft { move-window-to-workspace-down; }
   Super+Shift+BracketRight { move-window-to-workspace-up; }
 

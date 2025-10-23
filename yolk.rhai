@@ -12,15 +12,15 @@ export let eggs = #{
         templates: ["foot.ini"],
         enabled: true,
     },     
-    eww: #{
-        targets: "~/.config/eww",
-        templates: ["modules/_base.scss", "modules/colors.yuck", "icons/circle.svg"],
-        enabled: true,
-    },     
     nvim: #{
         targets: "~/.config/nvim",
         templates: ["init.lua"],
         enabled: true,
+    },     
+    eww: #{
+      targets: "~/.config/eww",
+      templates: ["modules/platte.yuck", "modules/_base.scss", "modules/colors.yuck", "icons/circle.svg"],
+      enabled: true,
     },     
     hypr: #{
         targets: "~/.config/hypr",

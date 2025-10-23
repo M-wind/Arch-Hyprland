@@ -67,6 +67,7 @@ return {
           { "<leader>l", icon = { icon = "󰒲 ", color = "grey" } },
           { "<leader>t", icon = { icon = "󰔎 ", color = "orange" } },
           { "<leader>e", icon = { icon = " ", color = "yellow" } },
+          { "<leader>j", icon = { icon = "󰑆 ", color = "orange" } },
           -- { "<localleader>h", icon = { icon = " ", color = "orange" } },
           -- { "<localleader>q", icon = { icon = "󰈆  ", color = "red" } },
           -- { "<localleader>r", icon = { icon = " ", color = "yellow" } },

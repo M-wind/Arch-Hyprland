@@ -2,70 +2,51 @@
 
 operate=$1
 address=$2
-env=$(eww get env)
 
-special_workspacename="special:magic"
-
-get_currentworkspace_id() {
-  # workspacename=$(hyprctl activeworkspace -j | jq ".id")
-  workspacename=$(eww get currentworkspace)
-  echo "${workspacename}"
-}
+special_workspacename=$(eww-tools get_special_workspacename)
+activeworkspace_id=$(eww-tools get_activeworkspace_id)
 
 is_minimize() {
   flag=$(hyprctl clients -j | jq ".[] | select(.address==\"${1}\") | .workspace.name==\"${special_workspacename}\"")
   echo "${flag}"
 }
 
-get_app_list() {
-  workspaceid=$(get_currentworkspace_id)
-  if [[ ${env} == "hypr" ]]; then
-    applist=$(hyprctl clients -j | jq "[.[] | .minimized=.workspace.name==\"${special_workspacename}\" | select(.workspace.id==${workspaceid} or .workspace.name==\"${special_workspacename}\")] | sort_by(.pid)")
-  elif [[ ${env} == "niri" ]]; then
-    workspaceid=$(niri msg -j workspaces | jq ".[] | select(.idx==${workspaceid}) | .id")
-    applist=$(niri msg -j windows | jq "[.[] | select(.workspace_id==${workspaceid}) | .minimized=false | .class=.app_id |.address=.id] | sort_by(.id)")
-  fi
-  eww update applist="${applist}"
-  echo "${applist}"
-}
 
 minimize() {
   if [[ $(is_minimize "${1}") == true ]]; then
-    hyprctl dispatch movetoworkspacesilent $(get_currentworkspace_id),address:"${1}"
+    hyprctl dispatch movetoworkspacesilent ${activeworkspace_id},address:"${1}"
     hyprctl dispatch focuswindow address:"${1}"
   else
     hyprctl dispatch movetoworkspacesilent "${special_workspacename}",address:"${1}"
   fi
-  get_app_list
+  eww update applist="$(eww-tools get_app_list)"
 }
 
 reminimize() {
-  address=$(get_app_list | jq "[.[] | select(.minimized==true)] | .[0] | .address")
+  address=$(eww-tools get_app_list | jq -r "[.[] | select(.minimized==true)] | .[0] | .address")
   echo "${address}"
 }
 
 if [[ ${operate} == "minimize" ]]; then
-  if [[ ${env} == "hypr" ]]; then
+  if [[ ${WAYLAND_COMPOSITOR} == "hypr" ]]; then
     minimize "${address}"
-  elif [[ ${env} == "niri" ]]; then
+  elif [[ ${WAYLAND_COMPOSITOR} == "niri" ]]; then
     niri msg action focus-window --id "${address}"
   fi
 elif [[ ${operate} == "minimizecurrent" ]]; then
-  current=$(hyprctl -j activewindow | jq ".address")
-  minimize "${current:1:14}"
+  current=$(hyprctl -j activewindow | jq -r ".address")
+  minimize "${current}"
 elif [[ ${operate} == "reminimize" ]]; then
   current=$(reminimize)
   if [[ ${current} != "null" ]]; then
-    minimize "${current:1:14}"
-    hyprctl dispatch focuswindow address:"${current:1:14}"
+    minimize "${current}"
+    hyprctl dispatch focuswindow address:"${current}"
   fi
-elif [[ ${operate} == "getAppList" ]]; then
-  get_app_list
 elif [[ ${operate} == "isminimize" ]]; then
   is_minimize "${address}"
-elif [[ ${operate} == "getAppListOnce" ]]; then
-  get_app_list
-  if [[ $(eww get applistonce) == true ]]; then
-    eww update applistonce=false
-  fi
+# elif [[ ${operate} == "get_app_list_once" ]]; then
+#   eww update applist="$(eww-tools get_app_list)"
+#   if [[ $(eww get applistonce) == true ]]; then
+#     eww update applistonce=false
+#   fi
 fi
