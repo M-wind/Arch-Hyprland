@@ -1,6 +1,9 @@
-(defpoll weather :interval "3600s"
-                 :initial {{}}
-  `eww-weather Changsha zh`)
+;; (defpoll weather :interval "3600s"
+;;                  :initial {{}}
+;;   `eww-weather Changsha zh`)
+(defpoll weather :interval "1800s"
+                 :initial "{}"
+  `weather --adcode 430100`)
 
 
 (defwidget weather[]
@@ -9,11 +12,16 @@
          :space-evenly false
          :spacing 24
          :class "weathercard"
-      (label :text { weather["current"]["icon"] }
+      ;; (label :text { weather["current"]["icon"] }
+      ;;        :class "weatheremoji")
+      ;; (label :markup { weather["current"]["desc"] }
+      ;;        :class "weathertxt")
+      ;; (label :text { weather["current"]["location"]["area_name"] }))))
+      (label :text { weather["icon"] }
              :class "weatheremoji")
-      (label :markup { weather["current"]["desc"] }
+      (label :markup { weather["weather"] }
              :class "weathertxt")
-      (label :text { weather["current"]["location"]["area_name"] }))))
+      (label :text { weather["city"] }))))
 
 (defwindow weather-net-vol
   :monitor 0

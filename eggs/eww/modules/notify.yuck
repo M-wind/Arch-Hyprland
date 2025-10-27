@@ -94,7 +94,7 @@
            :wrap true))))
 
 (defwidget _icon [path]
-  (literal :content {path == "" ? "" : "(image :path path :image-width 312)"}))
+  (literal :content {path == "" ? "" : "(eventbox :cursor \"pointer\" :onclick \"xdg-open ${path}\" (image :path path :image-width 312))"}))
 
 (defwidget no-notifyitem [?msg]
   (box :orientation "v"

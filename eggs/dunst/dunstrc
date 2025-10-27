@@ -41,22 +41,29 @@
     foreground = "#FFFFFF"
     # default_icon = ~/app/notify/icons/notifyl.svg
     default_icon = " "
-    script = eww-notify
+    script = eww-notify 
     skip_display = true
 
 
 # [urgency_low]
-#     # default_icon = ~/app/notify/icons/notifyl.svg
-#     default_icon = " "
+#     default_icon = notifyl
 #     skip_display = true 
 #
 # [urgency_normal]
-#     # default_icon = ~/app/notify/icons/notifyn.svg
-#     default_icon = " "
+#     default_icon = notifyn
 #     skip_display = true 
-#     # script = ~/app/bar/scripts/notify
 #
 # [urgency_critical]
-#     # default_icon = ~/app/notify/icons/notifyc.svg
-#     default_icon = " "
+#     default_icon = notifyc
 #     skip_display = true 
+
+[niri_config]
+    appname = niri-config
+    urgency = critical
+    history_ignore = true
+    timeout = 9
+    format = "<span font_weight='bold' font_style='italic' line_height='1.5pt' color='#db302d'>%s</span>\n%b"
+    new_icon = niri
+    icon_position = right
+    skip_display = false
+

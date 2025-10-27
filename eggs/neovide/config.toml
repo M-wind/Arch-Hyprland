@@ -4,7 +4,7 @@ fork = false
 frame = "none"
 
 [font]
-normal = ["JetBrainsMono NFM", "LXGW WenKai Mono GB Screen"]
+normal = ["monospace", "LXGW WenKai Mono GB Screen"]
 size = 13
 
 [box-drawing]

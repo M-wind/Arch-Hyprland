@@ -232,7 +232,7 @@ local catppuccin = {
   name = "catppuccin",
   lazy = true,
   config = function()
-    local colors = require("catppuccin.palettes").get_palette("frappe")
+    local colors = require("catppuccin.palettes").get_palette("mocha")
     colors.orange = colors.peach
     colors.cyan = colors.teal
     colors.purple = colors.mauve
@@ -243,7 +243,7 @@ local catppuccin = {
     hl.LineNr = { fg = "#45475a" }
     hl.DashboardHeader = { fg = colors.cyan }
     require("catppuccin").setup({
-      flavour = "frappe",
+      flavour = "mocha",
       transparent_background = true,
       float = { transparent = true, solid = true },
       term_colors = true,

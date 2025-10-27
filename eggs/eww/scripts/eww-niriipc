@@ -12,8 +12,8 @@ handle() {
     ;;
   "WorkspacesChanged")
     eww-workspace init
-    active_window_id=$(eww-tools get_app_list | jq ".[] | select(.is_focused==true) | .id")
-    eww update activewindow="${active_window_id}"
+    eww update activewindow="$(eww-tools get_activewindow_id)"
+    eww update applist="$(eww-tools get_app_list)"
     ;;
   "WorkspaceActiveWindowChanged")
     windowid=$(echo "${value}" | jq ".active_window_id")
@@ -31,6 +31,11 @@ handle() {
   "WindowClosed")
     eww update applist="$(eww-tools get_app_list)"
     ;;
+  # "ConfigLoaded")
+  #   if [[ $(echo "${value}" | jq ".failed") == true ]]; then
+  #     notify-send --app-name=niri-config "ConfigLoaded Falied" "Please Run niri validate for more details."
+  #   fi
+  #   ;;
   esac
 }
 

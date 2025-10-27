@@ -57,5 +57,6 @@ $env.PATH = (
     | uniq
 )
 
+
 source /home/zwind/app/starship/init.nu
 source /home/zwind/app/zoxide/zoxide.nu

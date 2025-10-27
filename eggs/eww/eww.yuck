@@ -11,6 +11,7 @@
 (defvar netname "enp4s0")
 (defvar previewinfo {{}})
 (defvar barh 44)
+(defvar spacing 6)
 (defvar widgeth 32)
 (defvar imageh 24)
 ;; (defvar applistonce true)
@@ -28,7 +29,7 @@
        :class "leftpanel"
        :valign "center"
        :height barh
-       :spacing 6
+       :spacing spacing
        (for number in { workspaces }
           (workspace :number "${number}"))))
 
@@ -48,7 +49,7 @@
        :height barh
     (box :orientation "h"
          :space-evenly false
-         :spacing 6
+         :spacing spacing
          :height widgeth
       (image :path "icons/download.svg" :image-width imageh :fill-svg white)
       (label :text {round(EWW_NET[netname]["NET_DOWN"] / 1024, 2) > 1000 ? round(EWW_NET[netname]["NET_DOWN"] / 1024 / 1024, 2) + "MB/s" : round(EWW_NET[netname]["NET_DOWN"] / 1024, 2) + " KB/s"}
@@ -60,7 +61,7 @@
        :height barh
     (box :orientation "h"
          :space-evenly false
-         :spacing 6
+         :spacing spacing
          :height widgeth
     (image :path "icons/upload.svg" :image-width imageh :fill-svg white)
     (label :text {round(EWW_NET[netname]["NET_UP"] / 1024, 2) > 1000 ? round(EWW_NET[netname]["NET_UP"] / 1024 / 1024, 2) + " MB/s" : round(EWW_NET[netname]["NET_UP"] / 1024, 2) + " KB/s"}
@@ -118,8 +119,9 @@
          :class "rightpanel rigthpanel-padding"
          :height barh
          :space-evenly false
-         :spacing 6
-      (label :text { weather?.["current"]?.["icon"] + " " + weather?.["current"]?.["temp"] }
+         :spacing spacing
+      ;; (label :text { weather?.["current"]?.["icon"] + " " + weather?.["current"]?.["temp"] }
+      (label :text { weather?.["icon"] + " " + weather?.["temperature"] }
              :class "wethertext")
       (image :path { mute || vol == 0 ? "icons/volumemute.svg" : "icons/volumeup.svg" }
              :fill-svg white
@@ -152,7 +154,7 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
-                      :height 56
+                      :height 60
                       :anchor "bottom center")
   :stacking "fg"
   :exclusive true
@@ -168,7 +170,7 @@
          :space-evenly false
          :class "systemiconbar"
          :height barh
-         :spacing 6
+         :spacing spacing
          :valign "center"
          :halign "center"
       (eventbox :cursor "pointer"

@@ -4,3 +4,4 @@
 /eggs/nushell/history.txt
 /**/*.log
 /eggs/clipse/clipboard_history.json
+/eggs/clipse/tmp_files

@@ -37,6 +37,8 @@ elif [[ ${operate} == "init" ]]; then
   getHistory
 elif [[ ${operate} == "view" ]]; then
   isNotify false
+elif [[ ${operate} == "niri-config" ]]; then
+  echo "ignore"
 else
   if [[ $(eww-window check notify) == true ]]; then
     getHistory

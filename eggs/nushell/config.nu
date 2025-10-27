@@ -134,7 +134,7 @@ def ls [
           --mime-type=$mime_type
           --threads=$threads
           ...$pattern
-        ) | sort-by name
+        ) | sort-by -n name
       }
       [false] => {
         (core-ls
@@ -147,23 +147,29 @@ def ls [
           --mime-type=$mime_type
           --threads=$threads
           ...$pattern
-        ) | sort-by name | select name type user group mode size modified
+        ) | sort-by -n name | select name type user group mode size modified
       } 
     }
 }
 
+def rgf [
+  text
+  path?: path
+] {
+  if $path == null {
+    rg --column --hidden --line-number --color=always --smart-case $text
+    | fzf --ansi --delimiter ":" --preview "bat --color=always {1} --highlight-line {2}" --preview-window "up,60%,+{2}+3/3,~3"
+  } else {
+    rg --column --hidden --line-number --color=always --smart-case $text $path
+    | fzf --ansi --delimiter ":" --preview "bat --color=always {1} --highlight-line {2}" --preview-window "up,60%,+{2}+3/3,~3"
+  }
+}
 
 alias x = eza --icons --hyperlink
 alias xl = eza --icons --hyperlink --long --time-style '+%Y-%m-%d %H:%M:%S'
 alias xt = xl -T
 
 alias vi = neovide
-
-alias core-rg = rg
-alias rg = core-rg --column --line-number --color=always --smart-case
-
-alias fzf-bat = fzf --ansi --disabled --delimiter ":"  --preview "bat --color=always {1}" --preview-window "up,60%,+{2}+3/3,~3"
-alias fzf-bat-rg = fzf --ansi  --disabled --delimiter ":"  --preview "bat --color=always {1}  --highlight-line {2}" --preview-window "up,60%,+{2}+3/3,~3"
 
 alias color = nu-highlight
 

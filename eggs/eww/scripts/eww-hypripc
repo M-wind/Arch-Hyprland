@@ -10,6 +10,7 @@ handle() {
   # elif [[ ${1:0:10} == "openwindow" ]]; then
   #   echo $1
   # fi
+  echo $1
   case $1 in
   workspacev2*)
     workspaceid=${1:13:1}
@@ -31,6 +32,10 @@ handle() {
   closewindow*)
     eww update applist="$(eww-tools get_app_list)"
     ;;
+  # windowtitlev2*)
+  #   address="0x${1:15}"
+  #   echo "${address}"
+  #   ;;
   esac
 }
 

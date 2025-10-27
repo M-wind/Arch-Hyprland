@@ -3,12 +3,12 @@ local M = {}
 local themes = {
   { idx = 1, text = "1: Everforest", value = "everforest" },
   { idx = 2, text = "2: Onedarkpro", value = "onedark" },
-  { idx = 3, text = "3: Catppuccin", value = "catppuccin" },
-  { idx = 4, text = "4: Solarized Osaka", value = "solarized-osaka" },
-  { idx = 5, text = "5: Dracula", value = "dracula" },
-  { idx = 6, text = "6: Tokyodark", value = "tokyodark" },
+  { idx = 3, text = "4: Solarized Osaka", value = "solarized-osaka" },
+  { idx = 4, text = "5: Dracula", value = "dracula" },
+  { idx = 5, text = "6: Tokyodark", value = "tokyodark" },
   -- { idx = 7, text = "7: Tokyonight Day", value = "tokyonight-day" },
-  { idx = 7, text = "7: Vscode", value = "vscode" },
+  { idx = 6, text = "7: Vscode", value = "vscode" },
+  { idx = 7, text = "3: Catppuccin Mocha", value = "catppuccin-mocha" },
   { idx = 8, text = "8: Tokyonight Moon", value = "tokyonight-moon" },
   { idx = 9, text = "9: Bamboo", value = "bamboo" },
 }
