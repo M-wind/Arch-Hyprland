@@ -41,6 +41,7 @@ export let eggs = #{
     },    
     btop: #{
         targets: "~/.config/btop",
+        templates: ["btop.conf"],
         enabled: true,
     },     
     fastfetch: #{

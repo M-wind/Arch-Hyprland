@@ -40,7 +40,7 @@ layout {
     focus-ring {
         width 2
         // {# replace_quoted(theme.colors.cyan) #}
-        active-color "#94e2d5"
+        active-color "#29a298"
         inactive-color "#505050"
     }
     border {

@@ -1,4 +1,4 @@
-(defvar theme "catppuccin") ;; {< replace_quoted(theme.color_name) >}
+(defvar theme "solarized-osaka") ;; {< replace_quoted(theme.color_name) >}
 (defvar themes { ["bamboo", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
 
 (defwindow platte
