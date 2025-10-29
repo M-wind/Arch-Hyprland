@@ -24,10 +24,12 @@ export let eggs = #{
     },     
     hypr: #{
         targets: "~/.config/hypr",
+        templates: ["hyprland.conf"],
         enabled: true,
     },     
     niri: #{
         targets: "~/.config/niri",
+        templates: ["config.kdl"],
         enabled: true,
     },     
     wallust: #{

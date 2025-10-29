@@ -68,9 +68,10 @@ return {
           { "<leader>t", icon = { icon = "󰔎 ", color = "orange" } },
           { "<leader>e", icon = { icon = " ", color = "yellow" } },
           { "<leader>j", icon = { icon = "󰑆 ", color = "orange" } },
-          -- { "<localleader>h", icon = { icon = " ", color = "orange" } },
-          -- { "<localleader>q", icon = { icon = "󰈆  ", color = "red" } },
-          -- { "<localleader>r", icon = { icon = " ", color = "yellow" } },
+          -- { "rh", icon = { icon = " ", color = "orange" } },
+          -- { "rq", icon = { icon = "󰈆  ", color = "red" } },
+          -- { "rr", icon = { icon = " ", color = "yellow" } },
+          -- { "rc", desc = "Toggle Show Command", icon = { icon = " ", color = "yellow" } },
         },
         {
           mode = { "v" },
