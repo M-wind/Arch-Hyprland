@@ -1,4 +1,4 @@
-local search = {
+return {
   "MagicDuck/grug-far.nvim",
   cmd = { "GrugFar", "GrugFarWithin" },
   keys = {
@@ -72,5 +72,3 @@ local search = {
     },
   },
 }
-
-return { search }

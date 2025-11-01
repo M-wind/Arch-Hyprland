@@ -1,0 +1,78 @@
+return {
+  "hrsh7th/nvim-cmp",
+  version = false,
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-calc",
+    {
+      "garymjr/nvim-snippets",
+      opts = { friendly_snippets = true },
+      dependencies = { "rafamadriz/friendly-snippets" },
+    },
+  },
+  config = function()
+    local cmp = require("cmp")
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          require("utils.cmp").expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<C-f>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      }),
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "snippets" },
+        { name = "path" },
+        { name = "calc" },
+      }, {
+        { name = "buffer" },
+      }),
+      window = {
+        completion = {
+          winhighlight = "Noraml:NormalFloat,CursorLine:IncSearch",
+          border = "rounded",
+        },
+        documentation = {
+          border = "rounded",
+        },
+      },
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(_, item)
+          item.name = item.kind
+          item.kind = require("utils.icons").cmp[item.kind] or ""
+          item.menu = "    (" .. (item.name or "") .. ")"
+          -- item.menu = "    " .. (item.name or "")
+          item = require("utils.tailwindcsscolors").cmp_tailwind_color(item)
+          return item
+        end,
+      },
+    })
+  end,
+}

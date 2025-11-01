@@ -1,11 +1,9 @@
-local colorizer = {
+return {
   "norcalli/nvim-colorizer.lua",
-  event = "User FilePost",
+  event = "VeryLazy",
   config = function()
     require("colorizer").setup({
       "*",
     })
   end,
 }
-
-return { colorizer }

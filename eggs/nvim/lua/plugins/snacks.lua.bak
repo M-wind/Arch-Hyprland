@@ -10,7 +10,7 @@ local c_l = {
   diagnostics = "select",
 }
 
-local snacks = {
+return {
   "folke/snacks.nvim",
   event = "VeryLazy",
   keys = {
@@ -240,5 +240,3 @@ local snacks = {
     },
   },
 }
-
-return { snacks }

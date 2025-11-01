@@ -1,4 +1,4 @@
-local lsp = {
+return {
   "neovim/nvim-lspconfig",
   event = "User FilePost",
   opts = function()
@@ -161,5 +161,3 @@ local lsp = {
     end
   end,
 }
-
-return { lsp }

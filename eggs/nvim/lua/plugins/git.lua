@@ -1,4 +1,4 @@
-local gitsings = {
+return {
   "lewis6991/gitsigns.nvim",
   event = "User FilePost",
   opts = {
@@ -55,5 +55,3 @@ local gitsings = {
     -- end
   },
 }
-
-return { gitsings }

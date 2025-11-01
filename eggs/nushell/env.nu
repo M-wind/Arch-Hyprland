@@ -19,10 +19,8 @@ $env.LIBSEAT_BACKEND = "logind"
 $env.WINEPREFIX = "/home/zwind/game/.wine"
 $env.WINEDEBUG = "-all"
 
-$env.BAT_THEME = "solarized_osaka_dark"
-# $env.BAT_THEME = "Catppuccin Mocha"
-# $env.BAT_THEME = "OneHalfDark"
-$env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
+# $env.BAT_THEME = "tokyonight"
+# $env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
 
 $env.DOTNET_ROOT = "/home/zwind/language/dotnet"
 # mpv vulkan Hardware video acceleration Support

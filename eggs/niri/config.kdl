@@ -158,6 +158,9 @@ binds {
     Mod+Shift+V hotkey-overlay-title="Open Clipboard: Clipse" repeat=false {
         spawn-sh "foot -d none -a clipse -e clipse"
     }
+    Mod+C hotkey-overlay-title="Color Picker" repeat=false {
+        spawn-sh "colorpicker -a"
+    }
     Ctrl+Shift+Escape hotkey-overlay-title="Open System Moniter: Btop" repeat=false {
         spawn-sh "foot -d none -a btop -e btop"
     }
@@ -348,6 +351,9 @@ binds {
     }
     Mod+Shift+S hotkey-overlay-title="ScreenShot area" repeat=false {
         spawn-sh "screentool -n -t capture -s area -f ~/screenshots/area-$(date +'%F-%T-%N.png')"
+    }
+    Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
+        spawn "screenlock"
     }
 }
 

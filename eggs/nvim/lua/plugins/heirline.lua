@@ -154,202 +154,200 @@ local tabpageclose = {
 }
 
 return {
-  {
-    "rebelot/heirline.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "moll/vim-bbye",
-    },
-    config = function()
-      local utils = require("heirline.utils")
-      local utils_h = require("utils.heirline")
-      local conditions = require("heirline.conditions")
-      local diagnostic_icon = require("utils.icons").diagnostics
-      local buffer_block = utils.surround({ "", " " }, "none", { buffer_filename, buffer_closebutton })
-      require("heirline").setup({
-        tabline = {
-          buffer_offset,
-          utils.make_buflist(
-            buffer_block,
-            { provider = " ", hl = { fg = colors.white } },
-            { provider = " ", hl = { fg = colors.white } },
-            function()
-              return utils_h.buflist_cache
-            end,
-            false
-          ),
+  "rebelot/heirline.nvim",
+  event = "VeryLazy",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "moll/vim-bbye",
+  },
+  config = function()
+    local utils = require("heirline.utils")
+    local utils_h = require("utils.heirline")
+    local conditions = require("heirline.conditions")
+    local diagnostic_icon = require("utils.icons").diagnostics
+    local buffer_block = utils.surround({ "", " " }, "none", { buffer_filename, buffer_closebutton })
+    require("heirline").setup({
+      tabline = {
+        buffer_offset,
+        utils.make_buflist(
+          buffer_block,
+          { provider = " ", hl = { fg = colors.white } },
+          { provider = " ", hl = { fg = colors.white } },
+          function()
+            return utils_h.buflist_cache
+          end,
+          false
+        ),
+        {
+          condition = function()
+            return #vim.api.nvim_list_tabpages() > 1
+          end,
+          { provider = "%=" },
+          utils.make_tablist(tabpage),
+          tabpageclose,
+        },
+      },
+      statusline = {
+        -- condition = function ()
+        --     local bufnr = vim.api.nvim_get_current_buf()
+        --     return vim.bo[bufnr].filetype ~= "NvimTree"
+        -- end,
+        {
+          init = function(self)
+            self.mode = vim.api.nvim_get_mode()["mode"]
+            -- self.mode = vim.fn.mode(1)
+          end,
+          provider = function(self)
+            return " " .. modes[self.mode]["name"] .. " "
+          end,
+          hl = function(self)
+            return modes[self.mode]["hl"]
+          end,
+          update = {
+            "ModeChanged",
+            pattern = "*:*",
+            callback = vim.schedule_wrap(function()
+              vim.cmd("redrawstatus")
+            end),
+          },
+        },
+        {
+          init = function(self)
+            self.filename = vim.api.nvim_buf_get_name(0)
+          end,
+          provider = function(self)
+            local filename = ""
+            local pwd = vim.fn.getcwd()
+            if vim.bo.filetype == "NvimTree" then
+              -- filename = vim.fn.fnamemodify(self.filename, ":h")
+              filename = pwd
+            else
+              -- filename = vim.fn.fnamemodify(self.filename, ":t")
+              filename = self.filename
+              local _, index = string.find(self.filename, pwd, 1, true)
+              if index ~= nil then
+                filename = string.sub(self.filename, index + 2)
+              end
+              if filename == "" then
+                filename = "[No Name]"
+              end
+            end
+            return " " .. filename .. " "
+          end,
+          hl = { bg = colors.black, fg = colors.white },
           {
             condition = function()
-              return #vim.api.nvim_list_tabpages() > 1
+              return vim.bo.modified
             end,
-            { provider = "%=" },
-            utils.make_tablist(tabpage),
-            tabpageclose,
+            provider = "[+] ",
+            hl = { fg = colors.green },
           },
         },
-        statusline = {
-          -- condition = function ()
-          --     local bufnr = vim.api.nvim_get_current_buf()
-          --     return vim.bo[bufnr].filetype ~= "NvimTree"
-          -- end,
+        {
+          condition = conditions.is_git_repo,
+          init = function(self)
+            self.status_dict = vim.b.gitsigns_status_dict
+            self.has_changes = self.status_dict.added ~= 0
+              or self.status_dict.removed ~= 0
+              or self.status_dict.changed ~= 0
+          end,
+          provider = function(self)
+            return "  " .. self.status_dict.head .. " "
+          end,
+          hl = { bg = colors.grey, fg = colors.blue },
           {
-            init = function(self)
-              self.mode = vim.api.nvim_get_mode()["mode"]
-              -- self.mode = vim.fn.mode(1)
-            end,
             provider = function(self)
-              return " " .. modes[self.mode]["name"] .. " "
+              local count = self.status_dict.added or 0
+              return count > 0 and ("+" .. count)
             end,
-            hl = function(self)
-              return modes[self.mode]["hl"]
-            end,
-            update = {
-              "ModeChanged",
-              pattern = "*:*",
-              callback = vim.schedule_wrap(function()
-                vim.cmd("redrawstatus")
-              end),
-            },
+            hl = { fg = colors.green },
           },
           {
-            init = function(self)
-              self.filename = vim.api.nvim_buf_get_name(0)
-            end,
             provider = function(self)
-              local filename = ""
-              local pwd = vim.fn.getcwd()
-              if vim.bo.filetype == "NvimTree" then
-                -- filename = vim.fn.fnamemodify(self.filename, ":h")
-                filename = pwd
-              else
-                -- filename = vim.fn.fnamemodify(self.filename, ":t")
-                filename = self.filename
-                local _, index = string.find(self.filename, pwd, 1, true)
-                if index ~= nil then
-                  filename = string.sub(self.filename, index + 2)
-                end
-                if filename == "" then
-                  filename = "[No Name]"
-                end
-              end
-              return " " .. filename .. " "
+              local count = self.status_dict.removed or 0
+              return count > 0 and ("-" .. count)
             end,
-            hl = { bg = colors.black, fg = colors.white },
-            {
-              condition = function()
-                return vim.bo.modified
-              end,
-              provider = "[+] ",
-              hl = { fg = colors.green },
-            },
+            hl = { fg = colors.red },
           },
           {
-            condition = conditions.is_git_repo,
-            init = function(self)
-              self.status_dict = vim.b.gitsigns_status_dict
-              self.has_changes = self.status_dict.added ~= 0
-                or self.status_dict.removed ~= 0
-                or self.status_dict.changed ~= 0
-            end,
             provider = function(self)
-              return "  " .. self.status_dict.head .. " "
+              local count = self.status_dict.changed or 0
+              return count > 0 and ("~" .. count)
             end,
-            hl = { bg = colors.grey, fg = colors.blue },
-            {
-              provider = function(self)
-                local count = self.status_dict.added or 0
-                return count > 0 and ("+" .. count)
-              end,
-              hl = { fg = colors.green },
-            },
-            {
-              provider = function(self)
-                local count = self.status_dict.removed or 0
-                return count > 0 and ("-" .. count)
-              end,
-              hl = { fg = colors.red },
-            },
-            {
-              provider = function(self)
-                local count = self.status_dict.changed or 0
-                return count > 0 and ("~" .. count)
-              end,
-              hl = { fg = colors.orange },
-            },
-          },
-          {
-            condition = conditions.has_diagnostics,
-            static = {
-              error_icon = diagnostic_icon.Error,
-              warn_icon = diagnostic_icon.Warn,
-              info_icon = diagnostic_icon.Info,
-              hint_icon = diagnostic_icon.Hint,
-            },
-            init = function(self)
-              self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-              self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-              self.hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-              self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-            end,
-            provider = " ",
-            hl = { bg = colors.grey },
-            {
-              provider = function(self)
-                return self.info > 0 and (self.info_icon .. " " .. self.info .. " ")
-              end,
-              hl = { fg = colors.green },
-            },
-            {
-              provider = function(self)
-                return self.hint > 0 and (self.hint_icon .. " " .. self.hint .. " ")
-              end,
-              hl = { fg = colors.cyan },
-            },
-            {
-              provider = function(self)
-                return self.warn > 0 and (self.warn_icon .. " " .. self.warn .. " ")
-              end,
-              hl = { fg = colors.yellow },
-            },
-            {
-              provider = function(self)
-                return self.error > 0 and (self.error_icon .. " " .. self.error .. " ")
-              end,
-              hl = { fg = colors.red },
-            },
-          },
-          { provider = "%=" },
-          {
-            provider = function()
-              return " " .. vim.o.fileencoding:upper() .. " "
-            end,
-            hl = { bg = colors.grey, fg = colors.white },
-          },
-          {
-            provider = function()
-              return " Tab " .. vim.o.shiftwidth .. " "
-            end,
-            hl = { bg = colors.black, fg = colors.white },
-          },
-          {
-            provider = function()
-              local line = vim.fn.line(".")
-              local col = vim.fn.charcol(".")
-              return " " .. string.format("%3d:%-2d", line, col) .. " "
-            end,
-            hl = { bg = colors.violet, fg = colors.black },
+            hl = { fg = colors.orange },
           },
         },
-        -- statuscolumn = {
-        --   init = function(self)
-        --     self.bufnr = vim.api.nvim_get_current_buf()
-        --   end,
-        --   lib.component.foldcolumn(),
-        --   lib.component.numbercolumn(),
-        --   lib.component.signcolumn(),
-        -- },
-      })
-    end,
-  },
+        {
+          condition = conditions.has_diagnostics,
+          static = {
+            error_icon = diagnostic_icon.Error,
+            warn_icon = diagnostic_icon.Warn,
+            info_icon = diagnostic_icon.Info,
+            hint_icon = diagnostic_icon.Hint,
+          },
+          init = function(self)
+            self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+            self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+            self.hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+            self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+          end,
+          provider = " ",
+          hl = { bg = colors.grey },
+          {
+            provider = function(self)
+              return self.info > 0 and (self.info_icon .. " " .. self.info .. " ")
+            end,
+            hl = { fg = colors.green },
+          },
+          {
+            provider = function(self)
+              return self.hint > 0 and (self.hint_icon .. " " .. self.hint .. " ")
+            end,
+            hl = { fg = colors.cyan },
+          },
+          {
+            provider = function(self)
+              return self.warn > 0 and (self.warn_icon .. " " .. self.warn .. " ")
+            end,
+            hl = { fg = colors.yellow },
+          },
+          {
+            provider = function(self)
+              return self.error > 0 and (self.error_icon .. " " .. self.error .. " ")
+            end,
+            hl = { fg = colors.red },
+          },
+        },
+        { provider = "%=" },
+        {
+          provider = function()
+            return " " .. vim.o.fileencoding:upper() .. " "
+          end,
+          hl = { bg = colors.grey, fg = colors.white },
+        },
+        {
+          provider = function()
+            return " Tab " .. vim.o.shiftwidth .. " "
+          end,
+          hl = { bg = colors.black, fg = colors.white },
+        },
+        {
+          provider = function()
+            local line = vim.fn.line(".")
+            local col = vim.fn.charcol(".")
+            return " " .. string.format("%3d:%-2d", line, col) .. " "
+          end,
+          hl = { bg = colors.violet, fg = colors.black },
+        },
+      },
+      -- statuscolumn = {
+      --   init = function(self)
+      --     self.bufnr = vim.api.nvim_get_current_buf()
+      --   end,
+      --   lib.component.foldcolumn(),
+      --   lib.component.numbercolumn(),
+      --   lib.component.signcolumn(),
+      -- },
+    })
+  end,
 }

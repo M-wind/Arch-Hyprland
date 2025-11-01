@@ -1,4 +1,4 @@
-local session = {
+return {
   "Shatur/neovim-session-manager",
   -- dependencies = "nvim-lua/plenary.nvim",
   keys = {
@@ -10,5 +10,3 @@ local session = {
     sessions_dir = vim.fn.stdpath("state") .. "/sessions/"
   },
 }
-
-return { session }

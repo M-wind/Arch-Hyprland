@@ -33,7 +33,7 @@ local function on_attach(bufnr)
   keymap("n", "z", api.tree.resize, opts("Size Default"))
 end
 
-local nvim_tree = {
+return {
   "nvim-tree/nvim-tree.lua",
   version = false,
   cmd = "NvimTreeToggle",
@@ -82,5 +82,3 @@ local nvim_tree = {
     })
   end,
 }
-
-return { nvim_tree }

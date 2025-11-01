@@ -1,85 +1,6 @@
--- local cmp = {
---   "hrsh7th/nvim-cmp",
---   version = false,
---   event = "InsertEnter",
---   dependencies = {
---     "hrsh7th/cmp-nvim-lsp",
---     "hrsh7th/cmp-buffer",
---     "hrsh7th/cmp-path",
---     "hrsh7th/cmp-calc",
---     {
---       "garymjr/nvim-snippets",
---       opts = { friendly_snippets = true },
---       dependencies = { "rafamadriz/friendly-snippets" },
---     },
---   },
---   config = function()
---     local cmp = require("cmp")
---     cmp.setup({
---       snippet = {
---         expand = function(args)
---           require("utils.cmp").expand(args.body)
---         end,
---       },
---       mapping = cmp.mapping.preset.insert({
---         ["<C-f>"] = cmp.mapping.scroll_docs(-4),
---         ["<C-d>"] = cmp.mapping.scroll_docs(4),
---         ["<C-e>"] = cmp.mapping.abort(),
---         ["<CR>"] = cmp.mapping.confirm({ select = true }),
---         ["<Tab>"] = cmp.mapping(function(fallback)
---           if cmp.visible() then
---             cmp.select_next_item()
---           elseif vim.snippet.active({ direction = 1 }) then
---             vim.snippet.jump(1)
---           else
---             fallback()
---           end
---         end, { "i", "s" }),
---         ["<S-Tab>"] = cmp.mapping(function(fallback)
---           if cmp.visible() then
---             cmp.select_prev_item()
---           elseif vim.snippet.active({ direction = -1 }) then
---             vim.snippet.jump(-1)
---           else
---             fallback()
---           end
---         end, { "i", "s" }),
---       }),
---       sources = cmp.config.sources({
---         { name = "nvim_lsp" },
---         { name = "snippets" },
---         { name = "path" },
---         { name = "calc" },
---       }, {
---         { name = "buffer" },
---       }),
---       window = {
---         completion = {
---           winhighlight = "Noraml:NormalFloat,CursorLine:IncSearch",
---           border = "rounded",
---         },
---         documentation = {
---           border = "rounded",
---         },
---       },
---       formatting = {
---         fields = { "kind", "abbr", "menu" },
---         format = function(_, item)
---           item.name = item.kind
---           item.kind = require("utils.icons").cmp[item.kind] or ""
---           item.menu = "    (" .. (item.name or "") .. ")"
---           -- item.menu = "    " .. (item.name or "")
---           item = require("utils.tailwindcsscolors").cmp_tailwind_color(item)
---           return item
---         end,
---       },
---     })
---   end,
--- }
-
-local blink = {
+return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = { "rafamadriz/friendly-snippets", "bydlw98/blink-cmp-env", "moyiz/blink-emoji.nvim" },
   event = "InsertEnter",
   version = "*",
   opts = {
@@ -88,18 +9,54 @@ local blink = {
     end,
     keymap = {
       preset = "none",
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<C-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      -- ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      -- ["<C-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<C-k>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<C-e>"] = { "hide" },
+      ["<C-h>"] = { "hide" },
       -- ["<C-w>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
       ["<C-d>"] = { "scroll_documentation_up", "fallback" },
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "snippets", "buffer", "env", "emoji" },
+      default = { "lsp", "path", "snippets", "buffer", "env", "emoji" },
+      providers = {
+        env = {
+          name = "env",
+          module = "blink-cmp-env",
+          --- @type blink-cmp-env.Options
+          opts = {
+            -- item_kind = require("blink.cmp.types").CompletionItemKind.Variable,
+            item_kind = 6,
+            show_braces = false,
+            show_documentation_window = true,
+          },
+        },
+        emoji = {
+          module = "blink-emoji",
+          name = "emoji",
+          score_offset = 15, -- Tune by preference
+          opts = {
+            insert = true, -- Insert emoji (default) or complete its name
+            ---@type string|table|fun():table
+            trigger = function()
+              return { ":" }
+            end,
+          },
+          -- should_show_items = function()
+          --   return vim.tbl_contains(
+          --     -- Enable emoji completion only for git commits and markdown.
+          --     -- By default, enabled for all file-types.
+          --     { "gitcommit", "markdown" },
+          --     vim.o.filetype
+          --   )
+          -- end,
+        },
+      },
     },
     -- fuzzy = { implementation = "prefer_rust_with_warning" },
     fuzzy = { implementation = "rust" },
@@ -154,5 +111,3 @@ local blink = {
     signature = { enabled = false, window = { border = "rounded" } },
   },
 }
-
-return { blink }
