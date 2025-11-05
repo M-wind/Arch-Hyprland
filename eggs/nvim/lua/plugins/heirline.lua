@@ -329,6 +329,12 @@ return {
           provider = function()
             return " Tab " .. vim.o.shiftwidth .. " "
           end,
+          on_click = {
+            callback = function()
+              require("utils.tool").tab_width_change(vim.o.shiftwidth == 2 and 4 or 2)
+            end,
+            name = "tab_width_change",
+          },
           hl = { bg = colors.black, fg = colors.white },
         },
         {

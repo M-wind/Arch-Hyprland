@@ -1,7 +1,21 @@
 local M = {}
 
-M.lsp = {
-  settings = {},
+M.rust_analyzer = {
+  settings = {
+    -- ["rust-analyzer"] = {
+    --   diagnostics = { enable = false },
+    --   checkOnSave = { enable = false },
+    -- },
+  },
+}
+
+M.bacon_ls = {
+  settings = {
+    init_options = {
+      updateOnSave = true,
+      updateOnSaveWaitMillis = 1000,
+    },
+  },
 }
 
 M.dap = function(dap)

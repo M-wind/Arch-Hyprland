@@ -1,4 +1,4 @@
-local comment = {
+return {
   "numToStr/Comment.nvim",
   event = "VeryLazy",
   config = function()
@@ -8,16 +8,4 @@ local comment = {
     ft.tsx = { "//%s", "{/* %s */}" }
     ft.conf = "# %s"
   end,
-}
-
-local tscomment = {
-  "folke/ts-comments.nvim",
-  opts = {},
-  event = "VeryLazy",
-  enabled = vim.fn.has("nvim-0.10.0") == 1,
-}
-
-return {
-  comment,
-  -- tscomment,
 }

@@ -264,7 +264,8 @@ local dracula = {
       transparent_bg = true,
       overrides = function(colors)
         colors.none = "NONE"
-        colors.blue = "#80a0ff"
+        -- colors.blue = "#80a0ff"
+        colors.blue = purple
         local hl = highlights(colors)
         hl.StatusLine = { bg = colors.none }
         hl.TabLineFill = { bg = colors.none }

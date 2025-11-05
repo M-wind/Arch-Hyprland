@@ -1,5 +1,5 @@
 (defvar theme "solarized-osaka") ;; {< replace_quoted(theme.color_name) >}
-(defvar themes { ["bamboo", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
+(defvar themes { ["bamboo", "dracula", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
 
 (defwindow platte
   :monitor 0

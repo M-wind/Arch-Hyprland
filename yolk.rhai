@@ -36,6 +36,10 @@ export let eggs = #{
         targets: "~/.config/wallust",
         enabled: true,
     },     
+    slumber: #{
+        targets: "~/.config/slumber",
+        enabled: true,
+    },     
     fcitx5: #{ targets: "~/.config/fcitx5",
         enabled: true,
     },    

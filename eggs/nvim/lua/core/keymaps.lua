@@ -103,3 +103,7 @@ map("n", "<leader>j", function()
     vim.api.nvim_win_set_cursor(0, mark)
   end
 end, { desc = "Re Cur Pos" })
+
+map({ "n", "v" }, "gt", function()
+  require("utils.tool").tab_width_change(vim.o.shiftwidth == 2 and 4 or 2)
+end, { desc = "Change Tab Width" })

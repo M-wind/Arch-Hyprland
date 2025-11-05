@@ -3,12 +3,12 @@ local M = {}
 local themes = {
   { idx = 1, text = "1: Everforest", value = "everforest" },
   { idx = 2, text = "2: Onedarkpro", value = "onedark" },
-  { idx = 3, text = "4: Solarized Osaka", value = "solarized-osaka" },
-  { idx = 4, text = "5: Dracula", value = "dracula" },
-  { idx = 5, text = "6: Tokyodark", value = "tokyodark" },
+  { idx = 3, text = "3: Solarized Osaka", value = "solarized-osaka" },
+  { idx = 4, text = "4: Dracula", value = "dracula" },
+  { idx = 5, text = "5: Tokyodark", value = "tokyodark" },
   -- { idx = 7, text = "7: Tokyonight Day", value = "tokyonight-day" },
-  { idx = 6, text = "7: Vscode", value = "vscode" },
-  { idx = 7, text = "3: Catppuccin Mocha", value = "catppuccin-mocha" },
+  { idx = 6, text = "6: Vscode", value = "vscode" },
+  { idx = 7, text = "7: Catppuccin Mocha", value = "catppuccin-mocha" },
   { idx = 8, text = "8: Tokyonight Moon", value = "tokyonight-moon" },
   { idx = 9, text = "9: Bamboo", value = "bamboo" },
 }
@@ -26,7 +26,7 @@ M.colors = {
   yellow = "#e5c07b",
   comment = "#7f848e",
   none = "NONE",
-  bg = "#181818"
+  bg = "#181818",
 }
 
 M.tailwindColor = {}
@@ -100,9 +100,10 @@ M.change = function()
     .new({
       sorting_strategy = "ascending",
       layout_strategy = "center",
-
+      default_selection_index = vim.iter(themes):find(function(v)
+        return v.value == vim.g.colors_name
+      end).idx,
       layout_config = { height = #themes + 4, width = 35 },
-    }, {
       prompt_title = " Themes",
       finder = finders.new_table({
         results = themes,
@@ -116,6 +117,7 @@ M.change = function()
               vim.notify("Already The Theme.")
               return
             end
+
             vim.cmd("colorscheme " .. selection.value)
             for k, v in pairs(M.tailwindColor) do
               vim.api.nvim_set_hl(0, k, { fg = v })

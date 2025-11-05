@@ -5,7 +5,7 @@ ipc_socket = false
 padding = { x = 8, y = 3 }
 decorations = "None"
 decorations_theme_variant = "None"
-opacity = 0.69
+# opacity = 0.69
 blur = true
 class = { instance = "alacritty", general = "alacritty" }
 

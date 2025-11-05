@@ -1,0 +1,14 @@
+#!/bin/bash
+
+width=$1
+height=$2
+
+if [[ ${WAYLAND_COMPOSITOR} == "niri" ]]; then
+  niri msg action set-column-width "${width}"
+  sleep 0.1
+  niri msg action center-window
+elif [[ ${WAYLAND_COMPOSITOR} == "hypr" ]]; then
+  hyprctl dispatch resizeactive exact "${width}" "${height}"
+  hyprctl dispatch centerwindow
+fi
+

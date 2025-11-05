@@ -42,7 +42,7 @@ local noice = {
       function()
         require("noice").cmd("dismiss")
       end,
-      desc = "Dismiss Asll",
+      desc = "Dismiss All",
     },
     -- { "<leader>nt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
     -- { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
@@ -63,6 +63,7 @@ local noice = {
     views = {
       messages = { view = "popup" },
       popup = { close = { keys = "<c-q>" } },
+      split = { close = { leys = "<c-q>" } }
     },
     lsp = {
       override = {

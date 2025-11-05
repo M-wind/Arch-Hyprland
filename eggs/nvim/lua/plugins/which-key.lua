@@ -89,6 +89,7 @@ return {
         { "<c-w>", hidden = true },
         { "gx", desc = "Open {} Under Cursor", icon = { icon = "󰌻 ", color = "orange" } },
         -- { "g~", desc = "Toggle Case" },
+        { "gt", icon = { icon = " ", color = "orange" } },
       },
     },
   },

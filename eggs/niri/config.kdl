@@ -15,6 +15,11 @@ xwayland-satellite {
 // config-notification {
 //   disable-failed
 // }
+gestures {
+    hot-corners {
+        off
+    }
+}
 input {
     keyboard {
         numlock
@@ -75,7 +80,7 @@ window-rule {
 }
 window-rule {
     match app-id="alacritty"
-    opacity 0.79
+    opacity 0.69
 }
 window-rule {
     match app-id="clipse"

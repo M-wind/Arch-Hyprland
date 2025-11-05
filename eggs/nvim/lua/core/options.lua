@@ -23,8 +23,9 @@ opt.showmode = false
 -- 代码折叠
 -- opt.foldmethod = "indent"
 opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.require(utils.fold'').formatexpr()"
-vim.opt.foldtext = "v:lua.require('utils.fold').foldtext()"
+-- opt.foldexpr = "v:lua.require(utils.tool').formatexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = "v:lua.require('utils.tool').foldtext()"
 opt.foldlevel = 99
 opt.fillchars = {
   -- foldopen = "",

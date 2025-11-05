@@ -5,7 +5,7 @@ return {
     local icons = require("utils.icons").diagnostics
     return {
       servers = {
-        -- npm install -g typescript typescript-language-server
+        -- npm install -g TypeScript typescript-language-server
         -- ts_ls = require("ft.typescript").lsp,
         -- npm install -g @vtsls/language-server
         vtsls = require("ft.typescript").lsp,
@@ -14,19 +14,25 @@ return {
         nushell = {},
         -- npm install -g vscode-langservers-extracted
         jsonls = {},
-        ["rust_analyzer"] = require("ft.rust").lsp,
+        rust_analyzer = require("ft.rust").rust_analyzer,
+        -- rust diagnostics
+        -- bacon_ls = require("ft.rust").bacon_ls,
+        -- -- grammar checker
+        -- harper_ls = {},
+        -- toml
+        taplo = {},
       },
       diagnostics = {
         underline = true,
         update_in_insert = false,
-        -- virtual_text = false,
-        virtual_text = {
-          spacing = 4,
-          source = "if_many",
-          prefix = "●",
-          current_line = true,
-        },
-        -- virtual_lines = true,
+        virtual_text = false,
+        -- virtual_text = {
+        --   spacing = 4,
+        --   source = "if_many",
+        --   prefix = "●",
+        --   current_line = true,
+        -- },
+        virtual_lines = false,
         -- virtual_lines = { current_line = true },
         severity_sort = true,
         float = {
@@ -50,23 +56,27 @@ return {
     require("lspconfig.ui.windows").default_options.border = "rounded"
     -- diagnostics
     vim.diagnostic.config(opts.diagnostics)
-    -- -- sings
+    -- Sings
     -- for name, icon in pairs(opts.signs) do
     --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
     -- end
+    require("utils.lsp").setup()
     -- keymaps
     require("utils.lsp").on_attach(function(_, buf)
-      vim.keymap.set({ "n", "v" }, "<leader>d", "", { desc = "+Diagnostics" })
-      vim.keymap.set("n", "<leader>dc", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
-      vim.keymap.set("n", "<leader>dh", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
-      vim.keymap.set("n", "<leader>dl", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
-      vim.keymap.set({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
+      -- vim.keymap.set({ "n", "v" }, "<leader>d", "", { desc = "+Diagnostics" })
+      -- vim.keymap.set("n", "<leader>dc", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
+      vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
+      -- vim.keymap.set("n", "<leader>dh", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+      -- vim.keymap.set("n", "<leader>dl", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
       vim.keymap.set(
         "n",
-        "<leader>da",
+        "<leader>fd",
+        -- "<leader>d",
         "<cmd>Telescope diagnostics bufnr=0<cr>",
         { desc = "All Diagnostic With Current Page" }
+        -- { desc = "Diagnostics" }
       )
+      vim.keymap.set({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
       -- vim.keymap.set("n", "<leader>da", function()
       --   Snacks.picker.diagnostics_buffer()
       -- end, { desc = "All Diagnostic With Current Page" })
@@ -128,7 +138,6 @@ return {
       vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = buf })
     end)
 
-    require("utils.lsp").setup()
     -- inlay hints
     require("utils.lsp").on_supports_method("textDocument/inlayHint", function(_, buf)
       vim.keymap.set("n", "<leader>i", function()

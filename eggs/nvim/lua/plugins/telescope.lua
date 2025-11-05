@@ -59,7 +59,7 @@ return {
     "nvim-lua/plenary.nvim",
     "jvgrootveld/telescope-zoxide",
     "nvim-telescope/telescope-symbols.nvim",
-    -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   config = function()
     local actions = require("telescope.actions")
@@ -107,12 +107,12 @@ return {
             },
           },
         },
-        -- fzf = {
-        --   fuzzy = true,
-        --   override_generic_sorter = true,
-        --   override_file_sorter = true,
-        --   case_mode = "smart_case",
-        -- },
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
       },
       pickers = {
         fd = { push_tagstack_on_edit = true },
@@ -146,7 +146,8 @@ return {
         },
         -- file_previewer = require("telescope.previewers").cat.new,
         dynamic_preview_title = true,
-        layout_strategy = "vertical",
+        -- layout_strategy = "vertical",
+        layout_strategy = "horizontal",
         layout_config = {
           vertical = {
             preview_height = 0.55,
@@ -222,6 +223,6 @@ return {
       },
     })
     require("telescope").load_extension("zoxide")
-    -- require("telescope").load_extension("fzf")
+    require("telescope").load_extension("fzf")
   end,
 }

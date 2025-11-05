@@ -153,8 +153,8 @@ def ls [
 }
 
 def rgf [
-  text
-  path?: path
+  text,
+  path?: path,
 ] {
   if $path == null {
     rg --column --hidden --line-number --color=always --smart-case $text
@@ -165,18 +165,46 @@ def rgf [
   }
 }
 
+def expac [
+  --last (-l),    # Last 50 package installed
+  --first (-f),   # First 50 packges installed 
+  --search (-s),      # Search packages
+  --content (-c), # Search packages content
+  pattern?: string, # Search text
+] {
+  match [$last $first $search $content] {
+    [true false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | last 50
+    }
+    [false true false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | first 50
+    }
+    [false false true false] => {
+      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | where name like $pattern
+    }
+    [false false false true] => {
+      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | each {|x| $x.name } | paru -Ql ...$in | rg $pattern
+    }
+    [false false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time
+    } 
+  }
+}
+
 alias x = eza --icons --hyperlink
 alias xl = eza --icons --hyperlink --long --time-style '+%Y-%m-%d %H:%M:%S'
 alias xt = xl -T
 
 alias vi = neovide
 
+alias slumber = ~/app/slumber/slumber -f ~/app/slumber
+
 alias color = nu-highlight
 
-alias tldr = /home/zwind/app/tldr/tldr --config /home/zwind/app/tldr/config.toml
+alias tldr = ~/app/tldr/tldr --config ~/app/tldr/config.toml
 def tldrf [] {
   tldr -l
-    | fzf --preview "/home/zwind/app/tldr/tldr --config /home/zwind/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
+    | fzf --preview "~/app/tldr/tldr --config ~/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
 }
 
 

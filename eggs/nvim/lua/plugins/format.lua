@@ -13,11 +13,7 @@ return {
     },
   },
   config = function()
-    local path = function(exe, configname)
-      local re = vim.fn.exepath(exe)
-      re = vim.fn.fnamemodify(re, ":h")
-      return ("%s/%s"):format(re, configname)
-    end
+    local path = require("utils.tool").path
     require("conform").setup({
       log_level = vim.log.levels.DEBUG,
       default_format_opts = {
