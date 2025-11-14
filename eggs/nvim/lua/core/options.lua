@@ -40,7 +40,7 @@ opt.fillchars = {
 opt.wrap = false
 
 -- 光标行
-opt.cursorline = true
+-- opt.cursorline = true
 
 -- 光标形状
 opt.guicursor = "a:ver15-Cursor"
@@ -86,7 +86,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- 外观
-opt.termguicolors = true
+-- opt.termguicolors = true
 opt.signcolumn = "yes"
 
 --

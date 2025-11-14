@@ -2,20 +2,21 @@
 ipc_socket = false
 
 [window]
-padding = { x = 8, y = 3 }
+padding = { x = 8, y = 0 }
 decorations = "None"
 decorations_theme_variant = "None"
-# opacity = 0.69
-blur = true
+opacity = 0.69
+# blur = true
 class = { instance = "alacritty", general = "alacritty" }
 
 [font]
-normal = { style = "Bold" }
+# normal = { style = "Bold" }
 size = 13
 builtin_box_drawing = true
 
 [cursor]
 style = { shape = "Beam" }
+vi_mode_style = { shape = "Beam"}
 unfocused_hollow = true
 thickness = 0.15
 
@@ -28,6 +29,10 @@ alphabet = "abcdefghijklmnopqrstuvwxyz;"
 [keyboard]
 bindings = [
   { key = "F", mods = "Control|Shift", action = "None" },
+  { key = "Space", mods = "Control|Shift", action = "None" },
+  { key = "Enter", mods = "Control|Shift", action = "ToggleViMode" },
+  { key = "G", mods = "Control", action = "ScrollToTop" },
+  { key = "G", mods = "Control|Shift", action = "ScrollToBottom" },
   { key = "H", mods = "Control|Shift", action = "SearchForward" },
   { key = "D", mods = "Control", mode = "Search", action = "SearchFocusPrevious" },
   { key = "F", mods = "Control", mode = "Search", action = "SearchFocusNext" },

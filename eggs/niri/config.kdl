@@ -1,9 +1,9 @@
 spawn-sh-at-startup "~/app/wallpaper/swaybg -i ~/background/backdrop.jpg"
 spawn-sh-at-startup "~/app/wallpaper/wpaperd -d"
-spawn-sh-at-startup "fcitx5 -d"
 spawn-sh-at-startup "clipse -listen"
-spawn-sh-at-startup "eww daemon && eww open bar && eww-volume getinitvol"
 spawn-sh-at-startup "eww-niriipc"
+spawn-sh-at-startup "eww daemon && eww open bar && eww-volume getinitvol"
+spawn-sh-at-startup "fcitx5 -d && fcitx5_tray"
 screenshot-path "~/screenshots/%Y-%m-%d %H-%M-%S.png"
 prefer-no-csd
 hotkey-overlay {

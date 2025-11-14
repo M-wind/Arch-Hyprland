@@ -5,7 +5,7 @@ return {
     require("Comment").setup()
     local ft = require("Comment.ft")
     ft.dosini = "# %s"
-    ft.tsx = { "//%s", "{/* %s */}" }
+    ft.tsx = { "// %s", "{/* %s */}" }
     ft.conf = "# %s"
   end,
 }

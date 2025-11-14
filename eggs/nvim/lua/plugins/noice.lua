@@ -74,6 +74,7 @@ local noice = {
       hover = {
         enabled = true,
         silent = true,
+        view = "popup",
       },
     },
     presets = {

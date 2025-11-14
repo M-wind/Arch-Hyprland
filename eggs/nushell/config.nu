@@ -9,7 +9,7 @@ $env.config.keybindings ++= [
   {
     name: zoxide_history
     modifier: control
-    keycode: char_o
+    keycode: char_l
     mode: [emacs, vi_insert, vi_normal]
     event: [
       { 
@@ -174,19 +174,24 @@ def expac [
 ] {
   match [$last $first $search $content] {
     [true false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | last 50
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | last 50
     }
     [false true false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | first 50
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | first 50
     }
     [false false true false] => {
-      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | where name like $pattern
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | where name like $pattern
     }
     [false false false true] => {
-      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time | each {|x| $x.name } | paru -Ql ...$in | rg $pattern
+      # rg original
+      ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern
+      # parse style 
+      # let table = ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern | parse '{name} {content}'
+      # let name = $table | select name | uniq
+      # $name | each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
     }
     [false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' '%l=%n=%v' | parse '{time}={name}={version}' | sort-by time
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time
     } 
   }
 }
@@ -207,15 +212,15 @@ def tldrf [] {
     | fzf --preview "~/app/tldr/tldr --config ~/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
 }
 
-
-# def --env y [...args] {
-# 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-# 	yazi ...$args --cwd-file $tmp
-# 	let cwd = (open $tmp)
-# 	if $cwd != "" and $cwd != $env.PWD {
-# 		cd $cwd
-# 	}
-# 	rm -fp $tmp
+# alias core-yazi = yazi
+#
+# def yazi [...args] {
+# 	# let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+# 	# yazi ...$args --cwd-file $tmp
+# 	# let cwd = (open $tmp)
+# 	# if $cwd != "" and $cwd != $env.PWD {
+# 	# 	cd $cwd
+# 	# }
+#   core-yazi ...$args
 #   printf '\x1b[\x36 q'
 # }
-#

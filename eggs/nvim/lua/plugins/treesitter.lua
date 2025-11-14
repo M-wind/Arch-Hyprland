@@ -34,6 +34,7 @@ local treesitter = {
         "typescript",
         "xml",
         "yaml",
+        "yuck",
         "zig",
       },
     })
@@ -43,6 +44,7 @@ local treesitter = {
   vim.filetype.add({
     extension = {
       rhai = "rhai",
+      log = "log",
     },
   }),
 }

@@ -45,3 +45,21 @@ autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- Log File Highlight
+autocmd("FileType", {
+  desc = "Log File Highlight",
+  group = vim.api.nvim_create_augroup("loghl", { clear = true }),
+  pattern = { "log" },
+  callback = function()
+    require("log-highlight").setup({
+      keyword = {
+        error = "ERROR_MSG",
+        warning = { "WARN_X", "WARN_Y", "WRN" },
+        info = { "INFORMATION", "INF" },
+        debug = {},
+        pass = { "START", "END" },
+      },
+    })
+  end,
+})

@@ -3,6 +3,7 @@ $env.STARSHIP_CONFIG = $env.HOME | path join .config starship starship.toml
 $env._ZO_DATA_DIR = $env.HOME | path join app zoxide
 
 $env.EDITOR = "nvim"
+# $env.config.edit_mode = 'vi'
 $env.LANG = "en_US.UTF-8"
 
 # $env.BAT_CONFIG_PATH = "~/app/bat/bat.conf"
@@ -44,8 +45,9 @@ $env.PATH = (
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
     | prepend ($env.HOME | path join game wine bin)
-    | prepend ($env.HOME | path join language nodejs 22.14.0 bin)
-    | prepend ($env.HOME | path join language nodejs global bin)
+    | prepend ($env.HOME | path join language nodejs 22.21.1 bin)
+    | prepend ($env.HOME | path join language nodejs npm-global bin)
+    | prepend ($env.HOME | path join language nodejs pnpm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
     | prepend ($env.DOTNET_ROOT)
     | prepend ($env.HOME | path join .config eww scripts)

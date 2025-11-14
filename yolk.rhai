@@ -32,6 +32,10 @@ export let eggs = #{
         templates: ["config.kdl"],
         enabled: true,
     },     
+    codebook: #{
+        targets: "~/.config/codebook",
+        enabled: true,
+    },     
     wallust: #{
         targets: "~/.config/wallust",
         enabled: true,
@@ -40,7 +44,8 @@ export let eggs = #{
         targets: "~/.config/slumber",
         enabled: true,
     },     
-    fcitx5: #{ targets: "~/.config/fcitx5",
+    fcitx5: #{
+        targets: "~/.config/fcitx5",
         enabled: true,
     },    
     btop: #{
@@ -86,6 +91,10 @@ export let eggs = #{
     },     
     dunst: #{
         targets: "~/.config/dunst",
+        enabled: true,
+    },     
+    pnpm: #{
+        targets: "~/.config/pnpm",
         enabled: true,
     },     
 };

@@ -60,10 +60,8 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 --buffer
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
--- map("n", "<S-d>", "<cmd>Bdelete<cr>", { desc = "Close Current Buffer" })
-map("n", "<leader>bd", "<cmd>Bdelete<cr>", { desc = "Close Current Buffer" })
--- map("n", "<leader>bl", "<cmd>bnext<cr>", { desc = "Next Buffer" })
--- map("n", "<leader>bh", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
+-- map("n", "<leader>bd", "<cmd>Bdelete<cr>", { desc = "Close Current Buffer" })
+map("n", "<leader>bd", require("utils.heirline").Close_Current, { desc = "Close Current Buffer" })
 map("n", "<leader>bo", require("utils.heirline").Close_Buf_Except_Current, { desc = "Close Other Buffers" })
 map("n", "<leader>b]", require("utils.heirline").Close_Buf_Right, { desc = "Close Right Buffers" })
 map("n", "<leader>b[", require("utils.heirline").Close_Buf_Left, { desc = "Close Left Buffers" })
@@ -78,8 +76,8 @@ map("n", "<leader>ba", require("utils.heirline").Close_Buf_All, { desc = "Close 
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "Other Window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window" })
-map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below" })
-map("n", "<leader>w=", "<C-W>v", { desc = "Split Window Right" })
+map("n", "<leader>w[", "<C-W>s", { desc = "Split Window Down" })
+map("n", "<leader>w]", "<C-W>v", { desc = "Split Window Right" })
 
 -- scroll
 map("n", "<C-f>", "<C-d>", { desc = "Scroll Down" })

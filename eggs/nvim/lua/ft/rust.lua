@@ -1,15 +1,19 @@
 local M = {}
 
 M.rust_analyzer = {
-  settings = {
-    -- ["rust-analyzer"] = {
-    --   diagnostics = { enable = false },
-    --   checkOnSave = { enable = false },
-    -- },
-  },
+  -- settings = {
+  --   ["rust-analyzer"] = {
+  --     diagnostics = { enable = false },
+  --     checkOnSave = { enable = false },
+  --   },
+  -- },
 }
 
 M.bacon_ls = {
+  workspace_required = false,
+  root_dir = function(_, on_dir)
+    on_dir(vim.fn.getcwd())
+  end,
   settings = {
     init_options = {
       updateOnSave = true,

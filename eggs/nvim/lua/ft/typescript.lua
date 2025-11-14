@@ -1,26 +1,7 @@
 local M = {}
 
-M.lsp = {
+M.vtsls = {
   settings = {
-    -- typescript language server
-    -- typescript = {
-    --   -- Inlay Hints preferences
-    --   inlayHints = {
-    --     includeInlayParameterNameHints = "all",
-    --     includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-    --     includeInlayFunctionParameterTypeHints = true,
-    --     includeInlayVariableTypeHints = true,
-    --     includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-    --     includeInlayPropertyDeclarationTypeHints = true,
-    --     includeInlayFunctionLikeReturnTypeHints = true,
-    --     includeInlayEnumMemberValueHints = true,
-    --   },
-    -- Code Lens preferences
-    -- implementationsCodeLens = { enabled = true },
-    -- referencesCodeLens = { enabled = true, showOnAllFunctions = true },
-    -- },
-
-    --vtsls
     vtsls = { autoUseWorkspaceTsdk = true },
     typescript = {
       referencesCodeLens = { enabled = false, showOnAllFunctions = true },
@@ -34,6 +15,25 @@ M.lsp = {
         functionLikeReturnTypes = { enabled = true },
         enumMemberValues = { enabled = true },
       },
+    },
+  },
+}
+
+M.tsls = {
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+      implementationsCodeLens = { enabled = true },
+      referencesCodeLens = { enabled = true, showOnAllFunctions = true },
     },
   },
 }

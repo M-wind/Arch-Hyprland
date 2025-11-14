@@ -166,6 +166,7 @@ return {
     local conditions = require("heirline.conditions")
     local diagnostic_icon = require("utils.icons").diagnostics
     local buffer_block = utils.surround({ "", " " }, "none", { buffer_filename, buffer_closebutton })
+    local settings = utils_h.settings
     require("heirline").setup({
       tabline = {
         buffer_offset,
@@ -278,7 +279,10 @@ return {
           },
         },
         {
-          condition = conditions.has_diagnostics,
+          -- condition = conditions.has_diagnostics,
+          condition = function()
+            return settings.diagnostics and conditions.has_diagnostics or false
+          end,
           static = {
             error_icon = diagnostic_icon.Error,
             warn_icon = diagnostic_icon.Warn,
@@ -320,6 +324,9 @@ return {
         },
         { provider = "%=" },
         {
+          condition = function()
+            return settings.encoding
+          end,
           provider = function()
             return " " .. vim.o.fileencoding:upper() .. " "
           end,

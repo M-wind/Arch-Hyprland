@@ -3,24 +3,34 @@ return {
   event = "User FilePost",
   opts = function()
     local icons = require("utils.icons").diagnostics
+
+    local function make_position_params()
+      return function(client)
+        return vim.lsp.util.make_position_params(nil, client.offset_encoding)
+      end
+    end
+
+    function hover()
+      local params = make_position_params()
+      vim.lsp.buf_request(0, "textDocument/diagnostics", params, require("noice.lsp.hover").on_hover)
+    end
+
     return {
       servers = {
         -- npm install -g TypeScript typescript-language-server
-        -- ts_ls = require("ft.typescript").lsp,
+        -- ts_ls = require("ft.typescript").tsls,
         -- npm install -g @vtsls/language-server
-        vtsls = require("ft.typescript").lsp,
+        vtsls = require("ft.typescript").vtsls,
         -- npm install -g @tailwindcss/language-server
         tailwindcss = {},
         nushell = {},
         -- npm install -g vscode-langservers-extracted
         jsonls = {},
         rust_analyzer = require("ft.rust").rust_analyzer,
-        -- rust diagnostics
-        -- bacon_ls = require("ft.rust").bacon_ls,
-        -- -- grammar checker
-        -- harper_ls = {},
+        -- grammar checker
+        codebook = {},
         -- toml
-        taplo = {},
+        taplo = require("ft.toml").taplo,
       },
       diagnostics = {
         underline = true,
@@ -52,56 +62,32 @@ return {
       },
     }
   end,
-  config = function(_, opts)
-    require("lspconfig.ui.windows").default_options.border = "rounded"
+  config = vim.schedule_wrap(function(_, opts)
+    -- require("lspconfig.ui.windows").default_options.border = "rounded"
     -- diagnostics
     vim.diagnostic.config(opts.diagnostics)
-    -- Sings
-    -- for name, icon in pairs(opts.signs) do
-    --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-    -- end
     require("utils.lsp").setup()
     -- keymaps
-    require("utils.lsp").on_attach(function(_, buf)
+    require("utils.lsp").on_attach(function(client, buf)
       -- vim.keymap.set({ "n", "v" }, "<leader>d", "", { desc = "+Diagnostics" })
       -- vim.keymap.set("n", "<leader>dc", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
-      vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
+      -- vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Current Diagnostic" })
       -- vim.keymap.set("n", "<leader>dh", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
       -- vim.keymap.set("n", "<leader>dl", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
       vim.keymap.set(
         "n",
-        "<leader>fd",
-        -- "<leader>d",
+        "<leader>d",
         "<cmd>Telescope diagnostics bufnr=0<cr>",
-        { desc = "All Diagnostic With Current Page" }
-        -- { desc = "Diagnostics" }
+        -- { desc = "All Diagnostic With Current Page" }
+        { desc = "Diagnostics" }
       )
-      vim.keymap.set({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
-      -- vim.keymap.set("n", "<leader>da", function()
-      --   Snacks.picker.diagnostics_buffer()
-      -- end, { desc = "All Diagnostic With Current Page" })
-      vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "GoTo Definition", buffer = buf })
+      vim.keymap.set("n", "gk", vim.diagnostic.open_float, { desc = "Open Diagnostic", buffer = buf })
+      vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
+      vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = buf })
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = buf })
+
       vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "GoTo References", buffer = buf })
-      -- vim.keymap.set("n", "gd", function()
-      --   Snacks.picker.lsp_definitions()
-      -- end, { desc = "GoTo Definition", buffer = buf })
-      -- vim.keymap.set("n", "gr", function()
-      --   Snacks.picker.lsp_references()
-      -- end, { desc = "GoTo References", buffer = buf })
-      -- vim.keymap.set(
-      --   "n",
-      --   "gI",
-      --   "<cmd>Telescope lsp_implementations<cr>",
-      --   { desc = "GoTo Implementation", buffer = buf }
-      -- )
-      -- vim.keymap.set(
-      --   "n",
-      --   "gt",
-      --   "<cmd>Telescope lsp_type_definitions<cr>",
-      --   { desc = "Goto Type Definition", buffer = buf }
-      -- )
-      -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_incoming_calls<cr>", { desc = "Lsp Incoming Calls", buffer = buf })
-      -- vim.keymap.set("n", "go", "<cmd>Telescope lsp_outgoing_calls<cr>", { desc = "Lsp Outgoing Calls", buffer = buf })
+      vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "GoTo Definition", buffer = buf })
       vim.keymap.set(
         "n",
         "gs",
@@ -114,29 +100,19 @@ return {
         "<cmd>Telescope lsp_workspace_symbols<cr>",
         { desc = "Lsp Current Workspace Symbols", buffer = buf }
       )
-      -- vim.keymap.set("n", "gs", function()
-      --   Snacks.picker.lsp_symbols()
-      -- end, { desc = "Lsp Current Symbols", buffer = buf })
-      -- vim.keymap.set("n", "gS", function()
-      --   Snacks.picker.lsp_workspace_symbols()
-      -- end, { desc = "Lsp Current Workspace Symbols", buffer = buf })
-
-      -- vim.keymap.set("n", "ga", function()
-      --   vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" } } })
-      -- end, { desc = "Add Missing Imports" })
-      --
-      -- vim.keymap.set("n", "gf", function()
-      --   vim.lsp.buf.code_action({ apply = true, context = { only = { "source.fixAll.ts" } } })
-      -- end, { desc = "Fix All Diagnostics" })
-      --
-      -- vim.keymap.set("n", "gm", function()
-      --   vim.lsp.buf.code_action({ apply = true, context = { only = { "source.removeUnused.ts" } } })
-      -- end, { desc = "Remove Unused Imports" })
-      --
-      -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "GoTo Declaration", buffer = buf })
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = buf })
-      vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = buf })
     end)
+
+    -- -- Reference
+    -- require("utils.lsp").on_supports_method("textDocument/references", function(_, buf)
+    -- end)
+    --
+    -- -- Definition
+    -- require("utils.lsp").on_supports_method("textDocument/definition", function(_, buf)
+    -- end)
+    --
+    -- -- Symbols
+    -- require("utils.lsp").on_supports_method("textDocument/documentSymbol", function(_, buf)
+    -- end)
 
     -- inlay hints
     require("utils.lsp").on_supports_method("textDocument/inlayHint", function(_, buf)
@@ -146,27 +122,25 @@ return {
     end)
 
     -- codeLens
-    if vim.lsp.codelens then
-      require("utils.lsp").on_supports_method("textDocument/codeLens", function(_, buffer)
-        vim.lsp.codelens.refresh()
-        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-          buffer = buffer,
-          callback = vim.lsp.codelens.refresh,
-        })
-      end)
-    end
+    require("utils.lsp").on_supports_method("textDocument/codeLens", function(_, buffer)
+      vim.lsp.codelens.refresh()
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = buffer,
+        callback = vim.lsp.codelens.refresh,
+      })
+    end)
 
     -- capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- nvim 0.11+ Don't need
     -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
+    -- capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
     for server, set in pairs(opts.servers) do
       local server_opts = vim.tbl_deep_extend("force", {
         capabilities = capabilities,
       }, set or {})
-      -- require("lspconfig")[server].setup(server_opts)
       vim.lsp.config(server, server_opts)
       vim.lsp.enable(server)
     end
-  end,
+  end),
 }

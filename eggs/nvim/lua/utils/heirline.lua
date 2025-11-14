@@ -2,7 +2,7 @@ local M = {}
 
 M.buflist_cache = {}
 
-local function get_bufs()
+local get_bufs = function()
   return vim.tbl_filter(function(bufnr)
     return vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
   end, vim.api.nvim_list_bufs())
@@ -30,13 +30,30 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
   end,
 })
 
-function M.Close_Buf_All()
+-- local CLose_TabPage = function()
+--   local tabpages = vim.api.nvim_list_tabpages()
+--   if #tabpages > 1 then
+--     for _, page in ipairs(tabpages) do
+--       local wins = vim.api.nvim_tabpage_get_var(page)
+--       vim.print(wins)
+--       -- if #wins == 0 then
+--       --   vim.api.nvim_tabpage_del_var(page)
+--       -- end
+--     end
+--   end
+-- end
+
+M.Close_Current = function()
+  vim.cmd("Bdelete")
+end
+
+M.Close_Buf_All = function()
   for _, _ in ipairs(M.buflist_cache) do
     vim.cmd("Bdelete")
   end
 end
 
-function M.Close_Buf_Except_Current()
+M.Close_Buf_Except_Current = function()
   local current = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(M.buflist_cache) do
     if bufnr ~= current then
@@ -45,7 +62,7 @@ function M.Close_Buf_Except_Current()
   end
 end
 
-function M.Close_Buf_Right()
+M.Close_Buf_Right = function()
   local current = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(M.buflist_cache) do
     if bufnr > current then
@@ -54,7 +71,7 @@ function M.Close_Buf_Right()
   end
 end
 
-function M.Close_Buf_Left()
+M.Close_Buf_Left = function()
   local current = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(M.buflist_cache) do
     if bufnr < current then
@@ -62,5 +79,10 @@ function M.Close_Buf_Left()
     end
   end
 end
+
+M.settings = {
+  encoding = true,
+  diagnostics = true,
+}
 
 return M

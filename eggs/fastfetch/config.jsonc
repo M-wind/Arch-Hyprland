@@ -7,15 +7,11 @@
     "type": "raw",
     "width": 30,
     "height": 15,
-    // "height": 14,
     "padding": {
       "top": 3,
       "right": 1,
       "left": 1
     }
-  },
-  "display": {
-    "separator": " : "
   },
   "modules": [
     {
@@ -94,7 +90,12 @@
       "type": "command",
       "key": "  󱦟 OS Age",
       "keyColor": "blue",
-      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+      "parallel": false,
+      "shell": "sh",
+      "text": "birth=$(stat -c %W /); current=$(date +%s); days=$(((current - birth) / 86400)); echo $days days"
+      // "parallel": true,
+      // "shell": "nu",
+      // "text": "let birth = stat -c %W /; let current = ^date +%s; let days = (($current | into int) - ($birth | into int)) / 86400 | math floor; print $'($days) days'"
     },
     {
       "type": "uptime",

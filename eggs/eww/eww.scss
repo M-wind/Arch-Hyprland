@@ -5,7 +5,7 @@
 @import "modules/weather-net-vol.scss";
 
 * {
-  all:unset;
+  all: unset;
 }
 
 .bar {
@@ -32,12 +32,12 @@
 
 .baricon {
   &:hover {
-    @include icon
+    @include icon;
   }
 }
 
 .bariconactive {
-  @include icon
+  @include icon;
 }
 
 .rightpanel {
@@ -70,16 +70,16 @@
 }
 
 .systemiconbar {
-   background: $background;
-   border-radius: $radius4;
-   padding: $distance6;
+  background: $background;
+  border-radius: $radius4;
+  padding: $distance6;
 }
 
 .systemicon {
   background: $background;
   border-radius: $radius4;
   &:hover {
-    background: $hover
+    background: $hover;
   }
 }
 

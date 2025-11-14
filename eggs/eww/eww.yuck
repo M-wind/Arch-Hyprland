@@ -21,6 +21,7 @@
 ;;   `eww-minimize get_app_list_once`)
 (defvar applist {[]})
 (defvar workspaces {[1,2,3,4,5,6]})
+(defvar fcitx5 "en")
 
 ;; left
 (defwidget workspaces []
@@ -132,6 +133,17 @@
              :image-width imageh
              :image-height imageh))))
 
+(defwidget fcitx5-language []
+  (box :orientation "h"
+       :valign "center"
+       :class "rightpanel rigthpanel-padding"
+       :height barh
+       :space-evenly false
+       :spacing spacing
+       (image :path "icons/${fcitx5}.svg"
+              :image-width 20
+              :image-height 20)))
+
 (defwidget app [address icon minimized]
   (eventbox :cursor "pointer"
             :width widgeth
@@ -193,5 +205,6 @@
     (box :orientation "h"
          :space-evenly false
          :halign "end"
+      (fcitx5-language)
       (wether-net-vol)
       (time_notify))))

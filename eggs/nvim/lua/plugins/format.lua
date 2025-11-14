@@ -38,12 +38,12 @@ return {
         markup_fmt = {
           inherit = false,
           command = "markup_fmt",
-          args = { "-f", "$FILENAME", "-c", path("markup_fmt", "markup_fmt.json") },
+          args = { "-c", path("markup_fmt", "markup_fmt.json"), "format", "$FILENAME" },
         },
         malva = {
           inherit = false,
           command = "malva",
-          args = { "-f", "$FILENAME", "-c", path("malva", "malva.json") },
+          args = { "-c", path("malva", "malva.json"), "format", "$FILENAME" },
         },
       },
       formatters_by_ft = {

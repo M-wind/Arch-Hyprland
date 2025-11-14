@@ -10,10 +10,13 @@ require("solarized-osaka").load()
 -- {% end %}
 require("core.autocmds")
 
+-- vim.opt.cmdheight = 0
+-- vim.notify("text")
+
 if vim.g.neovide then
   vim.keymap.set({ "n", "x", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
   vim.keymap.set({ "i", "c" }, "<C-S-V>", "<C-R>+", { desc = "Paste system clipboard" })
-  vim.g.neovide_refresh_rate = 60
+  vim.g.neovide_refresh_rate = 120
   -- vim.g.neovide_cursor_animation_length = 0.04
   -- vim.g.neovide_cursor_trail_size = 0.7
   vim.g.neovide_cursor_animate_in_insert_mode = false
@@ -45,6 +48,24 @@ if vim.g.neovide then
   -- {% end %}
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")
+end
+
+--firenvim
+if vim.g.started_by_firenvim == true then
+  require("utils.heirline").settings = {
+    encoding = false,
+    diagnostics = false,
+  }
+  vim.g.firenvim_config = {
+    localSettings = {
+      [".*"] = {
+        cmdline = "neovim",
+        filename = "firenvim.{extension}",
+        selector = "textarea",
+        takeover = "never",
+      }
+    }
+  }
 end
 
 -- neovim 0.11

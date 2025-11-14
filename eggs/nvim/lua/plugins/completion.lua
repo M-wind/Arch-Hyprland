@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   dependencies = { "rafamadriz/friendly-snippets", "bydlw98/blink-cmp-env", "moyiz/blink-emoji.nvim" },
-  event = "InsertEnter",
+  event = "VeryLazy",
   version = "*",
   opts = {
     enabled = function()
@@ -11,6 +11,8 @@ return {
       preset = "none",
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
       ["<C-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<C-k>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
@@ -20,8 +22,7 @@ return {
       ["<C-d>"] = { "scroll_documentation_up", "fallback" },
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "env", "emoji" },
-      default = { "lsp", "path", "snippets", "buffer", "env", "emoji" },
+      default = { "lsp", "path", "snippets", "buffer", "omni", "env", "emoji" },
       providers = {
         env = {
           name = "env",
@@ -58,13 +59,45 @@ return {
     },
     -- fuzzy = { implementation = "prefer_rust_with_warning" },
     fuzzy = { implementation = "rust" },
-    cmdline = { enabled = false },
+    cmdline = {
+      enabled = true,
+      keymap = {
+        preset = "none",
+        ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next", "fallback" },
+        ["<C-Tab>"] = { "show_and_insert_or_accept_single", "select_prev", "fallback" },
+        ["<C-j>"] = { "show_and_insert_or_accept_single", "select_next", "fallback" },
+        ["<C-k>"] = { "show_and_insert_or_accept_single", "select_prev", "fallback" },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<CR>"] = { "accept_and_enter", "fallback" },
+        ["<C-e>"] = { "cancel", "fallback" },
+      },
+      sources = { "buffer", "cmdline" },
+      completion = {
+        trigger = {
+          show_on_blocked_trigger_characters = {},
+          show_on_x_blocked_trigger_characters = {},
+        },
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = true,
+          },
+        },
+        menu = {
+          auto_show = function(ctx, _)
+            return ctx.mode == "cmdwin"
+          end,
+        },
+        ghost_text = { enabled = true },
+      },
+    },
     completion = {
       keyword = { range = "full" },
       list = { selection = { preselect = true, auto_insert = true } },
       menu = {
         border = "rounded",
-        -- winhighlight = "Noraml:NormalFloat,CursorLine:IncSearch",
+        -- winhighlight = "Noraml:NormalFloat, CursorLine:IncSearch",
         draw = {
           align_to = "label",
           -- columns = { { "kind_icon" }, { "label", "kind", gap = 1 } },
@@ -78,7 +111,7 @@ return {
                 if ctx.kind == "Color" then
                   tailwindColor[ctx.kind_hl] = ctx.item.documentation
                 end
-                return require("utils.icons").cmp[ctx.kind]
+                return require("utils.icons").cmp[ctx.kind] or ctx.kind_icon
               end,
             },
             -- kind = {
