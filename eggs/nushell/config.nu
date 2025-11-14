@@ -1,10 +1,10 @@
 $env.config.show_banner = false
+$env.config.datetime_format.table = '%F %T'
+$env.config.filesize.unit = 'binary'
 $env.config.color_config.hints = 'white_dimmed'
 $env.config.color_config.shape_garbage = { fg: 'red'}
 $env.config.color_config.shape_external = 'blue'
 $env.config.color_config.shape_internalcall = 'blue_bold'
-$env.config.datetime_format.table = '%F %T'
-$env.config.filesize.unit = 'binary'
 $env.config.keybindings ++= [
   {
     name: zoxide_history
@@ -174,13 +174,13 @@ def expac [
 ] {
   match [$last $first $search $content] {
     [true false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | last 50
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | last 50
     }
     [false true false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | first 50
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | first 50
     }
     [false false true false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time | where name like $pattern
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | where name like $pattern
     }
     [false false false true] => {
       # rg original
@@ -191,7 +191,7 @@ def expac [
       # $name | each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
     }
     [false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%l=%n=%m=%v' | parse '{time}={name}={size}={version}' | sort-by time
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time
     } 
   }
 }

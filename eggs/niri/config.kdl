@@ -136,7 +136,6 @@ window-rule {
     // min-height 1035
     open-floating true
     open-maximized false
-    open-maximized-to-edges false
     open-fullscreen false
 }
 window-rule {
@@ -187,7 +186,7 @@ binds {
     Mod+V repeat=false {
         toggle-window-floating
     }
-    Mod+Tab repeat=false {
+    Mod+Shift+O repeat=false {
         toggle-overview
     }
     Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
@@ -241,7 +240,7 @@ binds {
     Mod+Shift+F repeat=false {
         fullscreen-window
     }
-    Mod+Shift+O repeat=false {
+    Mod+I repeat=false {
         show-hotkey-overlay
     }
     Mod+Shift+Q repeat=false {

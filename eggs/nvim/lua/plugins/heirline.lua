@@ -281,7 +281,7 @@ return {
         {
           -- condition = conditions.has_diagnostics,
           condition = function()
-            return settings.diagnostics and conditions.has_diagnostics or false
+            return settings.diagnostics and conditions.has_diagnostics()
           end,
           static = {
             error_icon = diagnostic_icon.Error,

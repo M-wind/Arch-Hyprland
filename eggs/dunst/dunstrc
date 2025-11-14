@@ -1,3 +1,5 @@
+# dunst config
+
 [global]
     monitor = 0
     follow = none
@@ -32,17 +34,19 @@
     override_dbus_timeout = 5
     show_indicators=false
     alignment = "right"
-    icon_path = "/home/zwind/app/notify/icons/"
+    icon_path = ~/app/notify/icons
     # icon_position = "off"
     mouse_left_click = "open_url"
     mouse_middle_click = "none"
     mouse_right_click = "close_current"
     background = "#18191C8E"
     foreground = "#FFFFFF"
-    # default_icon = ~/app/notify/icons/notifyl.svg
+    # default_icon = notifyl
     default_icon = " "
     skip_display = true
-    script = eww-notify 
+    # script = eww-notify
+    # compatible with niri exit code 127
+    script = ~/.config/eww/scripts/eww-notify
 
 
 # [urgency_low]

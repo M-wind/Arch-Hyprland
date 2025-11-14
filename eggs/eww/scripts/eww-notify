@@ -24,7 +24,9 @@ togglePause() {
 }
 
 isNotify() {
-  eww update new_notify="$1"
+  # eww update new_notify="$1"
+  # compatible with niri exit code 127
+  $HOME/app/tools/eww update new_notify="$1"
 }
 
 if [[ ${operate} == "togglePause" ]]; then
