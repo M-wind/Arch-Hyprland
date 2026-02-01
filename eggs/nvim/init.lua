@@ -51,22 +51,22 @@ if vim.g.neovide then
 end
 
 --firenvim
-if vim.g.started_by_firenvim == true then
-  require("utils.heirline").settings = {
-    encoding = false,
-    diagnostics = false,
-  }
-  vim.g.firenvim_config = {
-    localSettings = {
-      [".*"] = {
-        cmdline = "neovim",
-        filename = "firenvim.{extension}",
-        selector = "textarea",
-        takeover = "never",
-      }
-    }
-  }
-end
+-- if vim.g.started_by_firenvim == true then
+--   require("utils.heirline").settings = {
+--     encoding = false,
+--     diagnostics = false,
+--   }
+--   vim.g.firenvim_config = {
+--     localSettings = {
+--       [".*"] = {
+--         cmdline = "neovim",
+--         filename = "firenvim.{extension}",
+--         selector = "textarea",
+--         takeover = "never",
+--       }
+--     }
+--   }
+-- end
 
 -- neovim 0.11
 vim.keymap.del("n", "grn")

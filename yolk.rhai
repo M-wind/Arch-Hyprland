@@ -32,10 +32,6 @@ export let eggs = #{
         templates: ["config.kdl"],
         enabled: true,
     },     
-    codebook: #{
-        targets: "~/.config/codebook",
-        enabled: true,
-    },     
     wallust: #{
         targets: "~/.config/wallust",
         enabled: true,

@@ -184,11 +184,11 @@ def expac [
     }
     [false false false true] => {
       # rg original
-      ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern
+      # ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern
       # parse style 
-      # let table = ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern | parse '{name} {content}'
-      # let name = $table | select name | uniq
-      # $name | each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
+      let table = ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern | parse '{name} {content}'
+      let name = $table | select name | uniq
+      $name | each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
     }
     [false false false false] => {
       ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time

@@ -28,7 +28,7 @@ return {
         jsonls = {},
         rust_analyzer = require("ft.rust").rust_analyzer,
         -- grammar checker
-        codebook = {},
+        -- codebook = {},
         -- toml
         taplo = require("ft.toml").taplo,
       },
@@ -85,7 +85,6 @@ return {
       vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
       vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = buf })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = buf })
-
       vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "GoTo References", buffer = buf })
       vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "GoTo Definition", buffer = buf })
       vim.keymap.set(

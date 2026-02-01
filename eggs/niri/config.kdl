@@ -25,12 +25,41 @@ input {
         numlock
     }
     mouse {
-        accel-speed 0.0
+        accel-speed -0.6
+        accel-profile "adaptive"
     }
     mod-key "Super"
     mod-key-nested "Alt"
     warp-mouse-to-focus
     focus-follows-mouse max-scroll-amount="0%"
+}
+recent-windows {
+    debounce-ms 50
+    open-delay-ms 50
+    highlight {
+        // {# replace_quoted(theme.colors.cyan) #}
+        active-color "#29a298"
+        padding 6
+        corner-radius 8
+    }
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+    binds {
+        Mod+Period {
+            next-window scope="workspace"
+        }
+        Mod+Comma {
+            previous-window scope="workspace"
+        }
+        Mod+Shift+Period {
+            next-window filter="app-id"
+        }
+        Mod+Shift+Comma {
+            previous-window filter="app-id"
+        }
+    }
 }
 layout {
     gaps 6
@@ -52,21 +81,23 @@ layout {
         off
     }
     preset-column-widths {
+        proportion 0.33333
         proportion 0.5
         proportion 0.66667
         proportion 1.0
     }
     preset-window-heights {
+        proportion 0.33333
         proportion 0.5
         proportion 0.66667
         proportion 1.0
     }
- // blur {
-  //   on
-  //   radius 2
-  //   passes 3
-  //   noise 0.0
-  // }
+ /* blur {
+        on
+        radius 2
+        passes 3
+        noise 0.0
+    } */
 }
 overview {
     zoom 0.69
@@ -80,7 +111,8 @@ window-rule {
 }
 window-rule {
     match app-id="alacritty"
-    opacity 0.69
+    draw-border-with-background false
+ // opacity 0.69
 }
 window-rule {
     match app-id="clipse"

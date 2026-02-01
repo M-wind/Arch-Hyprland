@@ -16,7 +16,7 @@ builtin_box_drawing = true
 
 [cursor]
 style = { shape = "Beam" }
-vi_mode_style = { shape = "Beam"}
+vi_mode_style = { shape = "Beam" }
 unfocused_hollow = true
 thickness = 0.15
 
@@ -38,8 +38,8 @@ bindings = [
   { key = "F", mods = "Control", mode = "Search", action = "SearchFocusNext" },
   { key = "D", mods = "Control", mode = "Vi", action = "SearchPrevious" },
   { key = "F", mods = "Control", mode = "Vi", action = "SearchNext" },
-  { key = "D", mods = "Control", action = "ScrollLineUp" },
-  { key = "F", mods = "Control", action = "ScrollLineDown" },
+  { key = "D", mods = "Control", mode = "~Alt|~Vi|~Search", action = "ScrollLineUp" },
+  { key = "F", mods = "Control", mode = "~Alt|~Vi|~Search", action = "ScrollLineDown" },
 ]
 
 [debug]
@@ -50,22 +50,21 @@ background = '#001419' # {< replace_color(theme.colors.background) >}
 foreground = '#839395' # {< replace_color(theme.colors.foreground) >}
 
 [colors.normal]
-black = '#001014' # {< replace_color(theme.colors.black) >}
-red = '#db302d' # {< replace_color(theme.colors.red) >}
-green = '#849900' # {< replace_color(theme.colors.green) >}
-yellow = '#b28500' # {< replace_color(theme.colors.yellow) >}
-blue = '#268bd3' # {< replace_color(theme.colors.blue) >}
+black = '#001014'   # {< replace_color(theme.colors.black) >}
+red = '#db302d'     # {< replace_color(theme.colors.red) >}
+green = '#849900'   # {< replace_color(theme.colors.green) >}
+yellow = '#b28500'  # {< replace_color(theme.colors.yellow) >}
+blue = '#268bd3'    # {< replace_color(theme.colors.blue) >}
 magenta = '#d23681' # {< replace_color(theme.colors.magenta) >}
-cyan = '#29a298' # {< replace_color(theme.colors.cyan) >}
-white = '#9eabac' # {< replace_color(theme.colors.white) >}
+cyan = '#29a298'    # {< replace_color(theme.colors.cyan) >}
+white = '#9eabac'   # {< replace_color(theme.colors.white) >}
 
 [colors.bright]
-black = '#001419' # {< replace_color(theme.colors.bright_black) >}
-red = '#db302d' # {< replace_color(theme.colors.bright_red) >}
-green = '#849900' # {< replace_color(theme.colors.bright_green) >}
-yellow = '#b28500' # {< replace_color(theme.colors.bright_yellow) >}
-blue = '#268bd3' # {< replace_color(theme.colors.bright_blue) >}
+black = '#001419'   # {< replace_color(theme.colors.bright_black) >}
+red = '#db302d'     # {< replace_color(theme.colors.bright_red) >}
+green = '#849900'   # {< replace_color(theme.colors.bright_green) >}
+yellow = '#b28500'  # {< replace_color(theme.colors.bright_yellow) >}
+blue = '#268bd3'    # {< replace_color(theme.colors.bright_blue) >}
 magenta = '#d23681' # {< replace_color(theme.colors.bright_magenta) >}
-cyan = '#29a298' # {< replace_color(theme.colors.bright_cyan) >}
-white = '#839395' # {< replace_color(theme.colors.bright_white) >}
-
+cyan = '#29a298'    # {< replace_color(theme.colors.bright_cyan) >}
+white = '#839395'   # {< replace_color(theme.colors.bright_white) >}

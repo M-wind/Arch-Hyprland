@@ -63,7 +63,7 @@ local noice = {
     views = {
       messages = { view = "popup" },
       popup = { close = { keys = "<c-q>" } },
-      split = { close = { leys = "<c-q>" } }
+      split = { close = { leys = "<c-q>" } },
     },
     lsp = {
       override = {
@@ -74,7 +74,6 @@ local noice = {
       hover = {
         enabled = true,
         silent = true,
-        view = "popup",
       },
     },
     presets = {
