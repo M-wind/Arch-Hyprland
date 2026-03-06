@@ -212,8 +212,6 @@ def tldrf [] {
     | fzf --preview "~/app/tldr/tldr --config ~/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
 }
 
-# alias core-yazi = yazi
-#
 # def yazi [...args] {
 # 	# let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 # 	# yazi ...$args --cwd-file $tmp
@@ -221,6 +219,6 @@ def tldrf [] {
 # 	# if $cwd != "" and $cwd != $env.PWD {
 # 	# 	cd $cwd
 # 	# }
-#   core-yazi ...$args
+#   ^yazi ...$args
 #   printf '\x1b[\x36 q'
 # }

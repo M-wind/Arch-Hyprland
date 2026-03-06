@@ -388,8 +388,8 @@ binds {
     Mod+Shift+S hotkey-overlay-title="ScreenShot area" repeat=false {
         spawn-sh "screentool -n -t capture -s area -f ~/screenshots/area-$(date +'%F-%T-%N.png')"
     }
-    Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
-        spawn "screenlock"
-    }
+    // Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
+    //     spawn "screenlock"
+    // }
 }
 
