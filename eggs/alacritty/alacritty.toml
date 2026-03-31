@@ -26,6 +26,14 @@ osc52 = "CopyPaste"
 [hints]
 alphabet = "abcdefghijklmnopqrstuvwxyz;"
 
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+persist = false
+binding = { key = "O", mods = "Control|Shift" }
+mouse.enabled = false
+
 [keyboard]
 bindings = [
   { key = "F", mods = "Control|Shift", action = "None" },

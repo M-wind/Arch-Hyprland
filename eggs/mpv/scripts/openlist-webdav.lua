@@ -1,5 +1,8 @@
 local basePath = "http://192.168.1.1:5244"
+-- 阿里云盘
 local route, root = "/dav/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98/", "/dav/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98/"
+-- 迅雷网盘
+-- local route, root = "/dav/%E8%BF%85%E9%9B%B7%E7%BD%91%E7%9B%98/", "/dav/%E8%BF%85%E9%9B%B7%E7%BD%91%E7%9B%98/"
 
 local uname, password = "Z_wind", "123456"
 
