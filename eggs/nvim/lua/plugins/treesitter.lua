@@ -28,6 +28,7 @@ local treesitter = {
         "kdl",
         "nu",
         "regex",
+        "ron",
         "rust",
         "toml",
         "tsx",

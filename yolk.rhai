@@ -7,6 +7,14 @@ export let eggs = #{
         templates: ["alacritty.toml"],
         enabled: true,
     },     
+    mpd: #{
+        targets: "~/.config/mpd",
+        enabled: true,
+    },     
+    rmpc: #{
+        targets: "~/.config/rmpc",
+        enabled: true,
+    },     
     foot: #{
         targets: "~/.config/foot",
         templates: ["foot.ini"],
