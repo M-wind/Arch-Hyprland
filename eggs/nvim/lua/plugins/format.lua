@@ -45,6 +45,11 @@ return {
           command = "malva",
           args = { "-c", path("malva", "malva.json"), "format", "$FILENAME" },
         },
+        fmtron = {
+          inherit = false,
+          command = "fmtron",
+          args = { "-d", "-w", "80", "-i", "$FILENAME" }
+        },
       },
       formatters_by_ft = {
         javascript = { "biome" },
@@ -78,6 +83,7 @@ return {
         scss = { "malva" },
         sass = { "malva" },
         less = { "malva" },
+        ron = { "fmtron" }
       },
     })
   end,
