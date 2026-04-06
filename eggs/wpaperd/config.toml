@@ -1,5 +1,5 @@
 [default] #any displayname usr hyprctl monitors
-path = "/home/zwind/background"
+path = "/home/zwind/background/img"
 duration = "30m"
 sorting = "ascending" #descending random
 mode = "center" #fit fit-border-color stretch tile

@@ -34,6 +34,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join app 7z)
     | prepend ($env.HOME | path join app neovim bin)
     | prepend ($env.HOME | path join app hypr)
+    | prepend ($env.HOME | path join app wallpaper)
     | prepend ($env._ZO_DATA_DIR)
     | prepend ($env.HOME | path join app formatters)
     | prepend ($env.HOME | path join app lsp)

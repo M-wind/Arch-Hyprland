@@ -1,0 +1,47 @@
+# === 路径与模式 ===
+[paths]
+mode = "Image"                           # 启动模式: "Video" 或 "Image"
+video_dir = "~/background/video"
+image_dir = "~/background/img"
+
+# === 动态壁纸引擎 (mpvpaper) ===
+[video_engine]
+interval = 600                           # 自动切换间隔（秒），0 = 禁用
+display = "HDMI-A-1"                     # 目标显示器（"*" = 所有）
+mpvpaper_args = []                       # 透传给 mpvpaper 的参数
+mpv_args = [                             # 透传给 mpv 的参数
+    "--no-audio",
+    "--loop=inf",
+    "--hwdec=vulkan",
+    "--video-zoom=0",
+    "--panscan=1.0"
+]
+
+# === 静态壁纸引擎 (awww) ===
+[image_engine]
+interval = 600                           # 自动切换间隔（秒）
+outputs = "HDMI-A-1"                     # 目标显示器（空 = 所有）
+swww_args = []
+# swww_args = [                            # 透传给 swww img 的参数
+#     "--transition-type=fade",
+#     "--transition-duration=2.0",
+#     "--transition-fps=60",
+#     "--transition-step=20",
+#     "--resize=crop"
+# ]
+
+# === 显存监控 ===
+[vram]
+enabled = false                          # 是否启用
+backend = "auto"                         # "auto"（自动检测）或 "custom"（自定义命令）
+# custom_command = ""                    # backend=custom 时执行，stdout 需含 used_mb=N 和 total_mb=N
+threshold_percent = 25.0                 # 降级阈值（显存剩余 < 25%）
+recovery_percent = 40.0                  # 恢复阈值（显存剩余 > 40%）
+check_interval = 2                       # 检测间隔（秒）
+cooldown_seconds = 30                    # 降级冷却时间
+
+# === 守护进程 ===
+[daemon]
+socket_path = "/tmp/lianwall.sock"       # Socket 路径
+pid_path = "/tmp/lianwall.pid"           # PID 文件路径
+log_level = "info"                       # 日志级别
