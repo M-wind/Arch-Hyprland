@@ -29,6 +29,11 @@ return {
         biome = {
           append_args = { ("--config-path=%s"):format(path("biome", "biome.json")) },
         },
+        -- oxfmt = {
+        --   inherit = false,
+        --   command = "oxfmt",
+        --   args = { "-c", path("oxfmt", "oxfmt.json"), "$FILENAME" }
+        -- },
         taplo = {
           append_args = { "-c", path("taplo", "taplo.toml") },
         },
@@ -59,6 +64,13 @@ return {
         json = { "biome" },
         jsonc = { "biome" },
         graphql = { "biome" },
+        -- javascript = { "oxfmt" },
+        -- typescript = { "oxfmt" },
+        -- typescriptreact = { "oxfmt" },
+        -- javascriptreact = { "oxfmt" },
+        -- json = { "oxfmt" },
+        -- jsonc = { "oxfmt" },
+        -- graphql = { "oxfmt" },
         yaml = { "yamlfmt" },
         toml = { "taplo" },
         lua = { "stylua" },

@@ -68,13 +68,17 @@ end
 --   }
 -- end
 
--- neovim 0.11
+-- neovim 0.11+
 vim.keymap.del("n", "grn")
 vim.keymap.del({ "n", "x" }, "gra")
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grt")
 vim.keymap.del("n", "gO")
+
+-- neovim 0.12+
+-- vim.keymap.del("n", "grx")
+
 
 -- local stdout = vim.uv.new_pipe(false)
 -- vim.uv.spawn("rg", {
