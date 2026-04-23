@@ -22,7 +22,7 @@ $env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded
 
 $env.DOTNET_ROOT = $env.HOME | path join language/dotnet
 # mpv vulkan Hardware video acceleration Support
-$env.RADV_PERFTEST = "video_decode"
+$env.RADV_PERFTEST = "video_decode,video_encode"
 
 #colorize man pages
 # $env.MANPAGER = "bat -l man"
@@ -37,7 +37,6 @@ $env.PATH = (
     | prepend ($env.HOME | path join app wallpaper)
     | prepend ($env._ZO_DATA_DIR)
     | prepend ($env.HOME | path join app formatters)
-    | prepend ($env.HOME | path join app lsp)
     | prepend ($env.HOME | path join app screenshots)
     | prepend ($env.HOME | path join app notify)
     | prepend ($env.HOME | path join app clipboard)
@@ -46,7 +45,7 @@ $env.PATH = (
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
     | prepend ($env.HOME | path join game wine bin)
-    | prepend ($env.HOME | path join language nodejs 22.21.1 bin)
+    | prepend ($env.HOME | path join language nodejs 22.22.2 bin)
     | prepend ($env.HOME | path join language nodejs npm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
