@@ -1,0 +1,92 @@
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+window-rule {
+    match app-id="alacritty"
+    draw-border-with-background false
+ // opacity 0.69
+}
+window-rule {
+    match app-id="clipse"
+    open-floating true
+    default-column-width {
+        fixed 720
+    }
+    default-window-height {
+        fixed 480
+    }
+}
+window-rule {
+    match app-id="btop"
+    open-floating true
+    default-column-width {
+        fixed 1536
+    }
+    default-window-height {
+        fixed 864
+    }
+}
+window-rule {
+    match app-id="yazi"
+    open-floating true
+    default-column-width {
+        fixed 1280
+    }
+    default-window-height {
+        fixed 726
+    }
+}
+window-rule {
+    match app-id="mpv"
+    open-floating true
+    default-column-width {
+        fixed 1280
+    }
+    default-window-height {
+        fixed 720
+    }
+}
+window-rule {
+    match app-id="neovide"
+    draw-border-with-background false
+    opacity 0.69
+    default-column-width {
+        fixed 1831
+    }
+    default-window-height {
+        fixed 1035
+    }
+    background-effect {
+        blur true
+    }
+    open-floating true
+    open-maximized false
+    open-maximized-to-edges false
+    open-fullscreen false
+}
+window-rule {
+    match app-id="zen"
+    open-maximized false
+    open-fullscreen false
+}
+window-rule {
+    match title="画中画"
+    open-floating true
+    default-column-width {
+        fixed 1920
+    }
+    default-window-height {
+        fixed 1080
+    }
+}
+window-rule {
+    match app-id="rmpc"
+    open-floating true
+    default-column-width {
+        fixed 1271
+    }
+    default-window-height {
+        fixed 726
+    }
+}

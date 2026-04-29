@@ -11,24 +11,27 @@ display = "HDMI-A-1"                     # 目标显示器（"*" = 所有）
 mpvpaper_args = []                       # 透传给 mpvpaper 的参数
 mpv_args = [                             # 透传给 mpv 的参数
     "--no-audio",
-    "--loop=inf",
+    "--loop=yes",
     "--hwdec=vulkan",
-    "--video-zoom=0",
-    "--panscan=1.0"
+    "--vo=libmpv",
+    "--gpu-api=vulkan",
+    "--gpu-context=waylandvk",
+    # "--video-zoom=0",
+    # "--panscan=1.0"
 ]
 
 # === 静态壁纸引擎 (awww) ===
 [image_engine]
 interval = 600                           # 自动切换间隔（秒）
 outputs = "HDMI-A-1"                     # 目标显示器（空 = 所有）
-swww_args = []
-# swww_args = [                            # 透传给 swww img 的参数
-#     "--transition-type=fade",
-#     "--transition-duration=2.0",
-#     "--transition-fps=60",
-#     "--transition-step=20",
-#     "--resize=crop"
-# ]
+swww_args = [                            # 透传给 swww img 的参数
+    "--transition-type=grow",
+    "--transition-duration=2.0",
+    "--transition-fps=60",
+    "--transition-step=20",
+    "--transition-pos=top-left",
+    "--resize=crop"
+]
 
 # === 显存监控 ===
 [vram]

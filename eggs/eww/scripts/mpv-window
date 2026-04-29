@@ -4,7 +4,8 @@ width=$1
 height=$2
 
 if [[ ${WAYLAND_COMPOSITOR} == "niri" ]]; then
-  niri msg action set-column-width "${width}"
+  niri msg action set-window-width "${width}"
+  # niri msg action set-window-height "${height}"
   sleep 0.1
   niri msg action center-window
 elif [[ ${WAYLAND_COMPOSITOR} == "hypr" ]]; then

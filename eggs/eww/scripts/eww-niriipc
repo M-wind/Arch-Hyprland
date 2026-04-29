@@ -3,7 +3,7 @@
 handle() {
   event=$(echo "${1}" | jq -r keys[0])
   value=$(echo "${1}" | jq .${event})
-  echo "${event}"
+  # echo "${event}"
   case "${event}" in
   "WorkspaceActivated")
     workspace_id=$(echo "${value}" | jq ".id")
@@ -31,11 +31,20 @@ handle() {
   "WindowClosed")
     eww update applist="$(eww-tools get_app_list)"
     ;;
-  # "ConfigLoaded")
-  #   if [[ $(echo "${value}" | jq ".failed") == true ]]; then
-  #     notify-send --app-name=niri-config "ConfigLoaded Falied" "Please Run niri validate for more details."
-  #   fi
-  #   ;;
+  "ConfigLoaded")
+    if [[ $(echo "${value}" | jq ".failed") == true ]]; then
+      notify-send --app-name=niri-config "ConfigLoaded Falied" "Please Run niri validate for more details."
+    fi
+    ;;
+  "CastStartedOrChanged")
+    pid=$(echo "${value}" | jq ".cast.pid")
+    name=$(ps -p ${pid} -o comm=)
+    record=$(echo "${value}" | jq "{stream_id:.cast.stream_id,pid:.cast.pid,name:\"${name}\"}")
+    eww-record start "${record}"
+    ;;
+  "CastStopped")
+    eww-record stop "${value}"
+    ;;
   esac
 }
 

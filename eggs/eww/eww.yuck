@@ -3,6 +3,7 @@
 (include "modules/notify.yuck")
 (include "modules/volume.yuck")
 (include "modules/platte.yuck")
+(include "modules/record.yuck")
 (include "modules/system.yuck")
 (include "modules/weather-net-vol.yuck")
 
@@ -84,7 +85,7 @@
            :image-height 192)))
 
 ;; right
-(defwidget time_notify []
+(defwidget time-notify []
   (box :orientation "h"
        :valign "center"
        :class "rightpanel"
@@ -148,7 +149,7 @@
   (eventbox :cursor "pointer"
             :width widgeth
             :height widgeth
-            :class { address == activewindow ? "systemiconactive" : "systemicon" }
+            :class { address == activewindow ? "centericonactive" : "centericon" }
             :onclick "eww-minimize minimize ${address}"
             ;; :onhover 'nu -c "eww-preview open ${address}"'
             ;; :onhoverlost "eww-preview close"
@@ -180,7 +181,7 @@
       (networkdown))
     (box :orientation "h"
          :space-evenly false
-         :class "systemiconbar"
+         :class "centerpanel"
          :height barh
          :spacing spacing
          :valign "center"
@@ -188,13 +189,21 @@
       (eventbox :cursor "pointer"
                 :width widgeth
                 :height widgeth
-                :class "systemicon"
+                :class "centericon"
+                :visible { arraylength(records) != 0 }
+                :onclick "eww-window toggle record"
+        (image :path "icons/record.svg"
+               :image-width imageh))
+      (eventbox :cursor "pointer"
+                :width widgeth
+                :height widgeth
+                :class "centericon"
                 :onclick "eww-window toggle platte"
         (image :path "icons/platte.svg" :fill-svg mark :image-width imageh))
       (eventbox :cursor "pointer"
                 :width widgeth
                 :height widgeth
-                :class "systemicon"
+                :class "centericon"
                 :onclick "eww-window toggle system"
         (image :path "icons/arch.svg"
                :image-width imageh))
@@ -207,4 +216,4 @@
          :halign "end"
       (fcitx5-language)
       (wether-net-vol)
-      (time_notify))))
+      (time-notify))))

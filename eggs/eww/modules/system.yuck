@@ -7,11 +7,12 @@
   :exclusive false
   :focusable false
   :namespace "bar-center-popin"
-  (box :class "leftpanel" 
+  (box :class "centerpopinpanel" 
+       :space-evenly false
        :spacing 6
     (eventbox :height 92 
               :width 76
-              :class "systemicon" 
+              :class "centericon" 
               :cursor "pointer"
               :onclick "eww-system lock"
       (image :path "icons/lock.svg"
@@ -19,7 +20,7 @@
              :image-height 64))
     (eventbox :height 92 
               :width 76
-              :class "systemicon" 
+              :class "centericon" 
               :cursor "pointer"
               :onclick "eww-system restart"
       (image :path "icons/reboot.svg"
@@ -27,7 +28,7 @@
              :image-height 64))
     (eventbox :height 92 
               :width 76
-              :class "systemicon" 
+              :class "centericon" 
               :cursor "pointer"
               :onclick "eww-system poweroff"
       (image :path "icons/poweroff.svg"

@@ -1,0 +1,227 @@
+binds {
+    Mod+T hotkey-overlay-title="Open Terminal: Foot" repeat=false {
+        spawn-sh "foot -d none"
+    }
+    Mod+E hotkey-overlay-title="Open File Manager: Yazi" repeat=false {
+        spawn-sh "foot -d none -a yazi -e yazi"
+    }
+    Mod+Shift+V hotkey-overlay-title="Open Clipboard: Clipse" repeat=false {
+        spawn-sh "foot -d none -a clipse -e clipse"
+    }
+    Mod+Shift+R hotkey-overlay-title="Open Music: Rmpc" repeat=false {
+        spawn-sh "foot -d none -a rmpc -e rmpc"
+    }
+    Mod+C hotkey-overlay-title="Color Picker" repeat=false {
+        spawn-sh "colorpicker -a"
+    }
+    Ctrl+Shift+Escape hotkey-overlay-title="Open System Moniter: Btop" repeat=false {
+        spawn-sh "foot -d none -a btop -e btop"
+    }
+    Mod+B hotkey-overlay-title="Open Browser: Zen" repeat=false {
+        spawn "~/app/zen/zen"
+    }
+    Mod+W repeat=false {
+        close-window
+    }
+    Mod+M hotkey-overlay-title="Open Video Player: Mpv" repeat=false {
+        spawn-sh "mpv --player-operation-mode=pseudo-gui"
+    }
+    Mod+N hotkey-overlay-title="Open Text Editer: Neovide" repeat=false {
+        spawn "neovide"
+    }
+    Mod+D hotkey-overlay-title="Toggle Window Bar" repeat=false {
+        spawn-sh "eww-window toggle bar"
+    }
+    Mod+V repeat=false {
+        toggle-window-floating
+    }
+    Mod+Shift+O repeat=false {
+        toggle-overview
+    }
+    // Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
+    //     spawn-sh "wpaperctl previous"
+    // }
+    // Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
+    //     spawn-sh "wpaperctl next"
+    // }
+    Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
+        spawn-sh "lianwall next"
+    }
+    Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
+        spawn-sh "lianwall prev"
+    }
+    Mod+Left {
+        focus-column-left
+    }
+    Mod+Down {
+        focus-window-down
+    }
+    Mod+Up {
+        focus-window-up
+    }
+    Mod+Right {
+        focus-column-right
+    }
+    Mod+H {
+        focus-column-left
+    }
+    Mod+J {
+        focus-window-down
+    }
+    Mod+K {
+        focus-window-up
+    }
+    Mod+L {
+        focus-column-right
+    }
+    Mod+R {
+        center-window
+    }
+    Mod+O repeat=false {
+        switch-preset-window-height
+    }
+    Mod+P repeat=false {
+        switch-preset-column-width
+    }
+    Mod+Shift+P hotkey-overlay-title="Swith Wallpaper Mode" repeat=false {
+        spawn-sh "lianwall switch"
+    }
+    Mod+Shift+BracketLeft {
+        move-window-to-workspace-down
+    }
+    Mod+Shift+BracketRight {
+        move-window-to-workspace-up
+    }
+    Mod+F repeat=false {
+        maximize-column
+    }
+    Mod+Shift+F repeat=false {
+        fullscreen-window
+    }
+    Mod+I repeat=false {
+        show-hotkey-overlay
+    }
+    Mod+Shift+Q repeat=false {
+        quit skip-confirmation=true
+    }
+    Mod+Shift+C repeat=false {
+        switch-focus-between-floating-and-tiling
+    }
+    Mod+Alt+J {
+        focus-workspace-down
+    }
+    Mod+Alt+K {
+        focus-workspace-up
+    }
+    Mod+Alt+H repeat=false {
+        consume-or-expel-window-left
+    }
+    Mod+Alt+L repeat=false {
+        consume-or-expel-window-right
+    }
+    Mod+Shift+Left {
+        move-column-left
+    }
+    Mod+Shift+Down {
+        move-window-down
+    }
+    Mod+Shift+Up {
+        move-window-up
+    }
+    Mod+Shift+Right {
+        move-column-right
+    }
+    Mod+Shift+H {
+        move-column-left
+    }
+    Mod+Shift+J {
+        move-window-down
+    }
+    Mod+Shift+K {
+        move-window-up
+    }
+    Mod+Shift+L {
+        move-column-right
+    }
+    Mod+1 repeat=false {
+        focus-workspace 1
+    }
+    Mod+2 repeat=false {
+        focus-workspace 2
+    }
+    Mod+3 repeat=false {
+        focus-workspace 3
+    }
+    Mod+4 repeat=false {
+        focus-workspace 4
+    }
+    Mod+5 repeat=false {
+        focus-workspace 5
+    }
+    Mod+6 repeat=false {
+        focus-workspace 6
+    }
+    Mod+Shift+1 repeat=false {
+        move-column-to-workspace 1
+    }
+    Mod+Shift+2 repeat=false {
+        move-column-to-workspace 2
+    }
+    Mod+Shift+3 repeat=false {
+        move-column-to-workspace 3
+    }
+    Mod+Shift+4 repeat=false {
+        move-column-to-workspace 4
+    }
+    Mod+Shift+5 repeat=false {
+        move-column-to-workspace 5
+    }
+    Mod+Shift+6 repeat=false {
+        move-column-to-workspace 6
+    }
+    Mod+Ctrl+J {
+        set-window-height "-10%"
+    }
+    Mod+Ctrl+K {
+        set-window-height "+10%"
+    }
+    Mod+Ctrl+H {
+        set-column-width "-10%"
+    }
+    Mod+Ctrl+L {
+        set-column-width "+10%"
+    }
+    Mod+Ctrl+M hotkey-overlay-title="Toggle Mute" repeat=false {
+        spawn-sh "eww-volume togglebykey"
+    }
+    XF86AudioMute hotkey-overlay-title="Toggle Mute" repeat=false {
+        spawn-sh "eww-volume togglebykey"
+    }
+    Mod+Ctrl+Equal hotkey-overlay-title="Volume +5" {
+        spawn-sh "eww-volume adjustbykey 0.05"
+    }
+    Mod+Ctrl+Minus hotkey-overlay-title="Volume -5" {
+        spawn-sh "eww-volume adjustbykey -0.05"
+    }
+    Mod+Ctrl+BackSpace hotkey-overlay-title="Volume Default" repeat=false {
+        spawn-sh "eww-volume defaultbykey"
+    }
+    // Print repeat=false { screenshot-screen; }
+    // Mod+Shift+S hotkey-overlay-title="Open ScreenShot" repeat=false { screenshot; }
+    Print hotkey-overlay-title="ScreenShot full" repeat=false {
+        spawn-sh "screentool -n -t capture -s full -f ~/screenshots/img-full-$(date +'%F-%T-%N.png')"
+    }
+    Mod+Shift+S hotkey-overlay-title="ScreenShot area" repeat=false {
+        spawn-sh "screentool -n -t capture -s area -f ~/screenshots/img-area-$(date +'%F-%T-%N.png')"
+    }
+    Mod+G hotkey-overlay-title="Record area" repeat=false {
+        spawn-sh "screentool -n -t record -s area -f ~/screenshots/video-area-$(date +'%F-%T-%N.mkv')"
+    }
+    Mod+Shift+G hotkey-overlay-title="Record full" repeat=false {
+        spawn-sh "screentool -n -t record -s full -f ~/screenshots/video-full-$(date +'%F-%T-%N.mkv')"
+    }
+    // Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
+    //     spawn "screenlock"
+    // }
+}
+

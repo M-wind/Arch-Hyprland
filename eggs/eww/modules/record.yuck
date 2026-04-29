@@ -1,0 +1,34 @@
+(defvar records {[]})
+
+(defwindow record
+  :monitor 0
+  :geometry (geometry :x 0
+                      :y 0
+                      :anchor "bottom center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "bar-center-popin"
+  (box :orientation "v"
+       :space-evenly false
+       :class "centerpopinpanel"
+       :height barh
+       :spacing 6
+       :valign "center"
+       :halign "center"
+    (for entry in { records }
+      (box :orientation "h"
+           :space-evenly false
+           :spacing 18
+           :class "record"
+        (box :width 120
+          (label :text { entry["name"] } :halign "start" :truncate true :class "recordname"))
+        (label :text { entry["pid"] } :class "recordpid" )
+        (eventbox :cursor "pointer"
+                  :height 32
+                  :width 32
+                  :class "centericon" 
+                  :halign "end"
+                  :onclick "eww-record kill ${entry["pid"]}"
+          (image :path "icons/stop.svg"
+                 :image-width 20))))))

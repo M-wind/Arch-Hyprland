@@ -1,0 +1,21 @@
+#!/bin/bash
+
+operate=${1}
+old_records=$(eww get records)
+
+if [[ ${operate} == "start" ]]; then
+  new_records=$(echo ${2} $(echo ${old_records} | jq .[]) | jq -s)
+  eww update records="${new_records}"
+elif [[ ${operate} == "kill" ]]; then
+  kill -15 "${2}"
+  new_records=$(echo ${old_records} | jq -r "[.[] | select(.pid!=${2})]")
+  eww update records="${new_records}"
+  if [[ $(echo ${new_records} |jq length) == 0 ]]; then
+    eww-window close record
+  fi
+else
+  stream_id=$(echo ${2} | jq .stream_id)
+  new_records=$(echo ${old_records} | jq -r "[.[] | select(.stream_id!=${stream_id})]")
+  eww update records="${new_records}"
+fi
+

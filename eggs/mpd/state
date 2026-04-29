@@ -2,10 +2,10 @@ sw_volume: 67
 audio_device_state:1:PipeWire Sound Server
 audio_device_state:1:visulaizer feed
 state: pause
-current: 1
-time: 182.129
+current: 0
+time: 169.993
 random: 1
-repeat: 0
+repeat: 1
 single: 0
 consume: 0
 crossfade: 0

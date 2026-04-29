@@ -12,14 +12,14 @@
   :namespace "bar-center-popin"
   (box :orientation "v"
        :space-evenly false
-       :class "systemiconbar"
+       :class "centerpopinpanel"
        :height barh
        :spacing 6
        :valign "center"
        :halign "center"
     (for entry in { themes }
       (eventbox :cursor "pointer"
-                :class { theme == entry ? "systemiconactive" :  "systemicon" }
+                :class { theme == entry ? "centericonactive" :  "centericon" }
                 :height 36
                 :width 172
                 :onclick 'eww-changetheme sync ${entry}; eww-changetheme update'

@@ -11,6 +11,10 @@ export let eggs = #{
         targets: "~/.config/mpd",
         enabled: true,
     },     
+    lianwall: #{
+        targets: "~/.config/lianwall",
+        enabled: true,
+    },     
     rmpc: #{
         targets: "~/.config/rmpc",
         enabled: true,

@@ -17,6 +17,8 @@ $env.LIBSEAT_BACKEND = "logind"
 $env.WINEPREFIX = $env.HOME | path join game/.wine
 $env.WINEDEBUG = "-all"
 
+# $env.GOENV = $env.HOME | path join language go env
+
 # $env.BAT_THEME = "tokyonight"
 $env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
 
@@ -49,6 +51,8 @@ $env.PATH = (
     | prepend ($env.HOME | path join language nodejs npm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
+    | prepend "/usr/lib/llvm21/bin"
+    # | prepend ($env.HOME | path join language go 1.26.2 bin)
     | prepend ($env.DOTNET_ROOT)
     | prepend ($env.HOME | path join .config eww scripts)
     | uniq

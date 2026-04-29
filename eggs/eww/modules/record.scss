@@ -1,0 +1,18 @@
+.record {
+  padding: $distance6;
+  background: $background;
+  border-radius: $radius4;
+  color: $white;
+}
+
+.recordname {
+  color: $mark;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-family: monospace;
+}
+
+.recordpid {
+  font-size: 1em;
+  font-family: monospace;
+}
