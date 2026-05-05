@@ -2,6 +2,7 @@ include optional=true "startup.kdl"
 include optional=true "layer-rule.kdl"
 include optional=true "window-rule.kdl"
 include optional=true "keymaps.kdl"
+screenshot-path "~/screenshots/%F-%T.png"
 prefer-no-csd
 hotkey-overlay {
     skip-at-startup
@@ -103,5 +104,5 @@ blur {
     saturation 1.8
 }
 debug {
-
 }
+
