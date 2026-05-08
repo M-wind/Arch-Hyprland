@@ -153,3 +153,13 @@ fn hex_to_hext(s, t) {
     hex[-4..=-2] = t;
     hex
 };
+
+fn replace_btop_theme() {
+  let btop_themes = ["catppuccin", "dracula", "everforest", "solarized-osaka", "tokyonight"];
+  let theme_name = theme.color_name;
+  if contains(btop_themes, theme_name) {
+    theme_name 
+  } else {
+    "Default"
+  }
+}

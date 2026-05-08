@@ -879,3 +879,35 @@
 2026-04-30T23:47:57 player: played "JC - 说散就散.mp3"
 2026-05-01T05:02:12 player: played "JC - 说散就散.mp3"
 2026-05-03T16:47:11 player: played "JC - 说散就散.mp3"
+2026-05-07T21:38:02 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2026-05-07T21:58:42 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T21:59:28 player: played "信乐团 - 假如.flac"
+2026-05-07T22:04:52 player: played "买辣椒也用券 - 起风了.mp3"
+2026-05-07T22:10:38 player: played "五月天 - 后来的我们.mp3"
+2026-05-07T22:14:55 player: played "五月天 - 知足.mp3"
+2026-05-07T22:18:35 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T22:19:16 player: played "五月天 - 倔强.flac"
+2026-05-07T22:25:02 player: played "五月天 - 后来的我们.mp3"
+2026-05-07T22:28:40 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T22:29:27 player: played "信乐团 - 假如.flac"
+2026-05-07T22:34:50 player: played "买辣椒也用券 - 起风了.mp3"
+2026-05-07T22:38:30 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T22:39:12 player: played "五月天 - 倔强.flac"
+2026-05-07T22:43:28 player: played "五月天 - 知足.mp3"
+2026-05-07T22:47:19 player: played "JC - 说散就散.mp3"
+2026-05-07T22:51:09 player: played "JC - 说散就散.mp3"
+2026-05-07T22:54:49 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T22:55:31 player: played "五月天 - 倔强.flac"
+2026-05-07T22:59:11 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T22:59:55 player: played "信乐团 - 假如.flac"
+2026-05-07T23:05:41 player: played "五月天 - 后来的我们.mp3"
+2026-05-07T23:09:58 player: played "五月天 - 知足.mp3"
+2026-05-07T23:15:22 player: played "买辣椒也用券 - 起风了.mp3"
+2026-05-07T23:20:45 player: played "买辣椒也用券 - 起风了.mp3"
+2026-05-07T23:24:24 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T23:25:07 player: played "五月天 - 倔强.flac"
+2026-05-07T23:28:44 flac: FLAC__STREAM_DECODER_ERROR_STATUS_LOST_SYNC
+2026-05-07T23:29:31 player: played "信乐团 - 假如.flac"
+2026-05-07T23:33:21 player: played "JC - 说散就散.mp3"
+2026-05-07T23:37:38 player: played "五月天 - 知足.mp3"
+2026-05-07T23:43:24 player: played "五月天 - 后来的我们.mp3"

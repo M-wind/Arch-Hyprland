@@ -51,15 +51,13 @@ window-rule {
     match app-id="neovide"
     draw-border-with-background false
     opacity 0.69
-    default-column-width {
-        fixed 1831
-    }
-    default-window-height {
-        fixed 1035
-    }
     background-effect {
         blur true
     }
+    min-width 1831
+    max-width 1931
+    min-height 1035
+    max-height 1035
     open-floating true
     open-maximized false
     open-maximized-to-edges false
