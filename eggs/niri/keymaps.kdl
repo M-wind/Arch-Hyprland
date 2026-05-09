@@ -220,8 +220,8 @@ binds {
     Mod+Shift+G hotkey-overlay-title="Record full" repeat=false {
         spawn-sh "screentool -n -t record -s full -f ~/screenshots/video-full-$(date +'%F-%T-%N.mkv')"
     }
-    // Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
-    //     spawn "screenlock"
-    // }
+    Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
+        spawn-sh "veila lock"
+    }
 }
 

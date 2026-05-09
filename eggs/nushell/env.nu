@@ -40,6 +40,7 @@ $env.PATH = (
     | prepend ($env._ZO_DATA_DIR)
     | prepend ($env.HOME | path join app formatters)
     | prepend ($env.HOME | path join app screenshots)
+    | prepend ($env.HOME | path join app screenlock)
     | prepend ($env.HOME | path join app notify)
     | prepend ($env.HOME | path join app clipboard)
     | prepend ($env.HOME | path join app handlr)

@@ -1,0 +1,158 @@
+# Wallpaper source: https://wallhaven.cc/w/nk7g66
+[background]
+mode = "file"
+path = "/path/to/wallpaper.jpg"
+color = "#323549"
+blur_radius = 0
+dim_strength = 20
+
+[lock]
+user_hint = "Password"
+show_username = true
+
+[visuals.layer]
+enabled = true
+mode = "blur"
+alignment = "left"
+width = 540
+offset_x = 0
+color = "rgba(0, 0, 0, 0.1)"
+blur_radius = 12
+
+[battery]
+enabled = true
+
+[weather]
+enabled = false
+
+[visuals.clock]
+alignment = "top-left"
+center_in_layer = true
+format = "24h"
+style = "standard"
+meridiem_size = 3
+meridiem_offset_x = 6
+meridiem_offset_y = 7
+font_family = "Geom"
+font_weight = 600
+color = "rgba(255, 255, 255, 0.6)"
+size = 14
+gap = 20
+
+[visuals.date]
+font_family = "Google Sans Flex"
+font_weight = 400
+color = "rgba(255, 255, 255, 0.6)"
+
+[visuals.input]
+alignment = "center-left"
+center_in_layer = true
+horizontal_padding = 0
+vertical_padding = 0
+offset_x = 0
+offset_y = 0
+background_color = "rgba(255, 255, 255, 0.1)"
+border_color = "rgba(255, 255, 255, 0.08)"
+border_width = 3
+width = 310
+height = 54
+radius = 50
+mask_color = "#ffffff"
+font_family = "Google Sans Flex"
+font_weight = 400
+font_size = 2
+
+[visuals.status]
+rejected_color = "#FFD5D5"
+pending_color = "#ECECEC"
+
+[visuals.eye]
+color = "rgba(255, 255, 255, 0.72)"
+
+[visuals.caps_lock]
+color = "rgba(255, 255, 255, 0.52)"
+
+[visuals.placeholder]
+color = "rgba(255, 255, 255, 0.8)"
+
+[visuals.avatar]
+size = 160
+gap = 24
+background_color = "rgba(255, 255, 255, 0.08)"
+placeholder_padding = 28
+ring_color = "rgba(255, 255, 255, 0.2)"
+ring_width = 3
+icon_color = "#ffffff"
+
+[visuals.username]
+font_family = "Google Sans Flex"
+font_weight = 400
+color = "rgba(255, 255, 255, 0.84)"
+size = 4
+gap = 28
+
+[visuals.keyboard]
+background_size = 46
+background_color = "rgba(0, 0, 0, 0.1)"
+color = "rgba(255, 255, 255, 0.9)"
+size = 2
+top_offset = -28
+right_offset = 8
+
+[visuals.battery]
+background_color = "rgba(0, 0, 0, 0.1)"
+background_size = 46
+color = "rgba(255, 255, 255, 0.9)"
+size = 20
+top_offset = -28
+right_offset = 8
+gap = 8
+
+[visuals.weather]
+size = 2
+temperature_color = "rgba(255, 255, 255, 0.73)"
+location_color = "rgba(214, 227, 255, 0.58)"
+temperature_size = 6
+location_size = 3
+icon_size = 40
+temperature_font_family = "Google Sans Flex"
+temperature_font_weight = 400
+temperature_letter_spacing = 0
+location_font_family = "Google Sans Flex"
+location_font_weight = 400
+icon_gap = 6
+location_gap = 1
+icon_opacity = 80
+left_padding = 30
+bottom_padding = 30
+alignment = "left"
+
+[visuals.now_playing]
+content_gap = 18
+fade_duration_ms = 320
+title_color = "rgba(255, 255, 255, 0.69)"
+artist_color = "rgba(255, 255, 255, 0.39)"
+title_size = 2
+artist_size = 2
+artwork_size = 44
+artwork_radius = 8
+right_padding = 48
+bottom_padding = 48
+right_offset = 0
+bottom_offset = 0
+artwork_opacity = 90
+title_font_family = "Google Sans Flex"
+title_font_weight = 400
+artist_font_family = "Google Sans Flex"
+artist_font_weight = 400
+width = 380
+
+[visuals.now_playing.background]
+enabled = true
+mode = "blur"
+color = "rgba(0, 0, 0, 0.24)"
+radius = 18
+padding_x = 18
+padding_y = 12
+border_color = "rgba(255, 255, 255, 0.1)"
+border_width = 1

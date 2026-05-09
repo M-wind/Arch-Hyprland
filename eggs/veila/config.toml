@@ -1,0 +1,75 @@
+theme = "default"
+
+[lock]
+avatar_path = "/home/zwind/background/avatar.png"
+username = "Z_wind"
+
+[background]
+mode = "file"
+path = "~/background/img/back10.jpg"
+blur_radius = 0
+dim_strength = 32
+
+[battery]
+enabled = false
+
+[weather]
+enabled = true
+location = "ChangSha"
+
+[now_playing]
+include_players = ["mpv", "mpd", "zen"]
+
+[visuals.layer]
+# width = 400
+
+[visuals.avatar]
+size = 96
+
+[visuals.clock]
+font_family = "JetBrainsMono NFM"
+font_weight = 700
+font_style = "normal"
+# color = "#FFFFFFB0"
+
+[visuals.date]
+font_family = "JetBrainsMono NFM"
+# color = "#FFFFFFA0"
+
+[visuals.input]
+font_family = "JetBrainsMono NFM"
+background_color = "rgba(255, 255, 255, 0.15)"
+
+[visuals.username]
+font_family = "TypoGraphica"
+
+[visuals.weather]
+font_family = "JetBrainsMono NFM"
+
+[visuals.now_playing]
+enabled = false
+title_font_family = "JetBrainsMono NFM"
+artist_font_family = "JetBrainsMono NFM"
+content_gap = 18
+fade_duration_ms = 320
+title_color = "rgba(255, 255, 255, 0.69)"
+artist_color = "rgba(255, 255, 255, 0.39)"
+title_size = 2
+artist_size = 2
+artwork_size = 44
+artwork_radius = 8
+right_padding = 52
+bottom_padding = 56
+artwork_opacity = 90
+title_font_weight = 400
+artist_font_weight = 400
+width = 380
+text_gap = 10
+
+[visuals.now_playing.background]
+enabled = true
+mode = "blur"
+color = "rgba(0, 0, 0, 0.05)"
+radius = 18
+padding_x = 12
+padding_y = 12

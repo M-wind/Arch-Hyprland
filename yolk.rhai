@@ -105,6 +105,10 @@ export let eggs = #{
         targets: "~/.config/pnpm",
         enabled: true,
     },     
+    veila: #{
+        targets: "~/.config/veila",
+        enabled: true,
+    },     
 };
 
 export const theme = #{
