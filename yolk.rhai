@@ -109,6 +109,11 @@ export let eggs = #{
         targets: "~/.config/veila",
         enabled: true,
     },     
+    bat: #{
+        targets: "~/.config/bat",
+        templates: ["config"],
+        enabled: true,
+    },     
 };
 
 export const theme = #{
@@ -166,4 +171,12 @@ fn replace_btop_theme() {
   } else {
     "Default"
   }
+}
+
+fn replace_bat_theme() {
+  let theme_name = theme.color_name;
+  if theme_name == "wallpaper" {
+    theme_name = "solarized-osaka"
+  }
+  theme_name
 }

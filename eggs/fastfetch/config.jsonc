@@ -90,9 +90,9 @@
       "type": "command",
       "key": "  󱦟 OS Age",
       "keyColor": "blue",
-      "parallel": false,
-      "shell": "sh",
       "text": "birth=$(stat -c %W /); current=$(date +%s); days=$(((current - birth) / 86400)); echo $days days"
+      // "parallel": false,
+      // "shell": "sh",
       // "parallel": true,
       // "shell": "nu",
       // "text": "let birth = stat -c %W /; let current = ^date +%s; let days = (($current | into int) - ($birth | into int)) / 86400 | math floor; print $'($days) days'"

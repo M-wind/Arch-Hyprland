@@ -82,7 +82,6 @@ function M:peek(job)
   local media_cache = cache .. "_mediainfo"
   local cha = fs.cha(Url(media_cache))
   local json = require("json2")
-  -- local json = dofile("/home/zwind/app/yazi/plugins/mediainfo.yazi/json.lua")
   local output
   if not cha then
     local child = Command("mediainfo")

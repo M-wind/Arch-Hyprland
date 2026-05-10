@@ -9,7 +9,7 @@ input_bindings:
   quit: [q]
   force_quit: [ctrl c]
   edit: [e]
-  view:  [v]
+  view: [v]
   history: [shift h]
   fullscreen: [f]
   open_actions: [x]
@@ -17,3 +17,5 @@ input_bindings:
   page_down: [ctrl f, pgdn]
   next_pane: [ctrl j, tab]
   previous_pane: [ctrl k, ctrl tab]
+theme:
+  primary_text_color: black

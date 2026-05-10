@@ -18,7 +18,6 @@ layer-rule {
         blur true
     }
 }
-
 layer-rule {
     match namespace="bar-center-popin"
     geometry-corner-radius 8

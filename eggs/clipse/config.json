@@ -20,7 +20,7 @@
     "nextPage": "l,right",
     "prevPage": "h,left",
     "preview": "space",
-    "quit": "ctrl+q",
+    "quit": "q",
     "remove": "d",
     "selectDown": "ctrl+j,ctrl+down",
     "selectSingle": "v",
