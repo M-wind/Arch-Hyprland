@@ -8,6 +8,7 @@ require("mime-ext.local"):setup {
 	-- Expand the existing extension database (lowercase), for example:
 	with_exts = {
 		nu = "text/nu",
+		tgz = "application/gzip",
 		-- ...
 	},
 

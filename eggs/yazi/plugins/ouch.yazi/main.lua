@@ -18,14 +18,14 @@ local function line_with_icon(line)
   local url = line:sub(#tree_prefix + 1)
   local icon = File({
     url = Url(url),
-    cha = Cha {
+    cha = Cha({
       mode = tonumber(url:sub(-1) == "/" and "40700" or "100644", 8),
       kind = url:sub(-1) == "/" and 1 or 0, -- For Yazi <25.9.x compatibility
-    }
+    }),
   }):icon()
 
   if icon then
-    line =  ui.Line { tree_prefix, ui.Span(icon.text .. " "):style(icon.style), url }
+    line = ui.Line({ tree_prefix, ui.Span(icon.text .. " "):style(icon.style), url })
   end
 
   return line
@@ -36,9 +36,7 @@ function M:peek(job)
   if not job.args.list_view then
     cmd:arg("-t")
   end
-  cmd:arg({ "-y", tostring(job.file.url) })
-      :stdout(Command.PIPED)
-      :stderr(Command.PIPED)
+  cmd:arg({ "-y", tostring(job.file.url) }):stdout(Command.PIPED):stderr(Command.PIPED)
 
   local child = cmd:spawn()
   local limit = job.area.h
@@ -54,19 +52,25 @@ function M:peek(job)
       break
     end
 
-    if line:find('Archive', 1, true) ~= 1 and line:find('[INFO]', 1, true) ~= 1 then
+    if line:find("Archive", 1, true) ~= 1 and line:find("[INFO]", 1, true) ~= 1 then
       if num_skip >= job.skip then
         if job.args.show_file_icons then
-          if line:find ('[ERROR]', 1, true) == 1 then
+          if line:find("[ERROR]", 1, true) == 1 then
             -- On error, disable file icons for the rest of the output
             job.args.show_file_icons = false
-          elseif line:find ('[WARNING]', 1, true) ~= 1 then
+          elseif line:find("[WARNING]", 1, true) ~= 1 then
             -- Show icons for non-warning lines only
             line = line_with_icon(line)
           end
         end
-
-        line = ui.Line { " ", line } -- One space padding
+        if string.sub(line, -2) == "/\n" then
+          local new_line = line:gsub("[\r\n]+$", "")
+          local tree_prefix = get_tree_prefix(new_line)
+          local text = new_line:sub(#tree_prefix + 1, -2)
+          line = ui.Line({ " " .. tree_prefix, ui.Span(text):fg("blue") })
+        else
+          line = ui.Line({ " ", line }) -- One space padding
+        end
         table.insert(lines, line)
       else
         num_skip = num_skip + 1
@@ -132,12 +136,7 @@ local get_compression_target = ya.sync(function()
 end)
 
 local function invoke_compress_command(paths, name)
-  local cmd_output, err_code = Command("ouch")
-      :arg({ "c", "-y" })
-      :arg(paths)
-      :arg(name)
-      :stderr(Command.PIPED)
-      :output()
+  local cmd_output, err_code = Command("ouch"):arg({ "c", "-y" }):arg(paths):arg(name):stderr(Command.PIPED):output()
   if err_code ~= nil then
     ya.notify({
       title = "Failed to run ouch command",
