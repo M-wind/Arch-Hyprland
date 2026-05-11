@@ -10,6 +10,7 @@ require("mime-ext"):setup({
     gz = "application/gzip",
     zip = "application/zip",
     nu = "text/plain",
+    nfo = "text/xml",
   },
 
   -- If the mime-type is not in both filename and extension databases,

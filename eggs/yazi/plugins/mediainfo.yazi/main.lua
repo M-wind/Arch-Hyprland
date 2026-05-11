@@ -1,10 +1,43 @@
 local M = {}
 
-local general_entry = { "Title", "Album", "Performer", "Recorded_Date", "Duration" }
-local video_entry = { "Format", "Width", "Height", "BitRate", "FrameRate", "StreamSize" }
-local audio_entry = { "Format", "Language", "BitRate", "Channels", "SamplingRate", "StreamSize" }
-local text_entry = { "Format", "Title", "Language", "Forced", "Default" }
-local image_entry = { "Format", "Width", "Height" }
+local general_entry = {
+  Title = "Title",
+  Artist = "Performer",
+  ALbum = "Album",
+  Duration = "Duration_String1",
+  Date = "Recorded_Date",
+  Size = "FileSize_String",
+}
+
+local video_entry = {
+  Format = "Format",
+  Width = "Width",
+  Height = "Height",
+  BitRate = "BitRate_String",
+  FrameRate = "FrameRate",
+}
+
+local audio_entry = {
+  Format = "Format",
+  Language = "Language",
+  BitRate = "BitRate_String",
+  Channels = "Channels",
+  SamplingRate = "SamplingRate_String",
+}
+
+local text_entry = {
+  Format = "Format",
+  Title = "Title",
+  Language = "Language",
+  Forced = "Forced",
+  Default = "Default",
+}
+
+local image_entry = {
+  Format = "Format",
+  Width = "Width",
+  Height = "Height",
+}
 
 local len = function(key)
   for i = 14, #key, -1 do
@@ -27,10 +60,10 @@ local insert = function(lines, ele)
 end
 
 local basic = function(v, lines, type)
-  for _, k in pairs(type) do
-    local value = v[k]
+  for m, n in pairs(type) do
+    local value = v[n]
     if value ~= nil then
-      local key = len(" " .. k)
+      local key = len(" " .. m)
       insert(lines, ui.Line({ ui.Span(key):fg("green"), ui.Span(value) }))
     end
   end
@@ -85,7 +118,7 @@ function M:peek(job)
   local output
   if not cha then
     local child = Command("mediainfo")
-      :arg({ "--Output=JSON", tostring(job.file.url) })
+      :arg({ "--Output=JSON", "-f", tostring(job.file.url) })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
       :spawn()

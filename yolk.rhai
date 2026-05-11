@@ -163,17 +163,7 @@ fn hex_to_hext(s, t) {
     hex
 };
 
-fn replace_btop_theme() {
-  let btop_themes = ["catppuccin", "dracula", "everforest", "solarized-osaka", "tokyonight"];
-  let theme_name = theme.color_name;
-  if contains(btop_themes, theme_name) {
-    theme_name 
-  } else {
-    "Default"
-  }
-}
-
-fn replace_bat_theme() {
+fn replace_theme_name() {
   let theme_name = theme.color_name;
   if theme_name == "wallpaper" {
     theme_name = "solarized-osaka"
