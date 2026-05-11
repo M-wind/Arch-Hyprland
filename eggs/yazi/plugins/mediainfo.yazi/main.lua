@@ -39,6 +39,8 @@ local image_entry = {
   Height = "Height",
 }
 
+local json = require(".json")
+
 local len = function(key)
   for i = 14, #key, -1 do
     key = key .. " "
@@ -114,7 +116,6 @@ function M:peek(job)
   end
   local media_cache = cache .. "_mediainfo"
   local cha = fs.cha(Url(media_cache))
-  local json = require("json2")
   local output
   if not cha then
     local child = Command("mediainfo")
@@ -163,10 +164,10 @@ function M:peek(job)
     end
   end
   if job.skip > 0 and num_lines < limit then
-    ya.mgr_emit("peek", { math.max(0, job.skip - (limit - num_lines)), only_if = job.file.url })
+    ya.emit("peek", { math.max(0, job.skip - (limit - num_lines)), only_if = job.file.url })
     return
   end
-  ya.preview_widgets(job, {
+  ya.preview_widget(job, {
     ui.Text(lines)
       :area(ui.Rect({
         x = job.area.x,
@@ -174,7 +175,7 @@ function M:peek(job)
         w = job.area.w,
         h = job.area.h - image_height,
       }))
-      :wrap(ui.Text.WRAP_NO),
+      :wrap(ui.Wrap.NO),
   })
 end
 
@@ -182,7 +183,7 @@ function M:seek(job)
   local h = cx.active.current.hovered
   if h and h.url == job.file.url then
     local step = job.units > 0 and 1 or -1
-    ya.mgr_emit("peek", {
+    ya.emit("peek", {
       math.max(0, cx.active.preview.skip + step),
       only_if = job.file.url,
     })

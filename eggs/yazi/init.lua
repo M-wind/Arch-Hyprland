@@ -1,19 +1,17 @@
-require("mime-ext"):setup({
-  with_files = {
-    makefile = "text/x-makefile",
-  },
+require("mime-ext.local"):setup {
+	-- Expand the existing filename database (lowercase), for example:
+	with_files = {
+		makefile = "text/makefile",
+		-- ...
+	},
 
-  with_exts = {
-    FLAC = "audio/x-flac",
-    zst = "application/zstd",
-    bz2 = "application/x-bzip2",
-    gz = "application/gzip",
-    zip = "application/zip",
-    nu = "text/plain",
-    nfo = "text/xml",
-  },
+	-- Expand the existing extension database (lowercase), for example:
+	with_exts = {
+		nu = "text/nu",
+		-- ...
+	},
 
-  -- If the mime-type is not in both filename and extension databases,
-  -- then fallback to Yazi's preset `mime` plugin, which uses `file(1)`
-  fallback_file1 = false,
-})
+	-- If the MIME type is not in both filename and extension databases,
+	-- then fallback to Yazi's preset `mime.local` plugin, which uses `file(1)`
+	fallback_file1 = false,
+}

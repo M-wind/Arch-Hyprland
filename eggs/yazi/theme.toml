@@ -30,3 +30,6 @@ sep_right = { open = "", close = "" }
 
 [help]
 footer  = { fg = "#98c379" }
+
+[indicator]
+padding = { open = "█", close = "█" }
