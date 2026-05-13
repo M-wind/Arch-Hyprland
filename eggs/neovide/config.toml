@@ -4,7 +4,8 @@ fork = false
 frame = "none"
 
 [font]
-normal = ["monospace", "LXGW WenKai Mono GB Screen"]
+# normal = ["monospace", "Apple Color Emoji", "LXGW WenKai Mono GB Screen"]
+normal = ["monospace", "JoyPixels", "LXGW WenKai Mono GB Screen"]
 size = 13
 
 [box-drawing]

@@ -1,11 +1,15 @@
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
+    draw-border-with-background false
 }
 window-rule {
     match app-id="alacritty"
     draw-border-with-background false
- // opacity 0.69
+    // background-effect {
+    //     blur true
+    //     xray false
+    // }
 }
 window-rule {
     match app-id="clipse"
@@ -19,6 +23,20 @@ window-rule {
     }
     default-window-height {
         fixed 480
+    }
+}
+window-rule {
+    match app-id="rmpc"
+    open-floating true
+    background-effect {
+        blur true
+        xray false
+    }
+    default-column-width {
+        fixed 1271
+    }
+    default-window-height {
+        fixed 726
     }
 }
 window-rule {
@@ -61,7 +79,6 @@ window-rule {
 }
 window-rule {
     match app-id="neovide"
-    draw-border-with-background false
     opacity 0.69
     background-effect {
         blur true
@@ -91,18 +108,3 @@ window-rule {
         fixed 1080
     }
 }
-window-rule {
-    match app-id="rmpc"
-    open-floating true
-    background-effect {
-        blur true
-        xray false
-    }
-    default-column-width {
-        fixed 1271
-    }
-    default-window-height {
-        fixed 726
-    }
-}
-

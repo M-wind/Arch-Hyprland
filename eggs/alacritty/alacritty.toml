@@ -36,22 +36,22 @@ mouse.enabled = false
 
 [keyboard]
 bindings = [
-  { key = "F", mods = "Control|Shift", action = "None" },
+  { key = "F", mods = "Control|Shift", mode = "Vi", action = "None" },
   { key = "Space", mods = "Control|Shift", action = "None" },
-  { key = "Enter", mods = "Control|Shift", action = "ToggleViMode" },
+  { key = "Enter", mods = "Control|Shift", mode = "~Search", action = "ToggleViMode" },
+  { key = "H", mods = "Control|Shift", action = "SearchForward" },
   { key = "G", mods = "Control", action = "ScrollToTop" },
   { key = "G", mods = "Control|Shift", action = "ScrollToBottom" },
-  { key = "H", mods = "Control|Shift", action = "SearchForward" },
-  { key = "D", mods = "Control", mode = "Search", action = "SearchFocusPrevious" },
-  { key = "F", mods = "Control", mode = "Search", action = "SearchFocusNext" },
-  { key = "D", mods = "Control", mode = "Vi", action = "SearchPrevious" },
-  { key = "F", mods = "Control", mode = "Vi", action = "SearchNext" },
-  { key = "D", mods = "Control", mode = "~Alt|~Vi|~Search", action = "ScrollLineUp" },
-  { key = "F", mods = "Control", mode = "~Alt|~Vi|~Search", action = "ScrollLineDown" },
+  { key = "N", mods = "Control|Shift", mode = "Search", action = "SearchFocusPrevious" },
+  { key = "N", mods = "Control", mode = "Search", action = "SearchFocusNext" },
+  { key = "N", mods = "Control|Shift", mode = "Vi", action = "SearchPrevious" },
+  { key = "N", mods = "Control", mode = "Vi", action = "SearchNext" },
+  { key = "D", mods = "Control", mode = "~AppCursor|~AppKeypad|~Alt", action = "ScrollLineUp" },
+  { key = "F", mods = "Control", mode = "~AppCursor|~AppKeypad|~Alt", action = "ScrollLineDown" },
 ]
 
 [debug]
-prefer_egl = true
+# prefer_egl = true
 
 [colors.primary]
 background = '#001419' # {< replace_color(theme.colors.background) >}

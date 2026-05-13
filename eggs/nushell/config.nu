@@ -196,6 +196,10 @@ def expac [
   }
 }
 
+def h [name] {
+  nu -c $"($name) --help | bat -p -l help"
+}
+
 alias x = eza --icons --hyperlink
 alias xl = eza --icons --hyperlink --long --time-style '+%Y-%m-%d %H:%M:%S'
 alias xt = xl -T

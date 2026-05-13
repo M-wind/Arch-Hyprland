@@ -36,6 +36,10 @@ local scale = function(scale)
   exec(n_width, n_height)
 end
 
+mp.add_key_binding(nil, "window-scale-0.25", function()
+  scale(0.25)
+end, { repeatable = false })
+
 mp.add_key_binding(nil, "window-scale-0.5", function()
   scale(0.5)
 end, { repeatable = false })
