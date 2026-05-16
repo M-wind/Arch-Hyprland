@@ -114,6 +114,15 @@ export let eggs = #{
         templates: ["config"],
         enabled: true,
     },     
+    tlrc: #{
+        targets: "~/.config/tlrc",
+        enabled: true,
+    },     
+    television: #{
+        targets: "~/.config/television",
+        templates: ["config.toml"],
+        enabled: false,
+    },     
 };
 
 export const theme = #{
