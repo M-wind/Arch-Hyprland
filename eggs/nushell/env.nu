@@ -20,7 +20,7 @@ $env.WINEDEBUG = "-all"
 # $env.GOENV = $env.HOME | path join language go env
 
 # $env.BAT_THEME = "tokyonight"
-$env.FZF_DEFAULT_OPTS = "--style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-p:preview-up,ctrl-n:preview-down'"
+$env.FZF_DEFAULT_OPTS = "--prompt=' ' --style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-d:preview-up,ctrl-f:preview-down'"
 
 $env.DOTNET_ROOT = $env.HOME | path join language/dotnet
 # mpv vulkan Hardware video acceleration Support
@@ -37,6 +37,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join app neovim bin)
     | prepend ($env.HOME | path join app hypr)
     | prepend ($env.HOME | path join app wallpaper)
+    | prepend ($env.HOME | path join app email)
     | prepend ($env._ZO_DATA_DIR)
     | prepend ($env.HOME | path join app formatters)
     | prepend ($env.HOME | path join app screenshots)
@@ -44,6 +45,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join app notify)
     | prepend ($env.HOME | path join app clipboard)
     | prepend ($env.HOME | path join app handlr)
+    | prepend ($env.HOME | path join app tldr)
     | prepend ($env.HOME | path join app exiftool)
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
@@ -52,7 +54,6 @@ $env.PATH = (
     | prepend ($env.HOME | path join language nodejs npm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm-global bin)
     | prepend ($env.HOME | path join language nodejs pnpm bin)
-    | prepend "/usr/lib/llvm21/bin"
     # | prepend ($env.HOME | path join language go 1.26.2 bin)
     | prepend ($env.DOTNET_ROOT)
     | prepend ($env.HOME | path join .config eww scripts)

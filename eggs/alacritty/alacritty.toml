@@ -37,7 +37,7 @@ mouse.enabled = false
 [keyboard]
 bindings = [
   { key = "F", mods = "Control|Shift", mode = "Vi", action = "None" },
-  { key = "Space", mods = "Control|Shift", action = "None" },
+  { key = "Space", mods = "Control|Shift", mode = "Vi", action = "None" },
   { key = "Enter", mods = "Control|Shift", mode = "~Search", action = "ToggleViMode" },
   { key = "H", mods = "Control|Shift", action = "SearchForward" },
   { key = "G", mods = "Control", action = "ScrollToTop" },

@@ -52,6 +52,22 @@ $env.config.keybindings ++= [
       }
     ]
   },
+  # {
+  #   name: tv_history
+  #   modifier: control
+  #   keycode: char_r
+  #   mode: [emacs, vi_insert, vi_normal]
+  #   event: [
+  #     {
+  #       send: ExecuteHostCommand
+  #       cmd: "
+  #         tv nu-history --height=25
+  #           | commandline edit -r $in
+  #           | commandline set-cursor --end
+  #       "
+  #     }
+  #   ]
+  # },
   {
     name: fzf_directories
     modifier: control
@@ -210,10 +226,9 @@ alias slumber = ~/app/slumber/slumber -f ~/app/slumber
 
 alias color = nu-highlight
 
-alias tldr = ~/app/tldr/tldr --config ~/app/tldr/config.toml
 def tldrf [] {
   tldr -l
-    | fzf --preview "~/app/tldr/tldr --config ~/app/tldr/config.toml --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
+    | fzf --preview "tldr --color always {1}" --preview-window "up,70%,+{2}+3/3,~3"
 }
 
 # def yazi [...args] {

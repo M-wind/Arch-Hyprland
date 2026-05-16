@@ -11,7 +11,7 @@ local highlights = function(colors)
     WhichKeyTitle = { fg = colors.blue },
     NormalFloat = { bg = colors.none },
     FloatBorder = { fg = colors.orange },
-    -- CursorLine = { bg = colors.none },
+    CursorLine = { bg = colors.none },
     CursorLineNr = { bg = colors.none, fg = colors.purple or colors.violet },
     -- TabLineSel = { fg = colors.gray },
     NvimTreeWinSeparator = { fg = "#3b4048" },

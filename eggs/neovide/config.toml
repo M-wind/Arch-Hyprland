@@ -5,7 +5,7 @@ frame = "none"
 
 [font]
 # normal = ["monospace", "Apple Color Emoji", "LXGW WenKai Mono GB Screen"]
-normal = ["monospace", "JoyPixels", "LXGW WenKai Mono GB Screen"]
+normal = ["monospace", "Twemoji Mozilla", "LXGW WenKai Mono GB Screen"]
 size = 13
 
 [box-drawing]

@@ -1,5 +1,5 @@
-// spawn-sh-at-startup "~/app/wallpaper/swaybg -i ~/background/backdrop.jpg"
-// spawn-sh-at-startup "wpaperd -d"
+// spawn-sh-at-startup "swaybg -i ~/background/img/backdrop.jpg"
+spawn-sh-at-startup "wpaperd -d"
 spawn-sh-at-startup "lianwall start"
 spawn-sh-at-startup "clipse -listen"
 spawn-sh-at-startup "eww-niriipc"

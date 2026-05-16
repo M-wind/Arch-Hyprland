@@ -1,7 +1,7 @@
-// layer-rule {
-//     match namespace="wallpaper"
-//     place-within-backdrop true
-// }
+layer-rule {
+    match namespace="^wpaperd"
+    place-within-backdrop true
+}
 layer-rule {
     match namespace="bar-right-slide"
     geometry-corner-radius 8

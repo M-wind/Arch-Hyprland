@@ -2,6 +2,7 @@ export let colors = #{
     onedarkpro: #{
         background: "#282c34",
         // background: "#181818",
+        section: "#414858",
         foreground: "#dcdfe4",
         black: "#282c34",
         red: "#e06c75",
@@ -33,6 +34,7 @@ export let colors = #{
     dracula: #{
         background: "#282A36",
         foreground: "#F8F8F2",
+        section: "#3e4452",
         black: "#191A21",
         red: "#FF5555",
         green: "#50fa7b",
@@ -53,6 +55,7 @@ export let colors = #{
     tokyonight: #{
         background: "#222436",
         foreground: "#c8d3f5",
+        section: "#2d3f76",
         black: "#1b1d2b",
         red: "#ff757f",
         green: "#c3e88d",
@@ -83,6 +86,7 @@ export let colors = #{
     everforest: #{
         background: "#323d43",
         foreground: "#d3c6aa",
+        section: "#543a48",
         black: "#4b565c",
         red: "#e67e80",
         green: "#a7c080",
@@ -113,6 +117,7 @@ export let colors = #{
     catppuccin: #{
         background: "#1e1e2e",
         foreground: "#cdd6f4",
+        section: "#45475a",
         black: "#45475a",
         red: "#f38ba8",
         green: "#a6e3a1",
@@ -143,6 +148,7 @@ export let colors = #{
     "solarized-osaka": #{
         background: "#001419",
         foreground: "#839395",
+        section: "#063540",
         black: "#001014",
         red: "#db302d",
         green: "#849900",
@@ -173,6 +179,7 @@ export let colors = #{
     bamboo: #{
         background: "#252623",
         foreground: "#f1e9d2",
+        section: "#3a3d37",
         black: "#1c1e1b",
         red: "#e75a7c",
         green: "#8fb573",
@@ -203,6 +210,7 @@ export let colors = #{
     vscode: #{
         background: "#1f1f1f",
         foreground: "#d4d4d4",
+        section: "#264f78",
         black: "#1f1f1f",
         red: "#f44747",
         green: "#6a9955",
@@ -233,6 +241,7 @@ export let colors = #{
     wallpaper: #{
         background: "{{background}}",
         foreground: "{{foreground}}",
+        section: "{{color6}}",
         black: "{{color0}}",
         red: "{{color1}}",
         green: "{{color2}}",

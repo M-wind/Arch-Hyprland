@@ -11,7 +11,7 @@ theme[title]="#fcf6e3"
 theme[hi_fg]="#c94c16"
 
 # Background color of selected item in processes box - Solarized Osaka base02
-theme[selected_bg]="#484eb6"
+theme[selected_bg]="#063540"
 
 # Foreground color of selected item in processes box - Solarized Osaka base2
 theme[selected_fg]="#e9e2d0"

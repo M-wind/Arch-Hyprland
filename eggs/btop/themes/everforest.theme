@@ -16,7 +16,7 @@ theme[title]="#d3c6aa"
 theme[hi_fg]="#e67e80"
 
 # Background color of selected items
-theme[selected_bg]="#374145"
+theme[selected_bg]="#543a48"
 
 # Foreground color of selected items
 theme[selected_fg]="#dbbc7f"

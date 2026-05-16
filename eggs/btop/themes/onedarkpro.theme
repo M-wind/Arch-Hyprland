@@ -11,10 +11,10 @@ theme[title]="#abb2bf"
 theme[hi_fg]="#61afef"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#2c313c"
+theme[selected_bg]="#414858"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#abb2bf"
+theme[selected_fg]="#e5c07b"
 
 # Color of inactive/disabled text
 theme[inactive_fg]="#5c6370"
