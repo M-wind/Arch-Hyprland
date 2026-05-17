@@ -7,6 +7,6 @@
 /eggs/clipse/tmp_files
 /eggs/mpd/mpd.log
 /eggs/mpd/mpd.state
-/eggs/mpd/playlist
+/eggs/mpd/playlists
 /eggs/mpd/sticker.sql
-/eggs/mpd/database
+/eggs/mpd/mpd.db

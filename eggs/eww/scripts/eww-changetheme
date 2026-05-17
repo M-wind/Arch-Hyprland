@@ -4,7 +4,7 @@ operate=${1}
 
 if [[ ${operate} == "sync" ]]; then
   code="export let name = \"${2}\";"
-  ctl=~/app/wallpaper/wpaperctl
+  ctl=wpaperctl
 
   if [[ ${1} == "wallpaper" ]]; then
     wallust -q run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))

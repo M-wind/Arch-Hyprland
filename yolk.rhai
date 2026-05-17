@@ -36,7 +36,7 @@ export let eggs = #{
     },     
     hypr: #{
         targets: "~/.config/hypr",
-        templates: ["hyprland.conf"],
+        templates: ["hyprland.lua"],
         enabled: true,
     },     
     niri: #{
@@ -166,6 +166,13 @@ fn hex_to_hext(s, t) {
     hex[-4..=-2] = t;
     hex
 };
+
+fn replace_color_hypr(s) {
+let original = get_yolk_text();
+    original[-7..=-2] = s[1..=s.len()];
+    original
+
+}
 
 fn replace_theme_name() {
   let theme_name = theme.color_name;

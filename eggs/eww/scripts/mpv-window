@@ -9,7 +9,6 @@ if [[ ${WAYLAND_COMPOSITOR} == "niri" ]]; then
   sleep 0.1
   niri msg action center-window
 elif [[ ${WAYLAND_COMPOSITOR} == "hypr" ]]; then
-  hyprctl dispatch resizeactive exact "${width}" "${height}"
-  hyprctl dispatch centerwindow
+  hyprctl dispatch "hl.dsp.window.resize({ x = \"${width}\", y = \"${height}\"})"
+  hyprctl dispatch "hl.dsp.window.center()"
 fi
-
