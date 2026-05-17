@@ -19,8 +19,17 @@ $env.WINEDEBUG = "-all"
 
 # $env.GOENV = $env.HOME | path join language go env
 
-# $env.BAT_THEME = "tokyonight"
-$env.FZF_DEFAULT_OPTS = "--prompt=' ' --style=full --cycle --color=dark --list-border=rounded --bind 'ctrl-d:preview-up,ctrl-f:preview-down'"
+$env.FZF_DEFAULT_COMMAND = "fd --type file --type symlink --type socket --hidden"
+$env.FZF_DEFAULT_OPTS = "
+--color=dark
+--color=hl+:green,hl:green
+--color=pointer:magenta,info:green,spinner:blue,prompt:green,label:cyan
+--prompt=' '
+--style=full
+--cycle
+--list-border=rounded
+--bind 'ctrl-p:preview-up,ctrl-n:preview-down'
+"
 
 $env.DOTNET_ROOT = $env.HOME | path join language/dotnet
 # mpv vulkan Hardware video acceleration Support
@@ -37,7 +46,6 @@ $env.PATH = (
     | prepend ($env.HOME | path join app neovim bin)
     | prepend ($env.HOME | path join app hypr)
     | prepend ($env.HOME | path join app wallpaper)
-    | prepend ($env.HOME | path join app email)
     | prepend ($env._ZO_DATA_DIR)
     | prepend ($env.HOME | path join app formatters)
     | prepend ($env.HOME | path join app screenshots)

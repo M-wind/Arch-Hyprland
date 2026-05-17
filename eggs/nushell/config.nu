@@ -16,7 +16,7 @@ $env.config.keybindings ++= [
         send: ExecuteHostCommand
         cmd: "
           zoxide query -s -l
-            | fzf  --accept-nth=2 --height=45% --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30%
+            | fzf  --accept-nth=2 --height=45% --layout=reverse --preview='eza --all --icons --color=always {2..}' --preview-window=down,30% --input-label='Zoxide History'
             | cd $in
         "
       }
@@ -32,7 +32,7 @@ $env.config.keybindings ++= [
     ]
   },
   {
-    name: fzf_history
+    name: command_history
     modifier: control
     keycode: char_r
     mode: [emacs, vi_insert, vi_normal]
@@ -40,34 +40,17 @@ $env.config.keybindings ++= [
       {
         send: ExecuteHostCommand
         cmd: "
-          history
-            | get command
-            | group-by --to-table 
-            | get group 
+          open $nu.history-path
+            | lines
+            | uniq
             | to text
-            | fzf --height=45% --layout=reverse --wrap
+            | fzf --height=45% --layout=reverse --wrap --input-label='Command History'
             | commandline edit -r $in
             | commandline set-cursor --end
         "
       }
     ]
   },
-  # {
-  #   name: tv_history
-  #   modifier: control
-  #   keycode: char_r
-  #   mode: [emacs, vi_insert, vi_normal]
-  #   event: [
-  #     {
-  #       send: ExecuteHostCommand
-  #       cmd: "
-  #         tv nu-history --height=25
-  #           | commandline edit -r $in
-  #           | commandline set-cursor --end
-  #       "
-  #     }
-  #   ]
-  # },
   {
     name: fzf_directories
     modifier: control
@@ -78,7 +61,7 @@ $env.config.keybindings ++= [
         send: ExecuteHostCommand
         cmd: "
           fd --type directory --hidden 
-            | fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30%
+            | fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,30% --input-label=Dirs
             | commandline edit --append $in
             | commandline set-cursor --end
         "
@@ -94,8 +77,7 @@ $env.config.keybindings ++= [
       {
         send: ExecuteHostCommand
         cmd: "
-          fd --type file --type symlink --type socket --hidden 
-            | fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10%
+          fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10% --input-label=Files
             | commandline edit --append $in
             | commandline set-cursor --end
         "

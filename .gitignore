@@ -5,3 +5,5 @@
 /**/*.log
 /eggs/clipse/clipboard_history.json
 /eggs/clipse/tmp_files
+/eggs/mpd/log
+/eggs/mpd/state

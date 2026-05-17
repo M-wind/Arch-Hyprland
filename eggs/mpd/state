@@ -3,7 +3,7 @@ audio_device_state:1:PipeWire Sound Server
 audio_device_state:1:visulaizer feed
 state: pause
 current: 3
-time: 190.41
+time: 3.968
 random: 1
 repeat: 1
 single: 0

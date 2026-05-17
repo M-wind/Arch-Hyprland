@@ -154,7 +154,8 @@ return {
             prompt_position = "bottom",
           },
         },
-        selection_caret = " ",
+        selection_caret = " ",
+        prompt_prefix = " ",
         mappings = {
           i = {
             ["<C-n>"] = false,

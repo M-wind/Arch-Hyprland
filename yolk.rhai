@@ -118,11 +118,6 @@ export let eggs = #{
         targets: "~/.config/tlrc",
         enabled: true,
     },     
-    television: #{
-        targets: "~/.config/television",
-        templates: ["config.toml"],
-        enabled: false,
-    },     
 };
 
 export const theme = #{
