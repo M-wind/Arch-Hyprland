@@ -39,12 +39,14 @@ hl.layer_rule({
   name = "bar",
   match = { namespace = "bar" },
   blur = true,
+  ignore_alpha = 0,
 })
 hl.layer_rule({
   name = "bar-right-slide",
   match = { namespace = "bar-right-slide" },
   blur = true,
   animation = "slide right",
+  ignore_alpha = 0,
 })
 hl.layer_rule({
   name = "bar-center-popin",
@@ -52,11 +54,23 @@ hl.layer_rule({
   blur = true,
   animation = "slide bottom",
   -- animation = "layersIn"
+  ignore_alpha = 0,
 })
 
 hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
-    name  = "suppress-maximize-events",
-    match = { class = ".*" },
-    suppress_event = "maximize",
+  name = "alacritty",
+  match = { class = "alacritty" },
+  no_blur = true,
+})
+hl.window_rule({
+  name = "foot",
+  match = { class = "foot" },
+  no_blur = true,
+})
+
+hl.window_rule({
+  -- Ignore maximize requests from all apps. You'll probably like this.
+  name = "suppress-maximize-events",
+  match = { class = ".*" },
+  suppress_event = "maximize",
 })

@@ -1,9 +1,9 @@
 [default] #any displayname usr hyprctl monitors
 path = "/home/zwind/background/img"
 duration = "30m"
-sorting = "ascending" #descending random
-mode = "center" #fit fit-border-color stretch tile
-# queue-size = 10 # path is directory sorting is randomi
+sorting = "random" # ascending descending random
+mode = "center" # fit fit-border-color stretch tile center
+queue-size = 15 # queue-size > number of available images in the folder. only work condition
 initial-transition = true
 recursive = false
 

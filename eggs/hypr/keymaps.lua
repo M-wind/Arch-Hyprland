@@ -1,10 +1,10 @@
 -- local termial = "foot -d none"
 local terminal = "alacritty"
 local browser = "~/app/zen/zen"
--- local wallpapern = "wpaperctl next"
--- local wallpaperp = "wpaperctl previous"
-local wallpapern = "lianwall next"
-local wallpaperp = "lianwall prev"
+local wallpapern = "wpaperctl next"
+local wallpaperp = "wpaperctl previous"
+-- local wallpapern = "lianwall next"
+-- local wallpaperp = "lianwall prev"
 
 local priMod = "SUPER"
 local secMod = priMod .. " + SHIFT"
@@ -21,7 +21,7 @@ hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("veila lock"))
 
 hl.bind(priMod .. " + bracketright", hl.dsp.exec_cmd(wallpapern))
 hl.bind(priMod .. " + bracketleft", hl.dsp.exec_cmd(wallpaperp))
-hl.bind(secMod .. " + P", hl.dsp.exec_cmd("lianwall switch"))
+-- hl.bind(secMod .. " + P", hl.dsp.exec_cmd("lianwall switch"))
 
 hl.bind(priMod .. " + C", hl.dsp.exec_cmd("colorpicker -a"))
 hl.bind(priMod .. " + N", hl.dsp.exec_cmd("neovide"))
@@ -44,6 +44,12 @@ hl.bind("Print", hl.dsp.exec_cmd("screentool -n -t capture -s full -f ~/screensh
 
 hl.bind(secMod .. " + Q", hl.dsp.exit())
 
+if require("variables").layout == "scrolling" then
+  hl.bind(priMod .. " + P", hl.dsp.layout("colresize +conf"))
+else
+  hl.bind(priMod .. " + P", hl.dsp.layout("togglesplit"))
+end
+
 hl.bind(priMod .. " + 1", hl.dsp.focus({ workspace = 1 }))
 hl.bind(priMod .. " + 2", hl.dsp.focus({ workspace = 2 }))
 hl.bind(priMod .. " + 3", hl.dsp.focus({ workspace = 3 }))
@@ -60,8 +66,8 @@ hl.bind(priMod .. " + DOWN", hl.dsp.focus({ direction = "down" }))
 hl.bind(priMod .. " + UP", hl.dsp.focus({ direction = "up" }))
 hl.bind(priMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
 
-hl.bind(priMod .. " + W", hl.dsp.window.kill())
-hl.bind(priMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(priMod .. " + W", hl.dsp.window.close())
+hl.bind(priMod .. " + V", hl.dsp.window.float())
 hl.bind(priMod .. " + R", hl.dsp.window.center())
 hl.bind(priMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(secMod .. " + C", hl.dsp.window.cycle_next())

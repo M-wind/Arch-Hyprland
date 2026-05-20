@@ -17,8 +17,6 @@ $env.LIBSEAT_BACKEND = "logind"
 $env.WINEPREFIX = $env.HOME | path join game/.wine
 $env.WINEDEBUG = "-all"
 
-# $env.GOENV = $env.HOME | path join language go env
-
 $env.FZF_DEFAULT_COMMAND = "fd --type file --type symlink --type socket --hidden"
 $env.FZF_DEFAULT_OPTS = "
 --color=dark
@@ -58,11 +56,10 @@ $env.PATH = (
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
     | prepend ($env.HOME | path join game wine bin)
-    | prepend ($env.HOME | path join language nodejs 22.22.2 bin)
-    | prepend ($env.HOME | path join language nodejs npm-global bin)
-    | prepend ($env.HOME | path join language nodejs pnpm-global bin)
-    | prepend ($env.HOME | path join language nodejs pnpm bin)
-    # | prepend ($env.HOME | path join language go 1.26.2 bin)
+    | prepend ($env.HOME | path join language node 22.22.2 bin)
+  |   prepend ($env.HOME | path join language node tools bin)
+    | prepend ($env.HOME | path join language node npm-global bin)
+    | prepend ($env.HOME | path join language node pnpm-global bin)
     | prepend ($env.DOTNET_ROOT)
     | prepend ($env.HOME | path join .config eww scripts)
     | uniq

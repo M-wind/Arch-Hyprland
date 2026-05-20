@@ -13,7 +13,7 @@ export let eggs = #{
     },     
     lianwall: #{
         targets: "~/.config/lianwall",
-        enabled: true,
+        enabled: false,
     },     
     rmpc: #{
         targets: "~/.config/rmpc",
@@ -99,6 +99,7 @@ export let eggs = #{
     },     
     dunst: #{
         targets: "~/.config/dunst",
+        templates: ["dunstrc"],
         enabled: true,
     },     
     pnpm: #{
@@ -167,11 +168,22 @@ fn hex_to_hext(s, t) {
     hex
 };
 
+fn replace_niri_shadow(s) {
+    let original = get_yolk_text();
+    original[-9..=-4] = s[1..=s.len()];
+    original
+}
+
 fn replace_color_hypr(s) {
-let original = get_yolk_text();
+    let original = get_yolk_text();
     original[-7..=-2] = s[1..=s.len()];
     original
+}
 
+fn replace_color_by_index(c, s, e) {
+    let original = get_yolk_text();
+    original[s..=e] = c[1..=c.len()];
+    original
 }
 
 fn replace_theme_name() {

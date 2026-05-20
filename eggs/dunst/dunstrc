@@ -24,7 +24,8 @@
     # line_height = 2
     idle_threshold = 0
     font = monospace 13
-    format = "<span font_weight='bold' font_style='italic' color='#00FEB8'>%s</span>\n<small>%b</small>"
+    # {# replace_color_by_index(theme.colors.green, -37, -32) #}
+    format = "<span font_weight='bold' font_style='italic' color='#849900'>%s</span>\n<small>%b</small>"
     vertical_alignment = center
     show_age_threshold = -1
     browser = "handlr open"
@@ -39,8 +40,9 @@
     mouse_left_click = "open_url"
     mouse_middle_click = "none"
     mouse_right_click = "close_current"
-    background = "#18191C8E"
-    foreground = "#FFFFFF"
+    # {# replace_niri_shadow(theme.colors.background) #}
+    background = "#0014198f"
+    foreground = "#839395" # {< replace_color(theme.colors.foreground) >}
     # default_icon = notifyl
     default_icon = " "
     skip_display = true
@@ -65,7 +67,8 @@
     appname = niri-config
     urgency = critical
     history_ignore = true
-    timeout = 9
+    override_dbus_timeout = 9
+    # {# replace_color_by_index(theme.colors.red, -22, -17) #}
     format = "<span font_weight='bold' font_style='italic' line_height='1.5pt' color='#db302d'>%s</span>\n%b"
     new_icon = niri
     icon_position = right

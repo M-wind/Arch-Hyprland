@@ -1,29 +1,36 @@
 layer-rule {
-    match namespace="^wpaperd"
+    match namespace="wallpaper"
     place-within-backdrop true
 }
 layer-rule {
     match namespace="bar-right-slide"
     geometry-corner-radius 8
     background-effect {
-        xray true
         blur true
+        xray true
     }
 }
 layer-rule {
     match namespace="bar-center-slide"
     geometry-corner-radius 8
     background-effect {
-        xray true
         blur true
+        xray true
     }
 }
 layer-rule {
     match namespace="bar-center-popin"
     geometry-corner-radius 8
     background-effect {
-        xray true
         blur true
+        xray true
     }
 }
-
+layer-rule {
+    match namespace="notifications"
+    geometry-corner-radius 8
+    background-effect {
+        blur true
+        xray false
+    }
+}

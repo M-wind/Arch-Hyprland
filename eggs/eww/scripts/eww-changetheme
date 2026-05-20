@@ -12,7 +12,7 @@ if [[ ${operate} == "sync" ]]; then
     colorscheme=$(yolk eval "write_current_colorscheme(\"${2}\")")
     echo "${colorscheme}" >~/.config/wallust/colorschemes/terminal.json && wallust -q -T cs terminal
   fi
-  echo "${code}" >~/.config/yolk/theme.rhai && yolk sync && eww-window close platte
+  echo "${code}" >~/.config/yolk/theme.rhai && yolk sync && eww-window close platte && dunstctl reload
 elif [[ ${operate} == "update" ]]; then
   sleep 0.02
   eww update activeworkspace="$(eww-tools get_activeworkspace_id)"

@@ -1,4 +1,4 @@
-include optional=true "startup.kdl"
+include optional=true "autostart.kdl"
 include optional=true "layer-rule.kdl"
 include optional=true "window-rule.kdl"
 include optional=true "keymaps.kdl"
@@ -10,9 +10,9 @@ hotkey-overlay {
 xwayland-satellite {
     off
 }
-// config-notification {
-//   disable-failed
-// }
+config-notification {
+  disable-failed
+}
 gestures {
     hot-corners {
         off
@@ -76,6 +76,7 @@ layout {
     // center-focused-column "on-overflow"
     always-center-single-column
     focus-ring {
+        off
         width 2
         // {# replace_quoted(theme.colors.cyan) #}
         active-color "#29a298"
@@ -96,6 +97,14 @@ layout {
         proportion 0.66667
         proportion 1.0
     }
+    shadow {
+        on
+        softness 8
+        offset x=0 y=0
+        // {# replace_niri_shadow(theme.colors.cyan) #}
+        color "#29a298ff"
+        inactive-color "#a2929800"
+    }
 }
 overview {
     zoom 0.69
@@ -103,9 +112,9 @@ overview {
 blur {
     // off
     passes 3
-    offset 2.0
+    offset 3.7
     noise 0.02
-    saturation 1.8
+    // saturation 1.0
 }
 debug {
 

@@ -77,7 +77,7 @@ $env.config.keybindings ++= [
       {
         send: ExecuteHostCommand
         cmd: "
-          fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10% --input-label=Files
+          fzf --height=45% --layout=reverse --preview='eza --icons --color=always {}' --preview-window=down,10% --input-label=Files --bind 'ctrl-o:execute:handlr open {}'
             | commandline edit --append $in
             | commandline set-cursor --end
         "
@@ -106,49 +106,49 @@ $env.config.keybindings ++= [
   # }
 ]
 
-alias core-ls = ls
-
-def ls [
-    --all (-a),         # Show hidden files
-    --long (-l),        # Get all available columns for each entry (slower; columns are platform-dependent)
-    --short-names (-s), # Only print the file names, and not the path
-    --full-paths (-f),  # display paths as absolute paths
-    --du (-d),          # Display the apparent directory size ("disk usage") in place of the directory metadata size
-    --directory (-D),   # List the specified directory itself instead of its contents
-    --mime-type (-m),   # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-    --threads (-t),     # Use multiple threads to list contents. Output will be non-deterministic.
-    ...pattern: glob,   # The glob pattern to use.
-]: [ nothing -> table ] {
-    let pattern = if ($pattern | is-empty) { [ '.' ] } else { $pattern }
-    match [$long] {
-      [true] => {
-        (core-ls
-          --all=$all
-          --long
-          --short-names=$short_names
-          --full-paths=$full_paths
-          --du=$du
-          --directory=$directory
-          --mime-type=$mime_type
-          --threads=$threads
-          ...$pattern
-        ) | sort-by -n name
-      }
-      [false] => {
-        (core-ls
-          --all=$all
-          --long
-          --short-names=$short_names
-          --full-paths=$full_paths
-          --du=$du
-          --directory=$directory
-          --mime-type=$mime_type
-          --threads=$threads
-          ...$pattern
-        ) | sort-by -n name | select name type user group mode size modified
-      } 
-    }
-}
+# alias core-ls = ls
+#
+# def ls [
+#     --all (-a),         # Show hidden files
+#     --long (-l),        # Get all available columns for each entry (slower; columns are platform-dependent)
+#     --short-names (-s), # Only print the file names, and not the path
+#     --full-paths (-f),  # display paths as absolute paths
+#     --du (-d),          # Display the apparent directory size ("disk usage") in place of the directory metadata size
+#     --directory (-D),   # List the specified directory itself instead of its contents
+#     --mime-type (-m),   # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
+#     --threads (-t),     # Use multiple threads to list contents. Output will be non-deterministic.
+#     ...pattern: glob,   # The glob pattern to use.
+# ]: [ nothing -> table ] {
+#     let pattern = if ($pattern | is-empty) { [ '.' ] } else { $pattern }
+#     match [$long] {
+#       [true] => {
+#         (core-ls
+#           --all=$all
+#           --long
+#           --short-names=$short_names
+#           --full-paths=$full_paths
+#           --du=$du
+#           --directory=$directory
+#           --mime-type=$mime_type
+#           --threads=$threads
+#           ...$pattern
+#         ) | sort-by -n name
+#       }
+#       [false] => {
+#         (core-ls
+#           --all=$all
+#           --long
+#           --short-names=$short_names
+#           --full-paths=$full_paths
+#           --du=$du
+#           --directory=$directory
+#           --mime-type=$mime_type
+#           --threads=$threads
+#           ...$pattern
+#         ) | sort-by -n name | select name type user group mode size modified
+#       } 
+#     }
+# }
 
 def rgf [
   text,
@@ -198,9 +198,13 @@ def h [name] {
   nu -c $"($name) --help | bat -p -l help"
 }
 
-alias x = eza --icons --hyperlink
-alias xl = eza --icons --hyperlink --long --time-style '+%Y-%m-%d %H:%M:%S'
-alias xt = xl -T
+alias x = eza --icons=always --hyperlink
+alias xl = eza --icons=always --hyperlink --long -b --time-style '+%Y-%m-%d %H:%M:%S'
+def xt [num?: number path?: path] {
+  let a = if $num == null { 1 } else { $num } 
+  let b = if $path == null { "." } else { $path }
+  x -T -L $a $b 
+}
 
 alias vi = neovide
 

@@ -28,6 +28,12 @@ overall   = {}
 sep_left  = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
+perm_sep   = { fg = "white", bold=true, dim = true }
+perm_type  = { fg = "blue" }
+perm_read  = { fg = "yellow" }
+perm_write = { fg = "red" }
+perm_exec  = { fg = "cyan" }
+
 [help]
 footer  = { fg = "#98c379" }
 

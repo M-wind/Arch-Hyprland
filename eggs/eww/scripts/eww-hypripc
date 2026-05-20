@@ -3,13 +3,6 @@
 old_address=""
 
 handle() {
-  # if [[ ${1:0:11} == "workspacev2" ]]; then
-  #   # workspaceid=${1:13:1}
-  #   # eww update activeworkspace="${workspaceid}"
-  #   echo $1
-  # elif [[ ${1:0:10} == "openwindow" ]]; then
-  #   echo $1
-  # fi
   echo $1
   case $1 in
   workspacev2*)
@@ -33,8 +26,14 @@ handle() {
     eww update applist="$(eww-tools get_app_list)"
     ;;
   # windowtitlev2*)
-  #   address="0x${1:15}"
-  #   echo "${address}"
+  #   address="0x${1:15:12}"
+  #   title="${1:28}"
+  #   if [[ ${address} != ${old_address1} ]]; then
+  #     if [[ ${title} =~ "Bitwarden Password Manager" ]]; then
+  #       hyprctl dispatch "hl.dsp.window.float({ window = \"address:${address}\" })"
+  #       old_address1=${address}
+  #     fi
+  #   fi
   #   ;;
   esac
 }

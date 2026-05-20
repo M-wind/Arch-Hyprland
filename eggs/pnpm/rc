@@ -1,6 +1,6 @@
-global-bin-dir=${HOME}/language/nodejs/pnpm-global/bin/
-global-dir=${HOME}/language/nodejs/pnpm-global/
-store-dir=${HOME}/language/nodejs/pnpm-store/
-cache-dir=${HOME}/language/nodejs/pnpm-cache/
-state-dir=${HOME}/language/nodejs/pnpm-state/
+global-bin-dir=${HOME}/language/node/pnpm-global/bin/
+global-dir=${HOME}/language/node/pnpm-global/
+store-dir=${HOME}/language/node/pnpm-store/
+cache-dir=${HOME}/language/node/pnpm-cache/
+state-dir=${HOME}/language/node/pnpm-state/
 

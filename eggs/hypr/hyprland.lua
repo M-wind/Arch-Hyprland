@@ -1,3 +1,4 @@
+local g_var = require("variables")
 require("autostart")
 require("keymaps")
 require("rules")
@@ -12,16 +13,6 @@ hl.monitor({
 hl.env("HYPRCURSOR_THEME", "phinger-cursors-light")
 hl.env("HYPRCURSOR_SIZE", "24")
 
-local layout = "scrolling"
--- local layout = "dwindle"
-
-if layout == "scrolling" then
-  hl.bind("SUPER + P", hl.dsp.layout("colresize +conf"))
-else
-  hl.bind("SUPER + P", hl.dsp.layout("togglesplit"))
-end
-
-
 hl.config({
   general = {
     gaps_in = 3,
@@ -35,7 +26,7 @@ hl.config({
     allow_tearing = false,
     hover_icon_on_border = true,
     extend_border_grab_area = 20,
-    layout = layout,
+    layout = g_var.layout,
   },
   decoration = {
     rounding = 8,
@@ -43,9 +34,9 @@ hl.config({
     active_opacity = 1.0,
     inactive_opacity = 1.0,
     blur = {
-      enabled = false,
-      size = 1,
-      passes = 2,
+      enabled = true,
+      size = 6,
+      passes = 3,
       ignore_opacity = true,
       new_optimizations = true,
       xray = true,
@@ -57,9 +48,9 @@ hl.config({
       enabled = true,
       range = 18,
       render_power = 4,
-      color_inactive = 0x00a29a298,
+      color_inactive = 0x00a29298,
       --  {# replace_color_hypr(theme.colors.cyan) #}
-      color = 0xff29a298,
+      color = 0x2929a298,
     },
   },
 

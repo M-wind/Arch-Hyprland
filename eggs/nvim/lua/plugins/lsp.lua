@@ -35,14 +35,14 @@ return {
       diagnostics = {
         underline = true,
         update_in_insert = false,
-        virtual_text = false,
+        -- virtual_text = false,
         -- virtual_text = {
         --   spacing = 4,
         --   source = "if_many",
         --   prefix = "●",
         --   current_line = true,
         -- },
-        virtual_lines = false,
+        -- virtual_lines = false,
         -- virtual_lines = { current_line = true },
         severity_sort = true,
         float = {

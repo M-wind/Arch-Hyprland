@@ -28,6 +28,16 @@ handle() {
     windowid=$(echo "${value}" | jq ".window.id")
     eww update activewindow="${windowid}"
     ;;
+  # "WindowUpdated")
+  #   title=$(echo "${value}" | jq ".window.title")
+  #   if [[ ${title} =~ "Bitwarden — Zen Browser" ]]; then
+  #     id=$(echo "${value}" | jq ".window.id")
+  #     niri msg action move-window-to-floating  --id ${id}
+  #     niri msg action set-window-width --id ${id} 1280
+  #     niri msg action set-window-height --id ${id} 720
+  #     niri msg action center-window  --id ${id}
+  #   fi
+  #   ;;
   "WindowClosed")
     eww update applist="$(eww-tools get_app_list)"
     ;;

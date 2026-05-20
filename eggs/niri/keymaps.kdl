@@ -53,18 +53,46 @@ binds {
     Mod+Shift+O repeat=false {
         toggle-overview
     }
-    // Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
-    //     spawn-sh "wpaperctl previous"
-    // }
-    // Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
-    //     spawn-sh "wpaperctl next"
-    // }
     Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
-        spawn-sh "lianwall next"
+        spawn-sh "wpaperctl previous"
     }
     Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
-        spawn-sh "lianwall prev"
+        spawn-sh "wpaperctl next"
     }
+    Mod+O repeat=false {
+        switch-preset-window-height
+    }
+    Mod+P repeat=false {
+        switch-preset-column-width
+    }
+    Mod+R {
+        center-window
+    }
+    Mod+F repeat=false {
+        maximize-column
+    }
+    Mod+Shift+F repeat=false {
+        fullscreen-window
+    }
+    Mod+I repeat=false {
+        show-hotkey-overlay
+    }
+    Mod+Shift+Q repeat=false {
+        quit skip-confirmation=true
+    }
+    Mod+Shift+C repeat=false {
+        switch-focus-between-floating-and-tiling
+    }
+    // Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
+    //     spawn-sh "lianwall next"
+    // }
+    // Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
+    //     spawn-sh "lianwall prev"
+    // }
+    // Mod+Shift+P hotkey-overlay-title="Swith Wallpaper Mode" repeat=false {
+    //     spawn-sh "lianwall switch"
+    // }
+    // ----------------------------- focus window ------------------------------
     Mod+Left {
         focus-column-left
     }
@@ -89,51 +117,28 @@ binds {
     Mod+L {
         focus-column-right
     }
-    Mod+R {
-        center-window
-    }
-    Mod+O repeat=false {
-        switch-preset-window-height
-    }
-    Mod+P repeat=false {
-        switch-preset-column-width
-    }
-    Mod+Shift+P hotkey-overlay-title="Swith Wallpaper Mode" repeat=false {
-        spawn-sh "lianwall switch"
-    }
+    // --------------------- move window to workspace -------------------------
     Mod+Shift+BracketLeft {
         move-window-to-workspace-down
     }
     Mod+Shift+BracketRight {
         move-window-to-workspace-up
     }
-    Mod+F repeat=false {
-        maximize-column
-    }
-    Mod+Shift+F repeat=false {
-        fullscreen-window
-    }
-    Mod+I repeat=false {
-        show-hotkey-overlay
-    }
-    Mod+Shift+Q repeat=false {
-        quit skip-confirmation=true
-    }
-    Mod+Shift+C repeat=false {
-        switch-focus-between-floating-and-tiling
-    }
+    // -------------------------- focus workspace ----------------------------
     Mod+Alt+J {
         focus-workspace-down
     }
     Mod+Alt+K {
         focus-workspace-up
     }
+    // ------------------------ consume or expel window ---------------------
     Mod+Alt+H repeat=false {
         consume-or-expel-window-left
     }
     Mod+Alt+L repeat=false {
         consume-or-expel-window-right
     }
+    // ---------------------------- move window ------------------------------
     Mod+Shift+Left {
         move-column-left
     }
@@ -158,6 +163,7 @@ binds {
     Mod+Shift+L {
         move-column-right
     }
+    // -------------------------- focus workspace ----------------------------
     Mod+1 repeat=false {
         focus-workspace 1
     }
@@ -176,6 +182,7 @@ binds {
     Mod+6 repeat=false {
         focus-workspace 6
     }
+    // ---------------------- move window to workspace ------------------------
     Mod+Shift+1 repeat=false {
         move-column-to-workspace 1
     }
@@ -194,6 +201,7 @@ binds {
     Mod+Shift+6 repeat=false {
         move-column-to-workspace 6
     }
+    // -------------------------- set window size -----------------------------
     Mod+Ctrl+J {
         set-window-height "-10%"
     }
@@ -206,6 +214,7 @@ binds {
     Mod+Ctrl+L {
         set-column-width "+10%"
     }
+    // ----------------------------- set volumn ------------------------------
     Mod+Ctrl+M hotkey-overlay-title="Toggle Mute" repeat=false {
         spawn-sh "eww-volume togglebykey"
     }
@@ -221,6 +230,7 @@ binds {
     Mod+Ctrl+BackSpace hotkey-overlay-title="Volume Default" repeat=false {
         spawn-sh "eww-volume defaultbykey"
     }
+    // ------------------------------ screenshot ----------------------------
     // Print repeat=false { screenshot-screen; }
     // Mod+Shift+S hotkey-overlay-title="Open ScreenShot" repeat=false { screenshot; }
     Print hotkey-overlay-title="ScreenShot full" repeat=false {
@@ -235,6 +245,7 @@ binds {
     Mod+Shift+G hotkey-overlay-title="Record full" repeat=false {
         spawn-sh "screentool -n -t record -s full -f ~/screenshots/video-full-$(date +'%F-%T-%N.mkv')"
     }
+    // ---------------------------- screen lock ------------------------------
     Ctrl+Alt+L hotkey-overlay-title="Screen Lock" repeat=false {
         spawn-sh "veila lock"
     }

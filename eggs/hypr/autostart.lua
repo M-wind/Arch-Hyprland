@@ -1,10 +1,11 @@
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("lianwall start")
-  hl.exec_cmd("clipse -listen")
+  -- hl.exec_cmd("lianwall start")
+  hl.exec_cmd("wpaperd -d")
   hl.exec_cmd("eww-hypripc")
   hl.exec_cmd("eww daemon & eww-volume & getinitvol & eww open bar")
   hl.exec_cmd("fcitx5 -d & fcitx5_tray")
   hl.exec_cmd("mpd")
   hl.exec_cmd("veilad")
+  hl.exec_cmd("clipse -listen")
 end)
 
