@@ -1,6 +1,7 @@
 export let colors = #{
     onedarkpro: #{
-        background: "#282c34",
+        background: "#001419",
+        // background: "#282c34",
         // background: "#181818",
         section: "#414858",
         foreground: "#dcdfe4",
@@ -32,7 +33,8 @@ export let colors = #{
         // surface1: "#3b4048",
     },
     dracula: #{
-        background: "#282A36",
+        background: "#001419",
+        // background: "#282A36",
         foreground: "#F8F8F2",
         section: "#3e4452",
         black: "#191A21",
@@ -53,7 +55,8 @@ export let colors = #{
         bright_white: "#FFFFFF",
     },  
     tokyonight: #{
-        background: "#222436",
+        background: "#001419",
+        // background: "#222436",
         foreground: "#c8d3f5",
         section: "#2d3f76",
         black: "#1b1d2b",
@@ -84,7 +87,8 @@ export let colors = #{
         // surface1: "#2f334d",
     },
     everforest: #{
-        background: "#323d43",
+        background: "#001419",
+        // background: "#323d43",
         foreground: "#d3c6aa",
         section: "#543a48",
         black: "#4b565c",
@@ -115,7 +119,8 @@ export let colors = #{
         // surface1: "#343f44",
     },
     catppuccin: #{
-        background: "#1e1e2e",
+        background: "#001419",
+        // background: "#1e1e2e",
         foreground: "#cdd6f4",
         section: "#45475a",
         black: "#45475a",
@@ -177,7 +182,8 @@ export let colors = #{
         // surface1: "#2aeddd",
     },
     bamboo: #{
-        background: "#252623",
+        background: "#001419",
+        // background: "#252623",
         foreground: "#f1e9d2",
         section: "#3a3d37",
         black: "#1c1e1b",
@@ -208,7 +214,8 @@ export let colors = #{
         // surface1: "#2f312c",
     },
     vscode: #{
-        background: "#1f1f1f",
+        background: "#001419",
+        // background: "#1f1f1f",
         foreground: "#d4d4d4",
         section: "#264f78",
         black: "#1f1f1f",
@@ -239,7 +246,8 @@ export let colors = #{
         // surface1: "#252526",
     },
     wallpaper: #{
-        background: "{{background}}",
+        background: "#001419",
+        // background: "{{background}}",
         foreground: "{{foreground}}",
         section: "{{color6}}",
         black: "{{color0}}",

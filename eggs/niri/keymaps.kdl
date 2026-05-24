@@ -1,34 +1,34 @@
 binds {
-    // Mod+T hotkey-overlay-title="Open Terminal: Foot" repeat=false {
-    //     spawn-sh "foot -d none"
-    // }
-    // Mod+E hotkey-overlay-title="Open File Manager: Yazi" repeat=false {
-    //     spawn-sh "foot -d none -a yazi -e yazi"
-    // }
-    // Mod+Shift+V hotkey-overlay-title="Open Clipboard: Clipse" repeat=false {
-    //     spawn-sh "foot -d none -a clipse -e clipse"
-    // }
-    // Mod+Shift+R hotkey-overlay-title="Open Music: Rmpc" repeat=false {
-    //     spawn-sh "foot -d none -a rmpc -e rmpc"
-    // }
-    // Ctrl+Shift+Escape hotkey-overlay-title="Open System Moniter: Btop" repeat=false {
-    //     spawn-sh "foot -d none -a btop -e btop"
-    // }
     Mod+T hotkey-overlay-title="Open Terminal: Foot" repeat=false {
-        spawn-sh "alacritty"
+        spawn-sh "foot -d none"
     }
     Mod+E hotkey-overlay-title="Open File Manager: Yazi" repeat=false {
-        spawn-sh "alacritty -a yazi -e yazi"
+        spawn-sh "foot -d none -a yazi -e yazi"
     }
     Mod+Shift+V hotkey-overlay-title="Open Clipboard: Clipse" repeat=false {
-        spawn-sh "alacritty -a clipse -e clipse"
+        spawn-sh "foot -d none -a clipse -e clipse"
     }
     Mod+Shift+R hotkey-overlay-title="Open Music: Rmpc" repeat=false {
-        spawn-sh "alacritty -a rmpc -e rmpc"
+        spawn-sh "foot -d none -a rmpc -e rmpc"
     }
     Ctrl+Shift+Escape hotkey-overlay-title="Open System Moniter: Btop" repeat=false {
-        spawn-sh "alacritty -a btop -e btop"
+        spawn-sh "foot -d none -a btop -e btop"
     }
+    // Mod+T hotkey-overlay-title="Open Terminal: Foot" repeat=false {
+    //     spawn-sh "alacritty"
+    // }
+    // Mod+E hotkey-overlay-title="Open File Manager: Yazi" repeat=false {
+    //     spawn-sh "alacritty -a yazi -e yazi"
+    // }
+    // Mod+Shift+V hotkey-overlay-title="Open Clipboard: Clipse" repeat=false {
+    //     spawn-sh "alacritty -a clipse -e clipse"
+    // }
+    // Mod+Shift+R hotkey-overlay-title="Open Music: Rmpc" repeat=false {
+    //     spawn-sh "alacritty -a rmpc -e rmpc"
+    // }
+    // Ctrl+Shift+Escape hotkey-overlay-title="Open System Moniter: Btop" repeat=false {
+    //     spawn-sh "alacritty -a btop -e btop"
+    // }
     Mod+C hotkey-overlay-title="Color Picker" repeat=false {
         spawn-sh "colorpicker -a"
     }

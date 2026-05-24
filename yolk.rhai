@@ -193,3 +193,20 @@ fn replace_theme_name() {
   }
   theme_name
 }
+
+fn replace_nvim_theme() {
+  let theme_name = theme.color_name;
+  if theme_name == "wallpaper" {
+    theme_name = "solarized-osaka"
+  }
+  if theme_name == "onedarkpro" {
+    theme_name = "onedark"
+  }
+  if theme_name == "catppuccin" {
+    theme_name = "catppuccin-mocha"
+  }
+  if theme_name == "tokyonight" {
+    theme_name = "tokyonight-moon"
+  }
+  theme_name
+}

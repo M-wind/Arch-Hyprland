@@ -32,42 +32,6 @@ M.colors = {
 M.tailwindColor = {}
 
 M.change = function()
-  -- local has_picker, picker = pcall(require, "snacks.picker")
-  -- if not has_picker then
-  --   Snacks.notify.error("Can't Find Snacks Picker.")
-  --   return
-  -- end
-  -- picker.pick({
-  --   title = " Themes",
-  --   items = themes,
-  --   layout = {
-  --     preview = false,
-  --     layout = {
-  --       backdrop = false,
-  --       width = 35,
-  --       height = #themes + 2,
-  --       box = "vertical",
-  --       border = "rounded",
-  --       title = "{title}",
-  --       title_pos = "center",
-  --       { win = "input", height = 1, border = "bottom" },
-  --       { win = "list", border = "none" },
-  --     },
-  --   },
-  --   sort = { "idx" },
-  --   format = "text",
-  --   confirm = function(pick, item)
-  --     if vim.g.colors_name == item.value then
-  --       Snacks.notify.error("Already The Theme.")
-  --       return
-  --     end
-  --     vim.cmd("colorscheme " .. item.value)
-  --     for k, v in pairs(M.tailwindColor) do
-  --       vim.api.nvim_set_hl(0, k, { fg = v })
-  --     end
-  --     pick:close()
-  --   end,
-  -- })
   local finders = require("telescope.finders")
   local pickers = require("telescope.pickers")
   local actions = require("telescope.actions")
@@ -114,16 +78,15 @@ M.change = function()
         actions.select_default:replace(create_mapping(prompt_bufnr, {
           action = function(selection)
             if vim.g.colors_name == selection.value then
-              vim.notify("Already The Theme.")
+              vim.notify("Already The Theme.", "warn")
               return
             end
-
-            vim.cmd("colorscheme " .. selection.value)
+            require("utils.load_theme").load(selection.value)
             for k, v in pairs(M.tailwindColor) do
               vim.api.nvim_set_hl(0, k, { fg = v })
             end
             -- if vim.g.neovide then
-            --   -- neovide 背景颜色  hyprland 应用透明和模糊
+            --   -- neovide 背景颜色
             --   -- vim.api.nvim_set_hl(0, "Normal", { bg = M.colors.bg })
             --   -- 清除颜色 防止 浮动窗口有背景模糊
             --   vim.cmd("hi clear Normal")

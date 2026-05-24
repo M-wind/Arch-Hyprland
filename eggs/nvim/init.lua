@@ -1,17 +1,19 @@
-require("core.options")
-require("core.keymaps")
-require("core.lazy")
+require("options")
+require("keymaps")
+require("lsp")
 
--- {% if theme.color_name != "wallpaper" %}
--- {# replace_quoted(theme.color_name) #}
-require("solarized-osaka").load()
--- # {% else %}
---<yolk> require("solarized-osaka").load()
--- {% end %}
-require("core.autocmds")
+require("utils.load_theme")
+  -- {# replace_in(`"`, replace_nvim_theme()) #}
+  .load("solarized-osaka")
 
--- vim.opt.cmdheight = 0
--- vim.notify("text")
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when copying",
+  group = vim.api.nvim_create_augroup("highlight-copy", { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
 
 if vim.g.neovide then
   vim.keymap.set({ "n", "x", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
@@ -40,7 +42,9 @@ if vim.g.neovide then
   vim.keymap.set("n", "<C-->", function()
     change_scale_factor(1 / 1.25)
   end)
-  require("dashboard")
+  vim.keymap.set("n", "<C-0>", function()
+    vim.g.neovide_scale_factor = 1
+  end)
   -- neovide 背景颜色  hyprland 应用透明和模糊
   -- {% if theme.color_name != "wallpaper" %}
   -- {# replace_color(theme.colors.background) #}
@@ -49,43 +53,3 @@ if vim.g.neovide then
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")
 end
-
---firenvim
--- if vim.g.started_by_firenvim == true then
---   require("utils.heirline").settings = {
---     encoding = false,
---     diagnostics = false,
---   }
---   vim.g.firenvim_config = {
---     localSettings = {
---       [".*"] = {
---         cmdline = "neovim",
---         filename = "firenvim.{extension}",
---         selector = "textarea",
---         takeover = "never",
---       }
---     }
---   }
--- end
-
--- neovim 0.11+
-vim.keymap.del("n", "grn")
-vim.keymap.del({ "n", "x" }, "gra")
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "grt")
-vim.keymap.del("n", "gO")
-
--- neovim 0.12+
--- vim.keymap.del("n", "grx")
-
-
--- local stdout = vim.uv.new_pipe(false)
--- vim.uv.spawn("rg", {
---   args = { "-e", "end", "-g", "**/*" },
---   cwd = "/home/zwind/.config/nvim",
---   stdio = { nil, stdout, nil },
--- })
--- vim.uv.read_start(stdout, function(_, s)
---   print(s)
--- end)

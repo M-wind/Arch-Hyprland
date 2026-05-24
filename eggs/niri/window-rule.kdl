@@ -6,10 +6,10 @@ window-rule {
 window-rule {
     match app-id="alacritty"
     draw-border-with-background false
-    // background-effect {
-    //     blur true
-    //     xray false
-    // }
+    background-effect {
+        blur true
+        xray false
+    }
 }
 window-rule {
     match app-id="clipse"
@@ -30,7 +30,7 @@ window-rule {
     open-floating true
     background-effect {
         blur true
-        xray true
+        xray false
     }
     default-column-width {
         fixed 1271
@@ -44,7 +44,7 @@ window-rule {
     open-floating true
     background-effect {
         blur true
-        xray true
+        xray false
     }
     default-column-width {
         fixed 1536
@@ -58,7 +58,7 @@ window-rule {
     open-floating true
     background-effect {
         blur true
-        xray true
+        xray false
     }
     default-column-width {
         fixed 1280
@@ -82,7 +82,7 @@ window-rule {
     opacity 0.69
     background-effect {
         blur true
-        xray true
+        xray false
     }
     min-width 1831
     max-width 1931

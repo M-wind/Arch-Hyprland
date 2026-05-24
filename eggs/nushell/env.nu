@@ -57,7 +57,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join game)
     | prepend ($env.HOME | path join game wine bin)
     | prepend ($env.HOME | path join language node 22.22.2 bin)
-  |   prepend ($env.HOME | path join language node tools bin)
+    | prepend ($env.HOME | path join language node tools bin)
     | prepend ($env.HOME | path join language node npm-global bin)
     | prepend ($env.HOME | path join language node pnpm-global bin)
     | prepend ($env.DOTNET_ROOT)
