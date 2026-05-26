@@ -1,1 +1,1 @@
-export let name = "solarized-osaka";
+export let name = "tokyonight";

@@ -61,10 +61,6 @@
       "rev": "fae936abb5e0345b85c3a03ecf38525b0828b992",
       "src": "https://github.com/rebelot/heirline.nvim"
     },
-    "log-highlight.nvim": {
-      "rev": "b2e00cfd41ca94338265a595f3f3f423d9f9322e",
-      "src": "https://github.com/fei6409/log-highlight.nvim"
-    },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
       "src": "https://github.com/jake-stewart/multicursor.nvim"

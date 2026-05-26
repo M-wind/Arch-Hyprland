@@ -1,7 +1,6 @@
 require("utils.lazyload").on_vim_enter(function()
   vim.pack.add({
     { src = "https://github.com/MunifTanjim/nui.nvim" },
-    -- { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/rcarriga/nvim-notify" },
     { src = "https://github.com/folke/noice.nvim" },
   })

@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd("FileType", {
   once = true,
   pattern = { "toml" },
-  callback = function()
+  callback = function(v)
     require("utils.lazyload").on_vim_enter(function()
       vim.pack.add({
         { src = "https://github.com/saecki/crates.nvim" },

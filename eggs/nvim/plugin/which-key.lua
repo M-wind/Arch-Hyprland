@@ -86,7 +86,7 @@ require("utils.lazyload").on_vim_enter(function()
     debug = false,
     spec = {
       {
-        { "gi", desc = "Go To Last Insert", icon = { icon = "󰑆 ", color = "orange" } },
+        -- { "gi", desc = "Go To Last Insert", icon = { icon = "󰑆 ", color = "orange" } },
         { "gv", desc = "Last Visual Selection", icon = { icon = "󱊃 ", color = "orange" } },
         { "gb", desc = "Comment Toggle Block" },
         { "gc", desc = "Comment Toggle Line" },

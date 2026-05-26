@@ -1,8 +1,7 @@
 export let colors = #{
     onedarkpro: #{
         background: "#001419",
-        // background: "#282c34",
-        // background: "#181818",
+        obackground: "#282c34",
         section: "#414858",
         foreground: "#dcdfe4",
         black: "#282c34",
@@ -34,7 +33,7 @@ export let colors = #{
     },
     dracula: #{
         background: "#001419",
-        // background: "#282A36",
+        obackground: "#282A36",
         foreground: "#F8F8F2",
         section: "#3e4452",
         black: "#191A21",
@@ -56,7 +55,7 @@ export let colors = #{
     },  
     tokyonight: #{
         background: "#001419",
-        // background: "#222436",
+        obackground: "#222436",
         foreground: "#c8d3f5",
         section: "#2d3f76",
         black: "#1b1d2b",
@@ -88,7 +87,7 @@ export let colors = #{
     },
     everforest: #{
         background: "#001419",
-        // background: "#323d43",
+        obackground: "#323d43",
         foreground: "#d3c6aa",
         section: "#543a48",
         black: "#4b565c",
@@ -120,7 +119,7 @@ export let colors = #{
     },
     catppuccin: #{
         background: "#001419",
-        // background: "#1e1e2e",
+        obackground: "#1e1e2e",
         foreground: "#cdd6f4",
         section: "#45475a",
         black: "#45475a",
@@ -152,6 +151,7 @@ export let colors = #{
     },
     "solarized-osaka": #{
         background: "#001419",
+        oackground: "#001419",
         foreground: "#839395",
         section: "#063540",
         black: "#001014",
@@ -183,7 +183,7 @@ export let colors = #{
     },
     bamboo: #{
         background: "#001419",
-        // background: "#252623",
+        obackground: "#252623",
         foreground: "#f1e9d2",
         section: "#3a3d37",
         black: "#1c1e1b",
@@ -215,7 +215,7 @@ export let colors = #{
     },
     vscode: #{
         background: "#001419",
-        // background: "#1f1f1f",
+        obackground: "#1f1f1f",
         foreground: "#d4d4d4",
         section: "#264f78",
         black: "#1f1f1f",
@@ -247,7 +247,7 @@ export let colors = #{
     },
     wallpaper: #{
         background: "#001419",
-        // background: "#1F1D19",
+        obackground: "#1F1D19",
         foreground: "#E9DFD6",
         section: "#917B67",
         black: "#46433F",

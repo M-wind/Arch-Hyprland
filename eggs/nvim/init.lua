@@ -1,10 +1,11 @@
+vim.loader.enable()
 require("options")
 require("keymaps")
 require("lsp")
 
 require("utils.load_theme")
   -- {# replace_in(`"`, replace_nvim_theme()) #}
-  .load("solarized-osaka")
+  .load("tokyonight-moon")
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -45,10 +46,10 @@ if vim.g.neovide then
   vim.keymap.set("n", "<C-0>", function()
     vim.g.neovide_scale_factor = 1
   end)
-  -- neovide 背景颜色  hyprland 应用透明和模糊
+  -- neovide 背景颜色
   -- {% if theme.color_name != "wallpaper" %}
-  -- {# replace_color(theme.colors.background) #}
-  vim.api.nvim_set_hl(0, "Normal", { bg = "#001419" })
+  -- {# replace_color(theme.colors.obackground) #}
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#222436" })
   -- {% end %}
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")

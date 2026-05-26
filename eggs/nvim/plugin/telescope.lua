@@ -53,7 +53,7 @@ local load = function()
     },
     pickers = {
       fd = { push_tagstack_on_edit = true },
-      live_grep = { push_tagstack_on_edit = true },
+      -- live_grep = { push_tagstack_on_edit = true },
       lsp_references = lsp_cursor_config(),
       lsp_incoming_calls = lsp_cursor_config(),
       lsp_outgoing_calls = lsp_cursor_config(),
@@ -86,9 +86,13 @@ local load = function()
       -- layout_strategy = "vertical",
       layout_strategy = "horizontal",
       layout_config = {
+        horizontal = {
+          preview_width = 0.55,
+          -- prompt_position = "top"
+        },
         vertical = {
           preview_height = 0.55,
-          prompt_position = "bottom",
+          -- prompt_position = "top",
         },
       },
       selection_caret = " ",

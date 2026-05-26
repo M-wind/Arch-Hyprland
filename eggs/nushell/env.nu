@@ -31,7 +31,7 @@ $env.FZF_DEFAULT_OPTS = "
 
 $env.DOTNET_ROOT = $env.HOME | path join language/dotnet
 # mpv vulkan Hardware video acceleration Support
-$env.RADV_PERFTEST = "video_decode,video_encode"
+$env.RADV_EXPERIMENTAL = "video_decode,video_encode"
 
 #colorize man pages
 # $env.MANPAGER = "bat -l man"

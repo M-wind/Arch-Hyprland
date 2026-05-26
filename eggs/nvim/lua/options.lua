@@ -135,6 +135,6 @@ vim.g.loaded_nvim_net_plugin = 1
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_spellfile_plugin = 1
 vim.g.editorconfig = false
--- vim.g.loaded_undotree_plugin = 1
+vim.g.loaded_undotree_plugin = 1
 -- vim.g.loaded_bbye = 1
 -- vim.g.loaded_clipboard_provider = 1

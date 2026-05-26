@@ -40,7 +40,7 @@ recent-windows {
     open-delay-ms 50
     highlight {
         // {# replace_quoted(theme.colors.cyan) #}
-        active-color "#29a298"
+        active-color "#86e1fc"
         padding 6
         corner-radius 8
     }
@@ -79,7 +79,7 @@ layout {
         off
         width 2
         // {# replace_quoted(theme.colors.cyan) #}
-        active-color "#29a298"
+        active-color "#86e1fc"
         inactive-color "#505050"
     }
     border {
@@ -102,7 +102,7 @@ layout {
         softness 8
         offset x=0 y=0
         // {# replace_niri_shadow(theme.colors.cyan) #}
-        color "#29a298ff"
+        color "#86e1fcff"
         inactive-color "#a2929800"
     }
 }

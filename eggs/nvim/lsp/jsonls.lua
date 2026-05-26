@@ -1,3 +1,5 @@
+-- npm i -g vscode-langservers-extracted
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/jsonls.lua
 return {
   cmd = function(dispatchers, config)
     local cmd = "vscode-json-language-server"

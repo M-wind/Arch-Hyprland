@@ -85,12 +85,6 @@ M.change = function()
             for k, v in pairs(M.tailwindColor) do
               vim.api.nvim_set_hl(0, k, { fg = v })
             end
-            -- if vim.g.neovide then
-            --   -- neovide 背景颜色
-            --   -- vim.api.nvim_set_hl(0, "Normal", { bg = M.colors.bg })
-            --   -- 清除颜色 防止 浮动窗口有背景模糊
-            --   vim.cmd("hi clear Normal")
-            -- end
           end,
         }))
         return true
