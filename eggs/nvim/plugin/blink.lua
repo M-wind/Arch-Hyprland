@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({"InsertEnter", "CmdlineEnter"}, {
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   once = true,
   callback = function()
     vim.pack.add({

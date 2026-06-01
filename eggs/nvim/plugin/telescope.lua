@@ -5,9 +5,9 @@ local load = function()
       layout_strategy = "cursor",
       sorting_strategy = "ascending",
       layout_config = {
-        width = width or 0.45,
+        width = width or 0.6,
         height = height or 0.35,
-        preview_width = preview_width or 0.6,
+        preview_width = preview_width or 0.55,
         preview_cutoff = preview_cutoff or 0,
       },
     }
@@ -33,17 +33,6 @@ local load = function()
 
   require("telescope").setup({
     extensions = {
-      zoxide = {
-        prompt_title = "[ Zoxide List ]",
-        list_command = "zoxide query -ls",
-        mappings = {
-          default = {
-            action = function(selection)
-              vim.cmd.cd(selection.path)
-            end,
-          },
-        },
-      },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true,
@@ -164,14 +153,12 @@ local load = function()
       },
     },
   })
-  require("telescope").load_extension("zoxide")
   require("telescope").load_extension("fzf")
 end
 
 require("utils.lazyload").on_vim_enter(function()
   vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/jvgrootveld/telescope-zoxide" },
     { src = "https://github.com/nvim-telescope/telescope-symbols.nvim" },
     { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -180,7 +167,7 @@ require("utils.lazyload").on_vim_enter(function()
   vim.keymap.set("n", "<leader>ff", "<cmd>Telescope fd<cr>", { desc = "Files" })
 
   vim.keymap.set("n", "<leader>fr", function()
-    require("utils.livegrep").multi()
+    require("utils.telescope").live_grep()
   end, { desc = "Files Content" })
 
   vim.keymap.set(
@@ -204,5 +191,7 @@ require("utils.lazyload").on_vim_enter(function()
   )
 
   vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help Tags" })
-  vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide List" })
+  vim.keymap.set("n", "<leader>fz", function()
+    require("utils.telescope").zoxide()
+  end, { desc = "Zoxide List" })
 end)

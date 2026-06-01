@@ -25,6 +25,7 @@ local filetypes = {
   "tsv",
   "tsx", "typescriptreact", "typescript.tsx",
   "typescript", "ts",
+  "typescript", "typescriptreact",
   "xml", "svg",
   "yaml",
   "yuck",
@@ -48,6 +49,7 @@ vim.filetype.add({
   extension = {
     rhai = "rhai",
     log = "log",
+    service = "systemd"
   },
 })
 
@@ -67,7 +69,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.pack.add({
 --   { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 -- })
-
 -- require("tree-sitter-manager").setup({
 --   border = "rounded",
 --   auto_install = false,

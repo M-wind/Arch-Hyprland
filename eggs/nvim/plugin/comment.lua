@@ -4,8 +4,6 @@ require("utils.lazyload").on_vim_enter(function()
   })
   require("Comment").setup()
   local ft = require("Comment.ft")
-  ft.dosini = "# %s"
-  ft.tsx = { "// %s", "{/* %s */}" }
-  ft.conf = "# %s"
   ft.rhai = "// %s"
+  ft.systemd = "# %s"
 end)

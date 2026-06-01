@@ -11,6 +11,7 @@ require("utils.lazyload").on_vim_enter(function()
     --   enabled = true,
     --   view = "cmdline_popup",
     --   opts = {
+    --     -- position = { row ="30%", col = "50%" },
     --     position = "50%",
     --   },
     -- },

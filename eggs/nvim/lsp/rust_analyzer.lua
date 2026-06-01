@@ -124,8 +124,8 @@ return {
   },
   settings = {
     ["rust-analyzer"] = {
-      diagnostics = { enable = false },
-      checkOnSave = { enable = false },
+      -- diagnostics = { enable = false },
+      -- checkOnSave = { enable = false },
       lens = {
         enable = true,
         run = { enable = false },

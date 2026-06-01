@@ -20,13 +20,13 @@ local logo = [[
 ]]
 
 -- logo = [[
--- ███████╗        ██╗    ██╗██╗███╗   ██╗██████╗ 
+-- ███████╗        ██╗    ██╗██╗███╗   ██╗██████╗
 -- ╚══███╔╝        ██║    ██║██║████╗  ██║██╔══██╗
 --   ███╔╝         ██║ █╗ ██║██║██╔██╗ ██║██║  ██║
 --  ███╔╝          ██║███╗██║██║██║╚██╗██║██║  ██║
 -- ███████╗███████╗╚███╔███╔╝██║██║ ╚████║██████╔╝
--- ╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝ 
--- ]]                                              
+-- ╚══════╝╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝
+-- ]]
 
 -- local logo = [[
 --
@@ -56,7 +56,7 @@ vim.pack.add({
       { action = "Telescope oldfiles", icon = " ", desc = "Recent File", key = "o" },
       {
         action = function()
-          require("utils.livegrep").multi()
+          require("utils.telescope").live_grep()
         end,
         icon = " ",
         desc = "Find Text",
@@ -70,7 +70,14 @@ vim.pack.add({
       --   desc = "Session",
       --   key = "s",
       -- },
-      { action = "Telescope zoxide list", icon = "󰴠 ", desc = "Path List", key = "z" },
+      {
+        action = function()
+          require("utils.telescope").zoxide()
+        end,
+        icon = "󰴠 ",
+        desc = "Path List",
+        key = "z",
+      },
       -- { action = "ene", icon = " ", desc = "New File", key = "a" },
       { action = "qa", icon = " ", desc = "Quit", key = "q" },
     }

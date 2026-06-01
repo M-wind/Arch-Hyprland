@@ -53,6 +53,7 @@ $env.PATH = (
     | prepend ($env.HOME | path join app handlr)
     | prepend ($env.HOME | path join app tldr)
     | prepend ($env.HOME | path join app exiftool)
+    | prepend ($env.HOME | path join app lsp)
     | prepend ($env.CARGO_HOME | path join bin)
     | prepend ($env.HOME | path join game)
     | prepend ($env.HOME | path join game wine bin)

@@ -14,7 +14,7 @@ map({ "n", "v" }, "dd", '"_dd', { desc = "Delete Line" })
 -- map("n", "<leader>a", "<cmd>enew<cr>", { desc = "New File" })
 
 map("n", "<leader>t", function()
-  require("utils.theme").change()
+  require("utils.telescope").change_theme()
 end, { desc = "Change Theme" })
 
 -- better indenting

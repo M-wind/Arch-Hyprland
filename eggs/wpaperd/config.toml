@@ -1,4 +1,4 @@
-[default] #any displayname usr hyprctl monitors
+[default]
 path = "/home/zwind/background/img"
 duration = "30m"
 sorting = "random" # ascending descending random

@@ -1,1 +1,1 @@
-export let name = "tokyonight";
+export let name = "catppuccin";

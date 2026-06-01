@@ -117,10 +117,6 @@
       "rev": "a6d0127a53d39b9fc2af75bd169d288166118aec",
       "src": "https://github.com/nvim-telescope/telescope-symbols.nvim"
     },
-    "telescope-zoxide": {
-      "rev": "54bfe630bad08dc9891ec78c7cf8db38dd725c97",
-      "src": "https://github.com/jvgrootveld/telescope-zoxide"
-    },
     "telescope.nvim": {
       "rev": "7d324792b7943e4aa16ad007212e6acc6f9fe335",
       "src": "https://github.com/nvim-telescope/telescope.nvim"

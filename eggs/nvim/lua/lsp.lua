@@ -86,11 +86,12 @@ require("utils.lazyload").on_vim_enter(function()
 
   vim.lsp.enable({
     "rust_analyzer",
-    "bacon_ls",
+    -- "bacon_ls",
     "vtsls",
     "tailwindcss",
     "jsonls",
     "nushell",
+    "systemd_lsp",
     -- "emmylua_ls",
   })
 end)
