@@ -7,5 +7,6 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("mpd")
   hl.exec_cmd("veilad")
   hl.exec_cmd("clipse -listen")
+  hl.exec_cmd("/usr/lib/mate-polkit/polkit-mate-authentication-agent-1")
 end)
 

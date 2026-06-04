@@ -10,11 +10,13 @@ if [[ ${WAYLAND_COMPOSITOR} == "hypr" ]]; then
 elif [[ ${WAYLAND_COMPOSITOR} == "niri" ]]; then
   workspaces_info=$(niri msg -j workspaces)
   if [[ ${operate} == "change" ]]; then
-    number=$(echo "${workspaces_info}" | jq ".[] | select(.id==${number}) | .idx")
+    niri msg action focus-workspace "${number}"
   elif [[ ${operate} == "init" ]]; then
     workspaces=$(echo "${workspaces_info}" | jq "[.[].idx] | sort")
     eww update workspaces="${workspaces}"
     number=$(echo "${workspaces_info}" | jq ".[] | select(.is_active==true) | .idx")
+  else
+    number=$(echo "${workspaces_info}" | jq ".[] | select(.id==${number}) | .idx")
   fi
 fi
 

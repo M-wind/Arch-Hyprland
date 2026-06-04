@@ -10,7 +10,7 @@ $env.config.keybindings ++= [
     name: zoxide_history
     modifier: control
     keycode: char_l
-    mode: [emacs, vi_insert, vi_normal]
+    mode: [emacs]
     event: [
       { 
         send: ExecuteHostCommand
@@ -35,7 +35,7 @@ $env.config.keybindings ++= [
     name: command_history
     modifier: control
     keycode: char_r
-    mode: [emacs, vi_insert, vi_normal]
+    mode: [emacs]
     event: [
       {
         send: ExecuteHostCommand
@@ -55,7 +55,7 @@ $env.config.keybindings ++= [
     name: fzf_directories
     modifier: control
     keycode: char_j
-    mode: [emacs, vi_insert, vi_normal]
+    mode: [emacs]
     event: [
       {
         send: ExecuteHostCommand
@@ -72,7 +72,7 @@ $env.config.keybindings ++= [
     name: fzf_files
     modifier: control
     keycode: char_k
-    mode: [emacs, vi_insert, vi_normal]
+    mode: [emacs]
     event: [
       {
         send: ExecuteHostCommand
@@ -164,32 +164,55 @@ def rgf [
 }
 
 def expac [
-  --last (-l),    # Last 50 package installed
-  --first (-f),   # First 50 packges installed 
-  --search (-s),      # Search packages
-  --content (-c), # Search packages content
-  pattern?: string, # Search text
+  --last (-l),      # Last 50 package installed
+  --first (-f),     # First 50 packges installed 
+  --search (-s),    # packages version size time
+  --content (-c),   # which packages files include
+  --rdp (-r),       # packages require_by, depends_on and provides
+  --df (-d),        # packages directory and file
+  pattern?: string, # param
 ] {
-  match [$last $first $search $content] {
-    [true false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | last 50
+  match [$last $first $search $content $rdp $df] {
+    [true false false false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | last 50
     }
-    [false true false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | first 50
+    [false true false false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | first 50
     }
-    [false false true false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time | where name like $pattern
+    [false false true false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | where name like $pattern
     }
-    [false false false true] => {
-      # rg original
-      # ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern
-      # parse style 
-      let table = ^expac '%n' | parse '{name}' | get name | paru -Ql ...$in | rg $pattern | parse '{name} {content}'
+    [false false false true false false] => {
+      let style = { fg: red, attr: 'bold italic' }
+      let table = ^expac '%n' | lines | pacman -Ql ...$in | rg $pattern | lines | parse '{name} {content}' | par-each { |x| {
+        name: $x.name,
+        content: (
+          let name = $x.content | path basename | str replace $pattern $"(ansi $style)($pattern)(ansi reset)";
+          $x.content | path dirname | path join $name
+        ),
+        type: ($x.content | path type),
+        file: ($x.content | path basename)
+      } } | where type != dir and file like $pattern | select name content
       let name = $table | select name | uniq
-      $name | each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
+      $name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
     }
-    [false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l' | parse '{name}={version}={size}={time}' | sort-by time
+    [false false false false true false] => {
+      let data = ^expac '%n|%N|%D|%P' | lines | parse "{name}|{require_by}|{depends_on}|{provides}"
+      let table = $data | par-each { |x| {
+        name: $x.name,
+        require_by: (let a = if $x.require_by == "" { "None" } else { $x.require_by }; $a | split row -r '\s+'),
+        depends_on: (let a = if $x.depends_on == "" { "None" } else { $x.depends_on }; $a | split row -r '\s+'), 
+        provides: (let a = if $x.provides == "" { "None" } else { $x.provides }; $a | split row -r '\s+') 
+      } }
+      $table | where name like $pattern
+    }
+    [false false false false false true] => {
+      let table = ^expac '%n' | lines | parse '{name}' | where name like $pattern | get name | pacman -Ql ...$in | lines | parse '{name} {content}'
+      let name = $table | select name | uniq
+      $name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
+    }
+    [false false false false false false] => {
+      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date
     } 
   }
 }

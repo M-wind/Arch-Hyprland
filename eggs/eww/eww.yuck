@@ -41,7 +41,7 @@
             :cursor "pointer"
             :onclick { activeworkspace == number ? "" : "eww-workspace change ${number}" }
             (image :path "icons/workspace${number}.svg"
-                   :fill-svg white
+                   :fill-svg { activeworkspace == number ? "white" : white }
                    :image-width imageh 
                    :image-height imageh)))
 

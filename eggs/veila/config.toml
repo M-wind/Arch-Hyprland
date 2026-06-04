@@ -1,9 +1,5 @@
 theme = "default"
 
-[lock]
-avatar_path = "/home/zwind/background/avatar.png"
-username = "Z_wind"
-
 [background]
 mode = "file"
 path = "~/background/img/back10.jpg"
@@ -20,11 +16,11 @@ location = "ChangSha"
 [now_playing]
 include_players = ["mpv", "mpd", "zen"]
 
-[visuals.layer]
-# width = 400
-
 [visuals.avatar]
-size = 96
+image_path = "/home/zwind/background/avatar.png"
+# size = 150
+# x = 0
+# y = -120
 
 [visuals.clock]
 font_family = "JetBrainsMono NFM"
@@ -41,35 +37,59 @@ font_family = "JetBrainsMono NFM"
 background_color = "rgba(255, 255, 255, 0.15)"
 
 [visuals.username]
+text = "Z_wind"
+font_size = 39
 font_family = "TypoGraphica"
 
-[visuals.weather]
+[visuals.weather.icon]
+size = 40
+opacity = 80
+halign = "left"
+valign = "bottom"
+x = 40
+y = -108
+
+[visuals.weather.temperature]
+font_family = "TypoGraphica"
+
+[visuals.weather.location]
+font_style = "italic"
 font_family = "JetBrainsMono NFM"
 
 [visuals.now_playing]
-enabled = false
-title_font_family = "JetBrainsMono NFM"
-artist_font_family = "JetBrainsMono NFM"
-content_gap = 18
-fade_duration_ms = 320
-title_color = "rgba(255, 255, 255, 0.69)"
-artist_color = "rgba(255, 255, 255, 0.39)"
-title_size = 2
-artist_size = 2
-artwork_size = 44
-artwork_radius = 8
-right_padding = 52
-bottom_padding = 56
-artwork_opacity = 90
-title_font_weight = 400
-artist_font_weight = 400
-width = 380
-text_gap = 10
-
-[visuals.now_playing.background]
 enabled = true
-mode = "blur"
-color = "rgba(0, 0, 0, 0.05)"
-radius = 18
-padding_x = 12
-padding_y = 12
+fade_duration_ms = 320
+
+[visuals.now_playing.artwork]
+size = 59
+radius = 8
+opacity = 90
+halign = "left"
+valign = "center"
+x = 0
+y = 0
+relative_to = "now_playing"
+
+[visuals.now_playing.artist]
+width = 318
+color = "rgba(255, 255, 255, 0.39)"
+font_family = "LXGW WenKai Mono GB Screen"
+font_size = 16
+font_weight = 400
+halign = "left"
+valign = "top"
+x = 65
+y = 10
+relative_to = "now_playing"
+
+[visuals.now_playing.title]
+width = 318
+color = "rgba(255, 255, 255, 0.69)"
+font_family = "LXGW WenKai Mono GB Screen"
+font_size = 16
+font_weight = 400
+halign = "left"
+valign = "bottom"
+x = 65
+y = -10
+relative_to = "now_playing"

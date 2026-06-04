@@ -50,7 +50,7 @@ hl.config({
       render_power = 4,
       color_inactive = 0x00a29298,
       --  {# replace_color_hypr(theme.colors.cyan) #}
-      color = 0x2994e2d5,
+      color = 0xff94e2d5,
     },
   },
 

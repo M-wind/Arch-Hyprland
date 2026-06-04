@@ -7,7 +7,7 @@ handle() {
   case "${event}" in
   "WorkspaceActivated")
     workspace_id=$(echo "${value}" | jq ".id")
-    eww-workspace change "${workspace_id}"
+    eww-workspace focus "${workspace_id}"
     eww update applist="$(eww-tools get_app_list)"
     ;;
   "WorkspacesChanged")

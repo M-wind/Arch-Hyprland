@@ -1,5 +1,5 @@
--- local termial = "foot -d none"
-local terminal = "alacritty"
+local terminal = "foot -d none"
+-- local terminal = "alacritty"
 local browser = "~/app/zen/zen"
 local wallpapern = "wpaperctl next"
 local wallpaperp = "wpaperctl previous"
