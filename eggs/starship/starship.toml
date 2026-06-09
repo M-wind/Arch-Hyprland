@@ -6,7 +6,7 @@ $username\
 $hostname\
 $directory\
 $git_branch\
-$git_status\
+$git_commit\
 $package\
 $c\
 $conda\
@@ -52,4 +52,10 @@ format = "[󰔛 $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
 style = "italic dimmed white"
+
+[git_commit]
+format = '[\[](dimmed)[$hash](bold cyan) [](bold dimmed) [$tag](bold yellow)[\]](dimmed) '
+tag_symbol = ''
+tag_disabled = false
+
 

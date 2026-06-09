@@ -32,8 +32,8 @@ map({ "n", "x", "o" }, "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = 
 map("n", "gn", "<C-t>", { desc = "Go Back" })
 
 -- Move Lines
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+map("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move Selection Up" })
+map("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move Selection Down" })
 
 -- Terminal Mappings
 -- map("t", "<esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
@@ -67,6 +67,8 @@ end, { desc = "Close All Buffers" })
 -- map("n", "<leader><tab>[", "<cmd>tabfirst<cr>", { desc = "First Tab" })
 -- map("n", "<leader><tab>n", "<cmd>tabnew<cr>", { desc = "New Tab" })
 -- map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+-- map("n", "<leader><tab>l", "<cmd>tabnext<CR>", { desc = "Next Tab" })
+-- map("n", "<leader><tab>h", "<cmd>tabprevious<CR>", { desc = "Prev Tab" })
 
 -- windows
 -- Resize window using <ctrl> arrow keys

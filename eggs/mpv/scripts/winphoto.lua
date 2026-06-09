@@ -71,7 +71,6 @@ local icons = {
   quit = "\xee\x98\x9b",
 }
 
-
 local style = {
   hover = "\\1c&HFFFFFF&\\1a&HE0&\\3a&HDF&\\bord0",
   panel = "\\1c&H2C2C2C&\\1a&H10&\\3a&H15&\\bord0.3",

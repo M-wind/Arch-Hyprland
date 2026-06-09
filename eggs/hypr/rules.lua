@@ -38,7 +38,7 @@ hl.window_rule({
 hl.layer_rule({
   name = "bar",
   match = { namespace = "bar" },
-  blur = true,
+  -- blur = true,
   ignore_alpha = 0,
 })
 hl.layer_rule({

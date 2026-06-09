@@ -151,7 +151,7 @@ export let colors = #{
     },
     "solarized-osaka": #{
         background: "#001419",
-        obackground: "#001419",
+        obackground: "#001014",
         foreground: "#839395",
         section: "#063540",
         black: "#001014",

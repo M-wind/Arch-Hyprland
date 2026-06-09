@@ -6,7 +6,7 @@ require("lsp")
 
 require("utils.theme")
   -- {# replace_in(`"`, replace_nvim_theme()) #}
-  .load("catppuccin-mocha")
+  .load("tokyonight-moon")
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -50,7 +50,7 @@ if vim.g.neovide then
   -- neovide 背景颜色
   -- {% if theme.color_name != "wallpaper" %}
   -- {# replace_color(theme.colors.obackground) #}
-  vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e2e" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#222436" })
   -- {% end %}
   -- 清除颜色 防止 浮动窗口有背景模糊
   vim.cmd("hi clear Normal")

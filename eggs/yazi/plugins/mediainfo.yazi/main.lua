@@ -192,16 +192,26 @@ end
 
 function M:preload(job)
   local cache = ya.file_cache({ file = job.file, skip = 0 })
+
   local cha = fs.cha(cache)
   if cha then
     return true
   end
-  local status, _ = Command("exiftool"):arg({
-    "-b",
-    "-CoverArt",
-    "-Picture",
+  -- local status, _ = Command("exiftool"):arg({
+  --   "-b",
+  --   "-CoverArt",
+  --   "-Picture",
+  --   tostring(job.file.url),
+  --   "-W",
+  --   tostring(cache),
+  -- }):status()
+  local status, _ = Command("ffmpeg"):arg({
+    "-v",
+    "quiet",
+    "-i",
     tostring(job.file.url),
-    "-W",
+    "-f",
+    "image2",
     tostring(cache),
   }):status()
   return true

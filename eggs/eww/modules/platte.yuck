@@ -1,4 +1,4 @@
-(defvar theme "catppuccin") ;; {< replace_quoted(theme.color_name) >}
+(defvar theme "tokyonight") ;; {< replace_quoted(theme.color_name) >}
 (defvar themes { ["bamboo", "dracula", "catppuccin", "onedarkpro", "tokyonight", "everforest", "solarized-osaka", "vscode", "wallpaper"] })
 
 (defwindow platte
@@ -23,4 +23,4 @@
                 :height 36
                 :width 172
                 :onclick 'eww-changetheme sync ${entry}; eww-changetheme update'
-        (label :text entry :class "plattetext")))))
+        (label :text entry :class { theme == entry ? "plattetextactive" :  "plattetext" })))))

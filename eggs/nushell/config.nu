@@ -27,9 +27,7 @@ $env.config.keybindings ++= [
     modifier: control
     keycode: char_q
     mode: [emacs, vi_insert, vi_normal]
-    event: [
-      { send: ExecuteHostCommand cmd: "" }
-    ]
+    event: null
   },
   {
     name: command_history
@@ -166,23 +164,23 @@ def rgf [
 def expac [
   --last (-l),      # Last 50 package installed
   --first (-f),     # First 50 packges installed 
-  --search (-s),    # packages version size time
+  --search (-s),    # packages version size time url
   --content (-c),   # which packages files include
   --rdp (-r),       # packages require_by, depends_on and provides
   --df (-d),        # packages directory and file
+  --all (-a),       # packages installed all
   pattern?: string, # param
 ] {
-  match [$last $first $search $content $rdp $df] {
-    [true false false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | last 50
+    if $last {
+      return (^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | last 50)
     }
-    [false true false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | first 50
+    if $first {
+      return (^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | first 50)
     }
-    [false false true false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | where name like $pattern
+    if $search {
+      return (^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date | where name like $pattern)
     }
-    [false false false true false false] => {
+    if $content {
       let style = { fg: red, attr: 'bold italic' }
       let table = ^expac '%n' | lines | pacman -Ql ...$in | rg $pattern | lines | parse '{name} {content}' | par-each { |x| {
         name: $x.name,
@@ -194,9 +192,9 @@ def expac [
         file: ($x.content | path basename)
       } } | where type != dir and file like $pattern | select name content
       let name = $table | select name | uniq
-      $name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
+      return ($name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } })
     }
-    [false false false false true false] => {
+    if $rdp {
       let data = ^expac '%n|%N|%D|%P' | lines | parse "{name}|{require_by}|{depends_on}|{provides}"
       let table = $data | par-each { |x| {
         name: $x.name,
@@ -204,17 +202,20 @@ def expac [
         depends_on: (let a = if $x.depends_on == "" { "None" } else { $x.depends_on }; $a | split row -r '\s+'), 
         provides: (let a = if $x.provides == "" { "None" } else { $x.provides }; $a | split row -r '\s+') 
       } }
-      $table | where name like $pattern
+      return ($table | where name like $pattern)
     }
-    [false false false false false true] => {
+    if $df {
       let table = ^expac '%n' | lines | parse '{name}' | where name like $pattern | get name | pacman -Ql ...$in | lines | parse '{name} {content}'
       let name = $table | select name | uniq
-      $name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } }
+      return ($name | par-each { |x| { name:$x.name, content: ($table | where name == $x.name | get content) } })
     }
-    [false false false false false false] => {
-      ^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date
+    if $all {
+      return (^expac --timefmt='%Y-%m-%d %T' -H M '%n=%v=%m=%l=%u' | lines | parse '{name}={version}={size}={install_date}={url}' | sort-by install_date)
     } 
-  }
+    let data = ^expac '%n|%N' | lines | parse "{name}|{require_by}"
+    $data | par-each { |x| if $x.require_by == "" {
+      return { name:$x.name, require_by: "None" }
+    } } | sort-by name
 }
 
 def h [name] {

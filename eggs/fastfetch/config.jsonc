@@ -57,7 +57,21 @@
       "key": "   Cursor",
       "keyColor": "cyan"
     },
+    // {
+    //   "type": "codec",
+    //   "showType": "decoder",
+    //   "key": "  󰻜 Decoder",
+    //   "format": "{3} [{4}]",
+    //   "keyColor":"magenta"
+    // },
     "break",
+    // {
+    //   "type": "codec",
+    //   "showType": "encoder",
+    //   "key": "  󰞣 Encoder",
+    //   "format": "{3} [{4}]",
+    //   "keyColor":"magenta"
+    // },
     {
       "type": "localip",
       "key": "  󰩟 Localip",
@@ -110,7 +124,6 @@
       "type": "colors",
       "paddingLeft": 2,
       "symbol": "circle"
-    },
-    "break"
+    }
   ]
 }

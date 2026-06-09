@@ -5,6 +5,7 @@ $env._ZO_DATA_DIR = $env.HOME | path join app zoxide
 $env.EDITOR = "nvim"
 # $env.config.edit_mode = 'vi'
 $env.LANG = "en_US.UTF-8"
+# $env.LANG = "zh_CN.UTF-8"
 
 # $env.BAT_CONFIG_PATH = "~/app/bat/bat.conf"
 

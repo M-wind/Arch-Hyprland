@@ -11,14 +11,6 @@ layer-rule {
     }
 }
 layer-rule {
-    match namespace="bar-center-slide"
-    geometry-corner-radius 8
-    background-effect {
-        blur true
-        xray true
-    }
-}
-layer-rule {
     match namespace="bar-center-popin"
     geometry-corner-radius 8
     background-effect {
