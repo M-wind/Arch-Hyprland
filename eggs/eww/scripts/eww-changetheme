@@ -4,10 +4,11 @@ operate=${1}
 
 if [[ ${operate} == "sync" ]]; then
   code="export let name = \"${2}\";"
-  ctl=wpaperctl
+  # ctl=wpaperctl
 
-  if [[ ${1} == "wallpaper" ]]; then
-    wallust -q run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))
+  if [[ ${2} == "wallpaper" ]]; then
+    # wallust -q -I background run $("${ctl}" get $("${ctl}" status | jq -R 'split(": ") | .[0]'))
+    wallust -q -I background run $(awww query -j | jq -r '."".[0].displaying.image')
   else
     colorscheme=$(yolk eval "write_current_colorscheme(\"${2}\")")
     echo "${colorscheme}" >~/.config/wallust/colorschemes/terminal.json && wallust -q -T cs terminal

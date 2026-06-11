@@ -1,4 +1,6 @@
-spawn-sh-at-startup "wpaperd -d"
+// spawn-sh-at-startup "wpaperd -d"
+spawn-at-startup "awww-daemon" "--no-cache"
+spawn-at-startup "awwwctl"
 spawn-sh-at-startup "swaybg -i ~/background/img/back3.png"
 // spawn-sh-at-startup "lianwall start"
 spawn-sh-at-startup "clipse -listen"

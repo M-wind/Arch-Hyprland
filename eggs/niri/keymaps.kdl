@@ -53,11 +53,17 @@ binds {
     Mod+Shift+O repeat=false {
         toggle-overview
     }
+    // Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
+    //     spawn-sh "wpaperctl previous"
+    // }
+    // Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
+    //     spawn-sh "wpaperctl next"
+    // }
     Mod+BracketLeft hotkey-overlay-title="Previous Wallpaper" repeat=false {
-        spawn-sh "wpaperctl previous"
+        spawn-sh "awwwctl prev"
     }
     Mod+BracketRight hotkey-overlay-title="Next Wallpaper" repeat=false {
-        spawn-sh "wpaperctl next"
+        spawn-sh "awwwctl next"
     }
     Mod+O repeat=false {
         switch-preset-window-height
