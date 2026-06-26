@@ -1,0 +1,5 @@
+globalBinDir: ${HOME}/language/node/pnpm-global/bin
+globalDir: ${HOME}/lanugage/node/pnpm-global
+storeDir: ${HOME}/language/node/pnpm-store
+cacheDir: ${HOME}/language/node/pnpm-cache
+stateDir: ${HOME}/language/node/pnpm-state
