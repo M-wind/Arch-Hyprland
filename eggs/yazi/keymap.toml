@@ -8,7 +8,7 @@ keymap = [
 	{ on = "<C-c>", run = "plugin ouch",            desc = "Compress with ouch" },
 
   # Drag
-  { on = "<C-n>", run = 'shell -- dragon -x -i -T "$1"', desc = "drag" },
+  { on = "<C-n>", run = 'shell -- dragon -x -i -T %h', desc = "drag" },
 
   # Preview
   { on = "<C-m>", run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
