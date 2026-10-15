@@ -29,10 +29,10 @@ return {
   settings = {
     vtsls = { autoUseWorkspaceTsdk = true },
     typescript = {
-      -- referencesCodeLens = { enabled = false, showOnAllFunctions = true },
-      referencesCodeLens = { enabled = true, showOnAllFunctions = true },
-      -- implementationsCodeLens = { enabled = false, showOnInterfaceMethods = true },
-      implementationsCodeLens = { enabled = true, showOnInterfaceMethods = true, showOnAllClassMethods = true },
+      referencesCodeLens = { enabled = false, showOnAllFunctions = true },
+      -- referencesCodeLens = { enabled = true, showOnAllFunctions = true },
+      implementationsCodeLens = { enabled = false, showOnInterfaceMethods = true },
+      -- implementationsCodeLens = { enabled = true, showOnInterfaceMethods = true, showOnAllClassMethods = true },
       -- suggest = { enabled = true, completeFunctionCalls = true },
       inlayHints = {
         parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = true },

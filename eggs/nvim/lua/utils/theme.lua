@@ -366,7 +366,7 @@ M.load = function(name)
     current.loaded = true
   end
   vim.cmd.colorscheme(name)
-  heirline_when_theme_change()
+  -- heirline_when_theme_change()
 end
 
 return M

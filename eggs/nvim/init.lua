@@ -17,6 +17,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  desc = "ColorScheme Change Heirline",
+  group = vim.api.nvim_create_augroup("Heirline", { clear = true }),
+  callback = function()
+    require("heirline.utils").on_colorscheme({
+      opts = {
+        colors = require("utils.theme").colors,
+      },
+    })
+  end,
+})
+
 if vim.g.neovide then
   vim.keymap.set({ "n", "x", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
   vim.keymap.set({ "i", "c" }, "<C-S-V>", "<C-R>+", { desc = "Paste system clipboard" })

@@ -6,4 +6,5 @@ require("utils.lazyload").on_vim_enter(function()
   local ft = require("Comment.ft")
   ft.rhai = "// %s"
   ft.systemd = "# %s"
+  ft.typescriptreact = { "// %s", "{/* %s */}" }
 end)
